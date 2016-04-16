@@ -93,4 +93,35 @@ And vehicles will be converted automatically.
 
 #### CORE DATA
 
+With a `Daikiri` model we can work with coredata in an active recod like way. You just need to name the
+model the same way it is in the database `.xcdatamodeld`
+
+A `Daikiri` model comes with an `id` property that is the `primary key` used for all the following methods
+
+Then you can do the following
+
+```
+    [model create] //It creates a new record in the database needs to have the id
+
+    model.name = "Bruce wayne";
+    model.age = @10;
+
+    [model save]    //Updates the record saved in the database (if it doesn't exists, it will create it)
+```
+
+We can also
+
+```
+    // Get an specific hero
+    Hero* batman = [Hero find:@10]; //Search the model in the database
+    [batman delete];                //Deletes it from the database
+
+    // Get all heros
+    NSArray* allHeros = [Hero all];    
+```
+
+    
+
+
+
 

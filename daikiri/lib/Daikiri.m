@@ -19,6 +19,11 @@
 //==================================================================
 +(bool)create:(Daikiri*)toCreate{
     
+    if(toCreate.id == nil){
+        NSLog(@"model without id");
+        return false;
+    }
+    
     Daikiri* previous = [[self class] find:toCreate.id];
     if(previous) {
         NSLog(@"Model already exists with id: %@",toCreate.id);
