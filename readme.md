@@ -1,0 +1,1 @@
+pod 'daikiri'               ,:git => 'https://github.com/BadChoice/daikiri.git'

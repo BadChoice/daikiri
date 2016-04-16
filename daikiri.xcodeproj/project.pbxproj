@@ -11,6 +11,8 @@
 		760AE0B81CC27FE8005DE071 /* Headquarter.m in Sources */ = {isa = PBXBuildFile; fileRef = 760AE0B31CC27FE8005DE071 /* Headquarter.m */; };
 		760AE0B91CC27FE8005DE071 /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 760AE0B51CC27FE8005DE071 /* Hero.m */; };
 		760AE0BA1CC27FE8005DE071 /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = 760AE0B71CC27FE8005DE071 /* Vehicle.m */; };
+		7611ED191CC2CF7600A55B06 /* daikiri.podspec.json in Resources */ = {isa = PBXBuildFile; fileRef = 7611ED181CC2CF7600A55B06 /* daikiri.podspec.json */; };
+		7611ED1B1CC2D09900A55B06 /* readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 7611ED1A1CC2D09900A55B06 /* readme.md */; };
 		762167BA1CC178A200C6CA80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167B91CC178A200C6CA80 /* main.m */; };
 		762167BD1CC178A200C6CA80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167BC1CC178A200C6CA80 /* AppDelegate.m */; };
 		762167C01CC178A200C6CA80 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167BF1CC178A200C6CA80 /* ViewController.m */; };
@@ -30,6 +32,8 @@
 		760AE0B51CC27FE8005DE071 /* Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hero.m; path = support/Hero.m; sourceTree = "<group>"; };
 		760AE0B61CC27FE8005DE071 /* Vehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vehicle.h; path = support/Vehicle.h; sourceTree = "<group>"; };
 		760AE0B71CC27FE8005DE071 /* Vehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Vehicle.m; path = support/Vehicle.m; sourceTree = "<group>"; };
+		7611ED181CC2CF7600A55B06 /* daikiri.podspec.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = daikiri.podspec.json; sourceTree = "<group>"; };
+		7611ED1A1CC2D09900A55B06 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		762167B51CC178A200C6CA80 /* daikiri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daikiri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		762167B91CC178A200C6CA80 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		762167BB1CC178A200C6CA80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -61,6 +65,8 @@
 			children = (
 				762167B71CC178A200C6CA80 /* daikiri */,
 				762167B61CC178A200C6CA80 /* Products */,
+				7611ED1A1CC2D09900A55B06 /* readme.md */,
+				7611ED181CC2CF7600A55B06 /* daikiri.podspec.json */,
 			);
 			sourceTree = "<group>";
 		};
@@ -189,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				762167CB1CC178A200C6CA80 /* LaunchScreen.storyboard in Resources */,
+				7611ED191CC2CF7600A55B06 /* daikiri.podspec.json in Resources */,
 				762167C81CC178A200C6CA80 /* Assets.xcassets in Resources */,
 				762167C31CC178A200C6CA80 /* Main.storyboard in Resources */,
 			);
@@ -209,6 +216,7 @@
 				760AE0BA1CC27FE8005DE071 /* Vehicle.m in Sources */,
 				762167BD1CC178A200C6CA80 /* AppDelegate.m in Sources */,
 				762167BA1CC178A200C6CA80 /* main.m in Sources */,
+				7611ED1B1CC2D09900A55B06 /* readme.md in Sources */,
 				760AE0B11CC27563005DE071 /* DaikiriJSON.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
