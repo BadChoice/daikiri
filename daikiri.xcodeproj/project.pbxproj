@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		760AE0B11CC27563005DE071 /* DaikiriJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 760AE0B01CC27563005DE071 /* DaikiriJSON.m */; };
 		762167BA1CC178A200C6CA80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167B91CC178A200C6CA80 /* main.m */; };
 		762167BD1CC178A200C6CA80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167BC1CC178A200C6CA80 /* AppDelegate.m */; };
 		762167C01CC178A200C6CA80 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167BF1CC178A200C6CA80 /* ViewController.m */; };
@@ -14,9 +15,15 @@
 		762167C61CC178A200C6CA80 /* daikiri.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 762167C41CC178A200C6CA80 /* daikiri.xcdatamodeld */; };
 		762167C81CC178A200C6CA80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 762167C71CC178A200C6CA80 /* Assets.xcassets */; };
 		762167CB1CC178A200C6CA80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762167C91CC178A200C6CA80 /* LaunchScreen.storyboard */; };
+		762167D71CC1791600C6CA80 /* Daikiri.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167D61CC1791600C6CA80 /* Daikiri.m */; };
+		762167DA1CC1795400C6CA80 /* ExampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167D91CC1795400C6CA80 /* ExampleModel.m */; };
+		762167DD1CC17F1500C6CA80 /* ExampleSubModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167DC1CC17F1500C6CA80 /* ExampleSubModel.m */; };
+		762167E01CC185BB00C6CA80 /* ExampleArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167DF1CC185BB00C6CA80 /* ExampleArray.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		760AE0AF1CC27563005DE071 /* DaikiriJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DaikiriJSON.h; path = lib/DaikiriJSON.h; sourceTree = "<group>"; };
+		760AE0B01CC27563005DE071 /* DaikiriJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DaikiriJSON.m; path = lib/DaikiriJSON.m; sourceTree = "<group>"; };
 		762167B51CC178A200C6CA80 /* daikiri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daikiri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		762167B91CC178A200C6CA80 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		762167BB1CC178A200C6CA80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -28,6 +35,14 @@
 		762167C71CC178A200C6CA80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		762167CA1CC178A200C6CA80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		762167CC1CC178A200C6CA80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		762167D51CC1791600C6CA80 /* Daikiri.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Daikiri.h; path = lib/Daikiri.h; sourceTree = "<group>"; };
+		762167D61CC1791600C6CA80 /* Daikiri.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Daikiri.m; path = lib/Daikiri.m; sourceTree = "<group>"; };
+		762167D81CC1795400C6CA80 /* ExampleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExampleModel.h; path = support/ExampleModel.h; sourceTree = "<group>"; };
+		762167D91CC1795400C6CA80 /* ExampleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExampleModel.m; path = support/ExampleModel.m; sourceTree = "<group>"; };
+		762167DB1CC17F1500C6CA80 /* ExampleSubModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExampleSubModel.h; path = support/ExampleSubModel.h; sourceTree = "<group>"; };
+		762167DC1CC17F1500C6CA80 /* ExampleSubModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExampleSubModel.m; path = support/ExampleSubModel.m; sourceTree = "<group>"; };
+		762167DE1CC185BB00C6CA80 /* ExampleArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExampleArray.h; path = support/ExampleArray.h; sourceTree = "<group>"; };
+		762167DF1CC185BB00C6CA80 /* ExampleArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExampleArray.m; path = support/ExampleArray.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,15 +75,12 @@
 		762167B71CC178A200C6CA80 /* daikiri */ = {
 			isa = PBXGroup;
 			children = (
-				762167BB1CC178A200C6CA80 /* AppDelegate.h */,
-				762167BC1CC178A200C6CA80 /* AppDelegate.m */,
-				762167BE1CC178A200C6CA80 /* ViewController.h */,
-				762167BF1CC178A200C6CA80 /* ViewController.m */,
-				762167C11CC178A200C6CA80 /* Main.storyboard */,
+				762167D41CC178E500C6CA80 /* support */,
+				762167D31CC178D900C6CA80 /* app */,
+				762167D21CC178D000C6CA80 /* lib */,
 				762167C71CC178A200C6CA80 /* Assets.xcassets */,
 				762167C91CC178A200C6CA80 /* LaunchScreen.storyboard */,
 				762167CC1CC178A200C6CA80 /* Info.plist */,
-				762167C41CC178A200C6CA80 /* daikiri.xcdatamodeld */,
 				762167B81CC178A200C6CA80 /* Supporting Files */,
 			);
 			path = daikiri;
@@ -80,6 +92,43 @@
 				762167B91CC178A200C6CA80 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		762167D21CC178D000C6CA80 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				762167D51CC1791600C6CA80 /* Daikiri.h */,
+				762167D61CC1791600C6CA80 /* Daikiri.m */,
+				760AE0AF1CC27563005DE071 /* DaikiriJSON.h */,
+				760AE0B01CC27563005DE071 /* DaikiriJSON.m */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+		762167D31CC178D900C6CA80 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				762167BB1CC178A200C6CA80 /* AppDelegate.h */,
+				762167BC1CC178A200C6CA80 /* AppDelegate.m */,
+				762167BE1CC178A200C6CA80 /* ViewController.h */,
+				762167BF1CC178A200C6CA80 /* ViewController.m */,
+				762167C11CC178A200C6CA80 /* Main.storyboard */,
+			);
+			name = app;
+			sourceTree = "<group>";
+		};
+		762167D41CC178E500C6CA80 /* support */ = {
+			isa = PBXGroup;
+			children = (
+				762167C41CC178A200C6CA80 /* daikiri.xcdatamodeld */,
+				762167D81CC1795400C6CA80 /* ExampleModel.h */,
+				762167D91CC1795400C6CA80 /* ExampleModel.m */,
+				762167DB1CC17F1500C6CA80 /* ExampleSubModel.h */,
+				762167DC1CC17F1500C6CA80 /* ExampleSubModel.m */,
+				762167DE1CC185BB00C6CA80 /* ExampleArray.h */,
+				762167DF1CC185BB00C6CA80 /* ExampleArray.m */,
+			);
+			name = support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,9 +202,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				762167C01CC178A200C6CA80 /* ViewController.m in Sources */,
+				762167D71CC1791600C6CA80 /* Daikiri.m in Sources */,
+				762167DA1CC1795400C6CA80 /* ExampleModel.m in Sources */,
+				762167DD1CC17F1500C6CA80 /* ExampleSubModel.m in Sources */,
+				762167E01CC185BB00C6CA80 /* ExampleArray.m in Sources */,
 				762167C61CC178A200C6CA80 /* daikiri.xcdatamodeld in Sources */,
 				762167BD1CC178A200C6CA80 /* AppDelegate.m in Sources */,
 				762167BA1CC178A200C6CA80 /* main.m in Sources */,
+				760AE0B11CC27563005DE071 /* DaikiriJSON.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +360,7 @@
 				762167D11CC178A200C6CA80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
