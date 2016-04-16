@@ -16,7 +16,7 @@ pod 'daikiri' ,:git => 'https://github.com/BadChoice/daikiri.git'
 ## Usage
 
 Create a model that inherts from `Daikiri` and add the properties you want to be automatically converted
-Note that submodels will automatically be converted if they also inhert from `Daikiri`
+Note that `submodels` will automatically be converted if they also inhert from `Daikiri`
 
 #### JSON
 
@@ -104,7 +104,7 @@ Then you can do the following
 [model create] //It creates a new record in the database needs to have the id
 
 model.name = "Bruce wayne";
-model.age = @10;
+model.age  = @10;
 
 [model save]    //Updates the record saved in the database (if it doesn't exists, it will create it)
 ```
@@ -130,7 +130,7 @@ If you want, there are the convenience methods to to those basic actions directl
 ```
     
 You can override the `+(NSManagedObjectContext*)managedObjectContext` function in your model if you want to 
-use your custom `managedObjectContext`. By default it uses the default `core data` xcode project's
+use your custom `managedObjectContext`. By default it uses the default `core data` xcode's project.
 
 ```
 +(NSManagedObjectContext*)managedObjectContext{
