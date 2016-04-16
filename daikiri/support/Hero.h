@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Daikiri.h"
-#import "ExampleSubModel.h"
+#import "Headquarter.h"
 
-@interface ExampleModel : Daikiri
+@interface Hero : Daikiri
 
-@property (strong,nonatomic) NSNumber* id;
 @property (strong,nonatomic) NSString* name;
 @property (strong,nonatomic) NSNumber* age;
-@property (strong,nonatomic) ExampleSubModel* submodel;
+@property (strong,nonatomic) Headquarter* headquarter;
 
 @end

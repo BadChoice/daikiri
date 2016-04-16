@@ -6,13 +6,13 @@
 //  Copyright © 2016 revo. All rights reserved.
 //
 
-#import "ExampleSubModel.h"
-#import "ExampleArray.h"
+#import "Headquarter.h"
+#import "Vehicle.h"
 
-@implementation ExampleSubModel
+@implementation Headquarter
 
--(Class)anArray_DaikiriArray{
-    return [ExampleArray class];
+-(Class)vehicles_DaikiriArray{
+    return [Vehicle class];
 }
 
 @end

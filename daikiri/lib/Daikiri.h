@@ -21,7 +21,7 @@
 // CORE DATA
 //-----------------
 
--(bool)create:(Daikiri*)object;
++(bool)create:(Daikiri*)object;
 /**
  * The save function uses the model ID for checking if it already 
  * exists so it will do an update, or if model ID is null or can't

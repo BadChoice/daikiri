@@ -9,11 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Daikiri.h"
 
-@interface ExampleSubModel : Daikiri
+@interface Headquarter : Daikiri
 
-@property(strong,nonatomic) NSNumber* id;
 @property(strong,nonatomic) NSString* address;
-@property(strong,nonatomic) NSNumber* isValid;
-@property(strong,nonatomic) NSArray*  anArray;
+@property(strong,nonatomic) NSNumber* isActive;
+@property(strong,nonatomic) NSArray*  vehicles;
 
 @end

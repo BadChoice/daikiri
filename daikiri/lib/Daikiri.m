@@ -163,7 +163,7 @@
                 [newObject setValue:value forKey:name];
             }
         }@catch (NSException * e) {
-            NSLog(@"Model value not in core data entity: %@", e);
+            //NSLog(@"Model value not in core data entity: %@", e);
         }
         
     }
