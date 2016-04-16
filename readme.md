@@ -120,7 +120,7 @@ We can also
     NSArray* allHeros = [Hero all];    
 ```
 
-If you want, there are the convenience methods to to those basic actions direcly from a dictionary
+If you want, there are the convenience methods to to those basic actions directly from a dictionary
 
 
 ```    
@@ -129,7 +129,15 @@ If you want, there are the convenience methods to to those basic actions direcly
     +(bool)deleteWith:(NSNumber*)id;
 ```
     
+You can override the `+(NSManagedObjectContext*)managedObjectContext` function in your model if you want to 
+use your custom `managedObjectContext`. By default it uses the default `core data` xcode project's
 
+```
+    +(NSManagedObjectContext*)managedObjectContext{
+        NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    return context;
+    }
+```
 
 
 
