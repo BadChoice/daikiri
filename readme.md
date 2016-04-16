@@ -120,6 +120,14 @@ We can also
     NSArray* allHeros = [Hero all];    
 ```
 
+If you want, there are the convenience methods to to those basic actions direcly from a dictionary
+
+
+```    
+    +(bool)createWith:(NSDictionary*)dict;
+    +(bool)updateWith:(NSDictionary*)dict;    
+    +(bool)deleteWith:(NSNumber*)id;
+```
     
 
 

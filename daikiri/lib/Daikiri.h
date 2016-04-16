@@ -34,12 +34,14 @@
 
 -(bool)delete;
 
+// Convenience methods
++(bool)createWith:(NSDictionary*)dict;
++(bool)updateWith:(NSDictionary*)dict;
++(bool)deleteWith:(NSNumber*)id;
+
+// Eloquent like
 +(id)find:(NSNumber*)id;
 +(NSArray*)all;
 
-//+(id)fromManaged:(NSManagedObject*)managedObject;
-
-
--(void)setManaged:(NSManagedObject*)managed;
 
 @end

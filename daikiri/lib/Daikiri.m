@@ -68,6 +68,7 @@
     
 }
 
+
 -(bool)delete{
     if(_managed){
         [[[self class] managedObjectContext] deleteObject:_managed];
@@ -78,7 +79,30 @@
         return [toDelete delete];
     }
 }
-     
+
+//==================================================================
+#pragma mark - convenience methods
+#pragma mark -
+//==================================================================
++(bool)updateWith:(NSDictionary*)dict{
+    Daikiri* object = [[self class] fromDictionary:dict];
+    return [object update];
+}
+
++(bool)createWith:(NSDictionary*)dict{
+    Daikiri* object = [[self class] fromDictionary:dict];
+    return [[self class]create:object];
+}
+
++(bool)deleteWith:(NSNumber*)id{
+    Daikiri * object = [[self class] find:id];
+    return [object delete];
+}
+
+//==================================================================
+#pragma mark - Active record
+#pragma mark -
+//==================================================================
 +(id)find:(NSNumber*)id{
     NSString* entityName    = NSStringFromClass([self class]);
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
