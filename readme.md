@@ -21,45 +21,45 @@ Note that submodels will automatically be converted if they also inhert from `Da
 #### JSON
 
 ```
-    #import "Daikiri.h"
-    #import "Headquarter.h"
+#import "Daikiri.h"
+#import "Headquarter.h"
 
-    @interface Hero : Daikiri
+@interface Hero : Daikiri
 
-    @property (strong,nonatomic) NSString* name;
-    @property (strong,nonatomic) NSNumber* age;
-    @property (strong,nonatomic) Headquarter* headquarter;
+@property (strong,nonatomic) NSString* name;
+@property (strong,nonatomic) NSNumber* age;
+@property (strong,nonatomic) Headquarter* headquarter;
 
-    @end
+@end
 
 ```
 
 Then you can do:
 
 ```
-    NSDictionary* d = @{
-        @"name" : @"Batman",
-        @"age"  : @10,
-        @"headquarter":@{
-            @"address" : @"patata",
-            @"isActive" : @1,
-            @"vehicles"   : @[
-                @{@"model" : @"Batmobile"},
-                @{@"model" : @"Batwing"},
-                @{@"model" : @"Tumbler"},
-            ]
-        }
-    };
+NSDictionary* d = @{
+    @"name" : @"Batman",
+    @"age"  : @10,
+    @"headquarter":@{
+        @"address" : @"patata",
+        @"isActive" : @1,
+        @"vehicles"   : @[
+            @{@"model" : @"Batmobile"},
+            @{@"model" : @"Batwing"},
+            @{@"model" : @"Tumbler"},
+        ]
+    }
+};
 
-    Hero * model = [Hero fromDictionary:d];    
+Hero * model = [Hero fromDictionary:d];    
 
 ```
 
 And convert it back
 
 ```
-    NSDictionary* modelToDict = [model toDictionary];
-    NSLog(@"Model to dict: %@",modelToDict);
+NSDictionary* modelToDict = [model toDictionary];
+NSLog(@"Model to dict: %@",modelToDict);
 
 ```
 
@@ -69,13 +69,13 @@ You can also convert the arrays to its class, for doing so you need to create th
 In the previous case we have the model `Headquarter` like this
 
 ```
-    @interface Headquarter : Daikiri
+@interface Headquarter : Daikiri
 
-    @property(strong,nonatomic) NSString* address;
-    @property(strong,nonatomic) NSNumber* isActive;
-    @property(strong,nonatomic) NSArray*  vehicles;
+@property(strong,nonatomic) NSString* address;
+@property(strong,nonatomic) NSNumber* isActive;
+@property(strong,nonatomic) NSArray*  vehicles;
 
-    @end
+@end
 
 ```
 
@@ -101,42 +101,42 @@ A `Daikiri` model comes with an `id` property that is the `primary key` used for
 Then you can do the following
 
 ```
-    [model create] //It creates a new record in the database needs to have the id
+[model create] //It creates a new record in the database needs to have the id
 
-    model.name = "Bruce wayne";
-    model.age = @10;
+model.name = "Bruce wayne";
+model.age = @10;
 
-    [model save]    //Updates the record saved in the database (if it doesn't exists, it will create it)
+[model save]    //Updates the record saved in the database (if it doesn't exists, it will create it)
 ```
 
 We can also
 
 ```
-    // Get an specific hero
-    Hero* batman = [Hero find:@10]; //Search the model in the database
-    [batman delete];                //Deletes it from the database
+// Get an specific hero
+Hero* batman = [Hero find:@10]; //Search the model in the database
+[batman delete];                //Deletes it from the database
 
-    // Get all heros
-    NSArray* allHeros = [Hero all];    
+// Get all heros
+NSArray* allHeros = [Hero all];    
 ```
 
 If you want, there are the convenience methods to to those basic actions directly from a dictionary
 
 
 ```    
-    +(bool)createWith:(NSDictionary*)dict;
-    +(bool)updateWith:(NSDictionary*)dict;    
-    +(bool)deleteWith:(NSNumber*)id;
++(bool)createWith:(NSDictionary*)dict;
++(bool)updateWith:(NSDictionary*)dict;    
++(bool)deleteWith:(NSNumber*)id;
 ```
     
 You can override the `+(NSManagedObjectContext*)managedObjectContext` function in your model if you want to 
 use your custom `managedObjectContext`. By default it uses the default `core data` xcode project's
 
 ```
-    +(NSManagedObjectContext*)managedObjectContext{
-        NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-        return context;
-    }
++(NSManagedObjectContext*)managedObjectContext{
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    return context;
+}
 ```
 
 
