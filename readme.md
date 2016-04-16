@@ -135,7 +135,7 @@ use your custom `managedObjectContext`. By default it uses the default `core dat
 ```
     +(NSManagedObjectContext*)managedObjectContext{
         NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    return context;
+        return context;
     }
 ```
 
