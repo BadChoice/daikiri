@@ -93,6 +93,32 @@ And vehicles will be converted automatically.
 
 #### CORE DATA
 
+##### Setup
+`Daikiri` Comes with a `CoreData` manager. It creaes the `managedObjectContents` and connects to the database named `yourprojectname.sqlite` at 
+`applicationDocumentsDirectory`.
+
+You can change the project name by setting the property `databaseName` of the `DaikiriCoreData` manager
+
+```
+[DaikiriCoreData manager].databaseName = @"youdatabasename";
+```
+
+The only thing you need to do is to add a call to `[[DaikiriCoreData manager] saveContex]` in your app delegate `- (void)applicationWillTerminate:(UIApplication *)application` to save the context even if there is a crash.
+
+
+However, you can use you custom `CoreData` manager by overridin the `+(NSManagedObjectContext*)managedObjectContext` function in your model.
+
+```
++(NSManagedObjectContext*)managedObjectContext{
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    return context;
+}
+```
+
+
+
+
+##### Core data models
 With a `Daikiri` model we can work with coredata in an active recod like way. You just need to name the
 model the same way it is in the database `.xcdatamodeld`
 
@@ -129,15 +155,6 @@ If you want, there are the convenience methods to to those basic actions directl
 +(bool)deleteWith:(NSNumber*)id;
 ```
     
-You can override the `+(NSManagedObjectContext*)managedObjectContext` function in your model if you want to 
-use your custom `managedObjectContext`. By default it uses the default `core data` xcode's project.
-
-```
-+(NSManagedObjectContext*)managedObjectContext{
-    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    return context;
-}
-```
 
 
 #### Relationships

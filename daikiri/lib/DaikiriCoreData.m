@@ -55,9 +55,11 @@
     }
     
     // Create the coordinator and store
+
+    NSString* dbFilename = [NSString stringWithFormat:@"%@.sqlite",self.databaseName];
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"daikiri.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:dbFilename];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
@@ -90,6 +92,15 @@
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     return _managedObjectContext;
+}
+
+-(NSString*)databaseName{
+    if(_databaseName == nil){
+        _databaseName = [[NSBundle mainBundle]
+                                objectForInfoDictionaryKey:@"CFBundleName"];
+    }
+    
+    return _databaseName;
 }
 
 #pragma mark - Core Data Saving support
