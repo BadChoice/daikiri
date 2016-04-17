@@ -103,10 +103,12 @@ You can change the project name by setting the property `databaseName` of the `D
 [DaikiriCoreData manager].databaseName = @"youdatabasename";
 ```
 
-The only thing you need to do is to add a call to `[[DaikiriCoreData manager] saveContex]` in your app delegate `- (void)applicationWillTerminate:(UIApplication *)application` to save the context even if there is a crash.
+You should place this call before any other `CoreData` call so it's recomended to do it at `didFinishLaunchingWithOptions`.
+
+The only thing you need to do is to add a call to `[[DaikiriCoreData manager] saveContex]` in your app delegate `-(void)applicationWillTerminate:(UIApplication *)application` to save the context even if there is a crash.
 
 
-However, you can use you custom `CoreData` manager by overridin the `+(NSManagedObjectContext*)managedObjectContext` function in your model.
+However, you can also use you custom `CoreData` manager by overridin the `+(NSManagedObjectContext*)managedObjectContext` function in your model.
 
 ```
 +(NSManagedObjectContext*)managedObjectContext{
