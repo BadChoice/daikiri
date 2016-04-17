@@ -17,4 +17,5 @@
 @property (strong,nonatomic) Headquarter* headquarter;
 
 -(NSArray*)friends;
+-(NSArray*)enemies;
 @end

@@ -140,4 +140,43 @@ use your custom `managedObjectContext`. By default it uses the default `core dat
 ```
 
 
+#### Relationships
+Alongs with the `find` and `all` When your models are in the database you have diferent ways to acces their relationships
+
+`belongsTo`, `hasMany` and `belongsToMany`.
+
+Check the examples below to understand them
+
+```
+//Add models to database
+Hero * batman               = [Hero createWith:@{@"id":@1, @"name":@"Batman"         ,@"age":@49}];
+Hero * spiderman            = [Hero createWith:@{@"id":@2, @"name":@"Spiderman"      ,@"age":@19}];
+Hero * superman             = [Hero createWith:@{@"id":@3, @"name":@"Superman"       ,@"age":@99}];
+
+Enemy* luxor                = [Enemy createWith:@{@"id":@1, @"name":@"Luxor"          ,@"age":@32}];
+Enemy* greenGoblin          = [Enemy createWith:@{@"id":@2, @"name":@"Green Goblin"   ,@"age":@56}];
+Enemy* joker                = [Enemy createWith:@{@"id":@4, @"name":@"Joker"          ,@"age":@45}];
+
+Friend* robin               = [Friend createWith:@{@"id":@1, @"name":@"Robin"         ,@"hero_id":batman.id}];
+Friend* maryJane            = [Friend createWith:@{@"id":@2, @"name":@"Mary Jane"     ,@"hero_id":spiderman.id}];
+Friend* blackCat            = [Friend createWith:@{@"id":@3, @"name":@"Black cat"     ,@"hero_id":spiderman.id}];
+
+EnemyHero* luxorBatman      = [EnemyHero createWith:@{@"id":@1, @"hero_id":batman.id      ,@"enemy_id":luxor.id, @"level":@7}];
+EnemyHero* luxorSuperman    = [EnemyHero createWith:@{@"id":@2, @"hero_id":superman.id    ,@"enemy_id":luxor.id, @"level":@5}];
+EnemyHero* jokerBatman      = [EnemyHero createWith:@{@"id":@3, @"hero_id":batman.id      ,@"enemy_id":joker.id, @"level":@10}];
+EnemyHero* greenGoblinSpider= [EnemyHero createWith:@{@"id":@4, @"hero_id":spiderman.id   ,@"enemy_id":greenGoblin.id, @"level":@10}];
+
+
+NSLog(@"Robin's hero is: %@",robin.hero.name);      //Belongs to
+
+for(Friend* friend in spiderman.friends){           //has many
+    NSLog(@"Spiderman friend: %@",friend.name);
+}
+
+for(Enemy* enemy in batman.enemies){                //Belongs to many
+    NSLog(@"Batman enemy: %@ with level: %@",enemy.name, ((EnemyHero*)enemy.pivot).level);
+}
+```
+
+
 

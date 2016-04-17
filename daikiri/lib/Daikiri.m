@@ -163,37 +163,30 @@
     return [[self class] managedArrayToDaikiriArray:results];
 }
 
--(NSArray*)belongsToMany:(NSString*)model localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey{
-    return nil;
+-(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey{
     
-    /*NSString    *searchFilterString     = [NSString stringWithFormat:@"%@ = %i",localField,[self.id intValue]];
-    NSPredicate *searchFilter           = [NSPredicate predicateWithFormat:searchFilterString];
+    //Pivots
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:pivotModel];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@",localKey, self.id];
+    [request setPredicate:predicate];
     
-    NSString* pivotClassName =  [NSString stringWithFormat:@"GS%@",pivotEntityName];
-    NSArray     *fetchedObjects = [NSClassFromString(pivotClassName) setupFetch:pivotEntityName andFilter:searchFilter andSortKey:sortKey];
-    
-    NSMutableArray* results = [[NSMutableArray alloc] init];
-    
-    for(id object in fetchedObjects){
-        NSString* className =  [NSString stringWithFormat:@"GS%@",entityName];
-        
-        NSString* searchFilterString2	= [NSString stringWithFormat:@"id = %i", [[object valueForKey:foreingField] intValue]];
-        NSPredicate *searchFilter2		= [NSPredicate predicateWithFormat:searchFilterString2];
-        NSArray		*fetchedObjects2	= [NSClassFromString(className) setupFetch:entityName andFilter:searchFilter2 andSortKey:nil];
-        if([fetchedObjects count] != 0 && [fetchedObjects2 count] != 0){
-            NSString* className = [NSString stringWithFormat:@"GS%@",entityName];
-            //GSBaseModel* model  = [NSClassFromString(className) modelWithManagedObject:fetchedObjects2[0]];
-            GSBaseModel* model  = fetchedObjects2[0];
-            
-            className			= [NSString stringWithFormat:@"GS%@",pivotEntityName];
-            //GSBaseModel* pivot	= [NSClassFromString(className) modelWithManagedObject:managed];
-            GSBaseModel* pivot	= object;
-            [model setPivot:pivot];
-            [results addObject:model];
-        }
+    NSError *error   = nil;
+    NSArray *results = [[[self class] managedObjectContext] executeFetchRequest:request error:&error];
+    if (!results) {
+        NSLog(@"Error fetching objects: %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
     }
-    return results;*/
-
+    
+    //
+    NSMutableArray* finalResults = [[NSMutableArray alloc] init];
+    NSArray* pivots = [NSClassFromString(pivotModel) managedArrayToDaikiriArray:results];
+    for(id pivot in pivots){
+        id object = [NSClassFromString(model) find:[pivot valueForKey:foreingKey]];
+        [object setPivot:pivot];
+        [finalResults addObject:object];
+    }
+    
+    return finalResults;
 }
 
 +(NSManagedObjectContext*)managedObjectContext{

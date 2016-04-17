@@ -46,6 +46,7 @@
 
 -(Daikiri*)belongsTo:(NSString*)model localKey:(NSString*)localKey;
 -(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey;
+-(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey;
 
 -(Daikiri*)pivot;
 

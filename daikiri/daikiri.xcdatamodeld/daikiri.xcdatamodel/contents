@@ -9,6 +9,7 @@
         <attribute name="enemy_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="hero_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Friend" syncable="YES">
         <attribute name="hero_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -22,7 +23,7 @@
     </entity>
     <elements>
         <element name="Enemy" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="EnemyHero" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="EnemyHero" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Friend" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Hero" positionX="0" positionY="0" width="128" height="90"/>
     </elements>
