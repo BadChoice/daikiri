@@ -10,4 +10,8 @@
 
 @implementation Hero
 
+-(NSArray*)friends{
+    return [self hasMany:@"Friend" foreignKey:@"hero_id"];
+}
+
 @end

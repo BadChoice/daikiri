@@ -11,5 +11,6 @@
 @interface Enemy : Daikiri
 
 @property (strong,nonatomic) NSString* name;
+@property (strong,nonatomic) NSNumber* age;
 
 @end

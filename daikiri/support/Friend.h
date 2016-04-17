@@ -7,9 +7,13 @@
 //
 
 #import "Daikiri.h"
+#import "Hero.h"
 
 @interface Friend : Daikiri
 
 @property (strong,nonatomic) NSString* name;
 @property (strong,nonatomic) NSNumber* hero_id;
+
+-(Hero*)hero;
+
 @end

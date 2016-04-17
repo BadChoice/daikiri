@@ -16,4 +16,5 @@
 @property (strong,nonatomic) NSNumber* age;
 @property (strong,nonatomic) Headquarter* headquarter;
 
+-(NSArray*)friends;
 @end

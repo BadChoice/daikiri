@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
     <entity name="Enemy" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Enemy_Hero" syncable="YES">
+    <entity name="EnemyHero" syncable="YES">
         <attribute name="enemy_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="hero_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -12,6 +13,7 @@
     <entity name="Friend" syncable="YES">
         <attribute name="hero_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Hero" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -19,9 +21,9 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Enemy" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Enemy_Hero" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Friend" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Hero" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Enemy" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="EnemyHero" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Friend" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Hero" positionX="0" positionY="0" width="128" height="90"/>
     </elements>
 </model>

@@ -21,7 +21,7 @@
 // CORE DATA
 //-----------------
 
-+(bool)create:(Daikiri*)object;
++(id)create:(Daikiri*)object;
 /**
  * The save function uses the model ID for checking if it already 
  * exists so it will do an update, or if model ID is null or can't
@@ -35,13 +35,16 @@
 -(bool)delete;
 
 // Convenience methods
-+(bool)createWith:(NSDictionary*)dict;
++(id)createWith:(NSDictionary*)dict;
 +(bool)updateWith:(NSDictionary*)dict;
 +(bool)deleteWith:(NSNumber*)id;
 
 // Eloquent like
 +(id)find:(NSNumber*)id;
 +(NSArray*)all;
+
+-(Daikiri*)belongsTo:(NSString*)model localKey:(NSString*)localKey;
+-(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey;
 
 
 @end

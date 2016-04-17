@@ -10,4 +10,9 @@
 
 @implementation Friend
 
+
+-(Hero*)hero{
+    return (Hero*)[self belongsTo:@"Hero" localKey:@"hero_id"];
+}
+
 @end
