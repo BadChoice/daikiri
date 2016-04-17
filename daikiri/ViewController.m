@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 #import "Hero.h"
+#import "Enemy.h"
+#import "Friend.h"
+#import "EnemyHero.h";
 
 @interface ViewController ()
 
@@ -18,12 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //[self example1];
+    //[self example1]; //Json
     //[self example2];
     //[self example3];
     //[self example4];
     
-    [self example5];
+    //[self example5]; //CoreData
+    
+    [self example6]; //Relationships
     
     
 }
@@ -122,7 +127,26 @@
         NSLog(@"%@",[example toDictionary]);
         [example delete];
     }
+}
+
+-(void)example6{
     
+    
+    //Add models to database
+    Hero * batman       = [Hero fromDictionary:@{@"id":@1, @"name":@"Batman"         ,@"age":@49}];
+    Hero * spiderman    = @{@"id":@2, @"name":@"Spiderman"      ,@"age":@19};
+    Hero * superman     = @{@"id":@3, @"name":@"Superman"       ,@"age":@99};
+    
+    Enemy* luxor        = @{@"id":@1, @"name":@"Luxor"          ,@"age":@32};
+    Enemy* green_goblin = @{@"id":@2, @"name":@"Green Goblin"   ,@"age":@56};
+    Enemy* thanos       = @{@"id":@3, @"name":@"Thanos"         ,@"age":@99};
+    Enemy* joker        = @{@"id":@4, @"name":@"Joker"          ,@"age":@45};
+    
+    Friend* robin       = @{@"id":@1, @"name":@"Robin"         ,@"hero_id":@1};
+    Friend* maryJane    = @{@"id":@2, @"name":@"Mary Jane"     ,@"hero_id":@2};
+    Friend* blackCat    = @{@"id":@3, @"name":@"Black cat"     ,@"hero_id":@2};
+    
+    EnemyHero
     
 }
 
