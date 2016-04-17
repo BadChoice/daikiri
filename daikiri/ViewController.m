@@ -10,7 +10,7 @@
 #import "Hero.h"
 #import "Enemy.h"
 #import "Friend.h"
-#import "EnemyHero.h";
+#import "EnemyHero.h"
 
 @interface ViewController ()
 
@@ -101,7 +101,7 @@
     NSArray* results = [Hero all];
     for(Hero *hero in results){
         NSLog(@"%@",[hero toDictionary]);
-        [hero delete];
+        [hero destroy];
     }
 }
 
@@ -125,7 +125,7 @@
     NSArray* results = [Hero all];
     for(Hero *example in results){
         NSLog(@"%@",[example toDictionary]);
-        [example delete];
+        [example destroy];
     }
 }
 
@@ -151,26 +151,26 @@
     EnemyHero* greenGoblinSpider= [EnemyHero createWith:@{@"id":@4, @"hero_id":spiderman.id   ,@"enemy_id":greenGoblin.id}];
     
     
-    NSLog(@"Robin's hero is: %@",robin.hero.name); //Belongs to
+    NSLog(@"Robin's hero is: %@",robin.hero.name);      //Belongs to
     
-    for(Friend* friend in spiderman.friends){          //has many
+    for(Friend* friend in spiderman.friends){           //has many
         NSLog(@"Spiderman friend: %@",friend.name);
     }
     
 
-    [batman delete];
-    [spiderman delete];
-    [superman delete];
-    [luxor delete];
-    [greenGoblin delete];
-    [joker delete];
-    [robin delete];
-    [maryJane delete];
-    [blackCat delete];
-    [luxorBatman delete];
-    [luxorSuperman delete];
-    [jokerBatman delete];
-    [greenGoblinSpider delete];
+    [batman         destroy];
+    [spiderman      destroy];
+    [superman       destroy];
+    [luxor          destroy];
+    [greenGoblin    destroy];
+    [joker          destroy];
+    [robin          destroy];
+    [maryJane       destroy];
+    [blackCat       destroy];
+    [luxorBatman    destroy];
+    [luxorSuperman  destroy];
+    [jokerBatman    destroy];
+    [greenGoblinSpider destroy];
     
     
 }

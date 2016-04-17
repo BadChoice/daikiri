@@ -12,6 +12,7 @@
 
 @interface Daikiri : DaikiriJSON{
     NSManagedObject *_managed;
+    Daikiri         *_pivot;
 }
 
 @property(strong,nonatomic) NSNumber* id;
@@ -32,12 +33,12 @@
 
 -(bool)update;
 
--(bool)delete;
+-(bool)destroy;
 
 // Convenience methods
 +(id)createWith:(NSDictionary*)dict;
 +(bool)updateWith:(NSDictionary*)dict;
-+(bool)deleteWith:(NSNumber*)id;
++(bool)destroyWith:(NSNumber*)id;
 
 // Eloquent like
 +(id)find:(NSNumber*)id;
@@ -45,6 +46,8 @@
 
 -(Daikiri*)belongsTo:(NSString*)model localKey:(NSString*)localKey;
 -(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey;
+
+-(Daikiri*)pivot;
 
 
 @end
