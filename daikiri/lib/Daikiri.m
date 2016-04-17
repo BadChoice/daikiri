@@ -9,7 +9,7 @@
 #import "Daikiri.h"
 #import <objc/runtime.h>
 
-#import "AppDelegate.h"
+#import "DaikiriCoreData.h"
 
 @implementation Daikiri
 
@@ -190,7 +190,8 @@
 }
 
 +(NSManagedObjectContext*)managedObjectContext{
-    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    //NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSManagedObjectContext * context = [DaikiriCoreData manager].managedObjectContext;
     return context;
 }
 
