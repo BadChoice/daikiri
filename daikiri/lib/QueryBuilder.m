@@ -31,7 +31,7 @@
 #pragma mark - Where
 #pragma mark -
 //============================================================
--(QueryBuilder*)where:(NSString*)field value:(id)value{
+-(QueryBuilder*)where:(NSString*)field is:(id)value{
     return [self where:field operator:@"=" value:value];
 }
 -(QueryBuilder*)where:(NSString*)field operator:(NSString*)operator value:(id)value{

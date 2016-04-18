@@ -16,7 +16,7 @@
 
 +(QueryBuilder*)query:(NSString*)model;
 
--(QueryBuilder*)where:(NSString*)field value:(id)value;
+-(QueryBuilder*)where:(NSString*)field is:(id)value;
 -(QueryBuilder*)where:(NSString*)field operator:(NSString*)operator value:(id)value;
 
 -(QueryBuilder*)sort:(NSString*)key;

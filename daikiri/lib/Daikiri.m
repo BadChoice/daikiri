@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 
 #import "DaikiriCoreData.h"
+#import "QueryBuilder.h"
 
 @implementation Daikiri
 
@@ -105,41 +106,11 @@
 //==================================================================
 +(id)find:(NSNumber*)id{
     if(id == nil) return nil;
-    
-    NSString* entityName    = NSStringFromClass(self.class);
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id = %@", id];
-    [request setPredicate:predicate];
-    
-    NSError *error   = nil;
-    NSArray *results = [[self.class managedObjectContext] executeFetchRequest:request error:&error];
-    if (!results) {
-        NSLog(@"Error fetching object: %@\n%@", [error localizedDescription], [error userInfo]);
-        abort();
-    }
-    
-    if([results count] > 0){
-        Daikiri *mo = [self.class fromManaged:results[0]];
-        return mo;
-    }
-    else
-        return nil;
+    return [self.query where:@"id" is:id].first;
 }
 
 +(NSArray*)all{
-    NSString* entityName    = NSStringFromClass(self.class);
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
-
-    
-    NSError *error   = nil;
-    NSArray *results = [[self.class managedObjectContext] executeFetchRequest:request error:&error];
-    if (!results) {
-        NSLog(@"Error fetching objects: %@\n%@", [error localizedDescription], [error userInfo]);
-        abort();
-    }
-    
-    return [self.class managedArrayToDaikiriArray:results];
+    return self.query.get;
 }
 
 -(Daikiri*)belongsTo:(NSString*)model localKey:(NSString*)localKey{
@@ -147,37 +118,15 @@
 }
 
 -(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey{
-    NSString* entityName    = model;
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@",foreignKey, self.id];
-    [request setPredicate:predicate];
-    
-    NSError *error   = nil;
-    NSArray *results = [[self.class managedObjectContext] executeFetchRequest:request error:&error];
-    if (!results) {
-        NSLog(@"Error fetching objects: %@\n%@", [error localizedDescription], [error userInfo]);
-        abort();
-    }
-    
-    return [self.class managedArrayToDaikiriArray:results];
+    return [NSClassFromString(model).query where:foreignKey is:self.id].get;
 }
 
 -(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey{
     
     //Pivots
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:pivotModel];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@",localKey, self.id];
-    [request setPredicate:predicate];
+    NSArray *results = [NSClassFromString(pivotModel).query where:localKey is:self.id].get;
     
-    NSError *error   = nil;
-    NSArray *results = [[self.class managedObjectContext] executeFetchRequest:request error:&error];
-    if (!results) {
-        NSLog(@"Error fetching objects: %@\n%@", [error localizedDescription], [error userInfo]);
-        abort();
-    }
-    
-    //
+    //Objects (attaching pivots)
     NSMutableArray* finalResults = [[NSMutableArray alloc] init];
     NSArray* pivots = [NSClassFromString(pivotModel) managedArrayToDaikiriArray:results];
     for(id pivot in pivots){
@@ -189,8 +138,11 @@
     return finalResults;
 }
 
++(QueryBuilder*)query{
+    return [QueryBuilder query:NSStringFromClass(self.class)];
+}
+
 +(NSManagedObjectContext*)managedObjectContext{
-    //NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSManagedObjectContext * context = [DaikiriCoreData manager].managedObjectContext;
     return context;
 }
