@@ -11,6 +11,7 @@
 #import "Enemy.h"
 #import "Friend.h"
 #import "EnemyHero.h"
+#import "QueryBuilder.h"
 
 @interface ViewController ()
 
@@ -161,6 +162,15 @@
         NSLog(@"Batman enemy: %@ with level: %@",enemy.name, ((EnemyHero*)enemy.pivot).level);
     }
     
+    
+    NSArray* heros = [QueryBuilder query:@"Hero"].get;  //Query builder
+    for(Hero * hero in heros){
+        NSLog(@"Hero: %@",hero.name);
+    }
+    
+    EnemyHero * enemyHero = [[[QueryBuilder query:@"EnemyHero"] where:@"hero_id" value:batman.id] where:@"enemy_id" value:joker.id].first;
+    NSLog(@"Enemy hero: %@ - %@", enemyHero.enemy.name ,enemyHero.hero.name);
+        
 
     [batman         destroy];
     [spiderman      destroy];

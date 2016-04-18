@@ -10,4 +10,10 @@
 
 @implementation EnemyHero
 
+-(Enemy*)enemy{
+    return (Enemy*)[self belongsTo:@"Enemy" localKey:@"enemy_id"];
+}
+-(Hero*)hero{
+    return (Hero*)[self belongsTo:@"Hero" localKey:@"hero_id"];
+}
 @end
