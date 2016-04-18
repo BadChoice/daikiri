@@ -15,7 +15,7 @@
 @implementation Daikiri
 
 //==================================================================
-#pragma mark - CORE DATA
+#pragma mark - Create / Save / Update / Destroy
 #pragma mark -
 //==================================================================
 +(id)create:(Daikiri*)toCreate{
@@ -82,7 +82,7 @@
 }
 
 //==================================================================
-#pragma mark - convenience methods
+#pragma mark - Convenience methods
 #pragma mark -
 //==================================================================
 +(bool)updateWith:(NSDictionary*)dict{
@@ -110,7 +110,11 @@
 }
 
 +(NSArray*)all{
-    return self.query.get;
+    return [self all:nil];
+}
+
++(NSArray*)all:(NSString*)sort{
+    return [self.query orderBy:sort].get;
 }
 
 -(Daikiri*)belongsTo:(NSString*)model localKey:(NSString*)localKey{
@@ -118,17 +122,24 @@
 }
 
 -(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey{
-    return [NSClassFromString(model).query where:foreignKey is:self.id].get;
+    return [self hasMany:model foreignKey:foreignKey sort:nil];
 }
 
+-(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey sort:(NSString *)sort{
+    return [[NSClassFromString(model).query where:foreignKey is:self.id] orderBy:sort].get;
+}
 -(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey{
     
+    return [self belongsToMany:model pivot:pivotModel localKey:localKey foreignKey:foreingKey pivotSort:nil];
+}
+
+-(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey pivotSort:(NSString *)pivotSort{
+    
     //Pivots
-    NSArray *results = [NSClassFromString(pivotModel).query where:localKey is:self.id].get;
+    NSArray *pivots = [[NSClassFromString(pivotModel).query where:localKey is:self.id] orderBy:pivotSort].get;
     
     //Objects (attaching pivots)
     NSMutableArray* finalResults = [[NSMutableArray alloc] init];
-    NSArray* pivots = [NSClassFromString(pivotModel) managedArrayToDaikiriArray:results];
     for(id pivot in pivots){
         id object = [NSClassFromString(model) find:[pivot valueForKey:foreingKey]];
         [object setPivot:pivot];
@@ -142,10 +153,6 @@
     return [QueryBuilder query:NSStringFromClass(self.class)];
 }
 
-+(NSManagedObjectContext*)managedObjectContext{
-    NSManagedObjectContext * context = [DaikiriCoreData manager].managedObjectContext;
-    return context;
-}
 
 //==================================================================
 #pragma mark - HELPERS
@@ -225,6 +232,15 @@
 
 -(void)setPivot:(Daikiri*)pivot{
     _pivot = pivot;
+}
+
+//==================================================================
+#pragma mark - Core data
+#pragma mark -
+//==================================================================
++(NSManagedObjectContext*)managedObjectContext{
+    NSManagedObjectContext * context = [DaikiriCoreData manager].managedObjectContext;
+    return context;
 }
 
 +(BOOL)saveCoreData{

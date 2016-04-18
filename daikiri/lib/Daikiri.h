@@ -19,9 +19,9 @@
 @property(strong,nonatomic) NSNumber* id;
 
 
-//-----------------
-// CORE DATA
-//-----------------
+// -----------------------------------------
+// Create / Save / Update / Destroy
+// -----------------------------------------
 
 /**
  * Creates a new object to de database
@@ -48,21 +48,69 @@
  */
 -(bool)destroy;
 
+// -----------------------------------------
 // Convenience methods
+// -----------------------------------------
 +(id)createWith:(NSDictionary*)dict;
 +(bool)updateWith:(NSDictionary*)dict;
 +(bool)destroyWith:(NSNumber*)id;
 
+// -----------------------------------------
 // Eloquent like
+// -----------------------------------------
+/**
+ * Returns a base queryBuilder instance for the model that can be used to add query filters
+ */
 +(QueryBuilder*)query;
+
+/**
+ * Returns the model in the database that matches the id or `nil` if not found
+ */
 +(id)find:(NSNumber*)id;
+
+/**
+ * Returns all the models in the database
+ */
 +(NSArray*)all;
 
+/**
+ * Returns all the models in the database sorted by key
+ */
++(NSArray*)all:(NSString*)sort;
+
+/**
+ * Returns the parent model related with the localKey
+ */
 -(Daikiri*)belongsTo:(NSString*)model localKey:(NSString*)localKey;
+
+/**
+ * Retuns all the models that have self as parent with the foreingKey
+ */
 -(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey;
+
+/**
+ * Retuns all the models that have self as parent with the foreingKey
+ */
+-(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey sort:(NSString*)sort;
+
+/**
+ * Get the related models when there is a pivot table between them,
+ * you can acces the pivot information with the `pivot` method of the returning results
+ */
 -(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey;
 
+/**
+ * Get the related models when there is a pivot table between them,
+ * you can acces the pivot information with the `pivot` method of the returning results
+ * sorted by sort
+ */
+-(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey pivotSort:(NSString*)pivotSort;
 
+
+/**
+ * In `belongsToMany` relationships you can access to the pivot model with
+ * this method, otherwise, it will be nil
+ */
 -(Daikiri*)pivot;
 
 

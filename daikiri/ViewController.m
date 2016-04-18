@@ -153,7 +153,7 @@
     
     
     NSLog(@"=========== All");
-    NSArray* heroes = [Hero all];  //Query builder
+    NSArray* heroes = [Hero all:@"age"];  //Query builder with sort
     for(Hero * hero in heroes){
         NSLog(@"Hero: %@",hero.name);
     }

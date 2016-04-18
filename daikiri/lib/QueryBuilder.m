@@ -58,12 +58,18 @@
 #pragma mark - Sort
 #pragma mark -
 //============================================================
--(QueryBuilder*)sort:(NSString*)key{
-    return [self sort:key ascendig:YES];
+-(QueryBuilder*)orderBy:(NSString*)key{
+    if(key != nil){
+        return [self orderBy:key ascendig:YES];
+    }
+    return self;
 }
 
--(QueryBuilder*)sort:(NSString*)key ascendig:(BOOL)ascending{
-    [_sortPredicates addObject:[[NSSortDescriptor alloc] initWithKey:key ascending:ascending]];
+-(QueryBuilder*)orderBy:(NSString*)key ascendig:(BOOL)ascending{
+    if(key != nil){
+        [_sortPredicates addObject:[[NSSortDescriptor alloc] initWithKey:key ascending:ascending]];
+    }
+    
     return self;
 }
 
