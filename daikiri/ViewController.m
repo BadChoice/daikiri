@@ -131,8 +131,7 @@
 }
 
 -(void)example6{
-    
-    
+        
     //Add models to database
     Hero * batman               = [Hero createWith:@{@"id":@1, @"name":@"Batman"         ,@"age":@49}];
     Hero * spiderman            = [Hero createWith:@{@"id":@2, @"name":@"Spiderman"      ,@"age":@19}];
@@ -191,19 +190,19 @@
     NSLog(@"Enemy hero: %@ - %@", enemyHero.enemy.name ,enemyHero.hero.name);
     
 
-    [batman         destroy];
-    [spiderman      destroy];
-    [superman       destroy];
-    [luxor          destroy];
-    [greenGoblin    destroy];
-    [joker          destroy];
-    [robin          destroy];
-    [maryJane       destroy];
-    [blackCat       destroy];
-    [luxorBatman    destroy];
-    [luxorSuperman  destroy];
-    [jokerBatman    destroy];
-    [greenGoblinSpider destroy];
+    [batman             destroy];
+    [spiderman          destroy];
+    [superman           destroy];
+    [luxor          	destroy];
+    [greenGoblin    	destroy];
+    [joker          	destroy];
+    [robin          	destroy];
+    [maryJane       	destroy];
+    [blackCat       	destroy];
+    [luxorBatman        destroy];
+    [luxorSuperman      destroy];
+    [jokerBatman        destroy];
+    [greenGoblinSpider  destroy];
     
     
 }
