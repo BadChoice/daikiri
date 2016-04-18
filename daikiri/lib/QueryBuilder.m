@@ -12,6 +12,7 @@
 
 @implementation QueryBuilder
 
+
 -(id)initWithModel:(NSString*)model{
     if(self= [super init]){
         _model          = model;
@@ -26,6 +27,10 @@
     return query;
 }
 
+//============================================================
+#pragma mark - Where
+#pragma mark -
+//============================================================
 -(QueryBuilder*)where:(NSString*)field value:(id)value{
     return [self where:field operator:@"=" value:value];
 }
@@ -49,6 +54,10 @@
     return self;
 }
 
+//============================================================
+#pragma mark - Sort
+#pragma mark -
+//============================================================
 -(QueryBuilder*)sort:(NSString*)key{
     return [self sort:key ascendig:YES];
 }
@@ -57,6 +66,13 @@
     [_sortPredicates addObject:[[NSSortDescriptor alloc] initWithKey:key ascending:ascending]];
     return self;
 }
+
+//============================================================
+#pragma mark - Execute query
+#pragma mark -
+//============================================================
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
 
 -(NSArray*)doQuery{
     NSFetchRequest *request         = [NSFetchRequest fetchRequestWithEntityName:_model];
@@ -91,7 +107,8 @@
         return mo;
     }
     return nil;
-    
 }
+
+#pragma clang diagnostic pop
 
 @end
