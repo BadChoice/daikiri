@@ -24,37 +24,37 @@
         return nil;
     }
     
-    Daikiri* previous = [[self class] find:toCreate.id];
+    Daikiri* previous = [self.class find:toCreate.id];
     if(previous) {
         NSLog(@"Model already exists with id: %@, returning the one from the DB",toCreate.id);
         return previous;
     }
     
-    NSString* entityName    = NSStringFromClass([self class]);
-    NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:[[self class] managedObjectContext]];
+    NSString* entityName    = NSStringFromClass(self.class);
+    NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:[self.class managedObjectContext]];
     
     [toCreate valuesToManaged:object];
-    [[self class] saveCoreData];
+    [self.class saveCoreData];
     
     return toCreate;
 }
 -(bool)save{
-    Daikiri* previous = [[self class] find:self.id];
+    Daikiri* previous = [self.class find:self.id];
     if(previous) {
         return [self update];
     }
     else{
-        return [[self class] create:self];
+        return [self.class create:self];
     }
 }
 
 -(bool)update{
     if(_managed){
         [self valuesToManaged:_managed];
-        return [[self class] saveCoreData];
+        return [self.class saveCoreData];
     }
     else{
-        Daikiri* previous = [[self class] find:self.id];
+        Daikiri* previous = [self.class find:self.id];
         if(!previous){
             NSLog(@"Model not in database");
             return false;
@@ -71,11 +71,11 @@
 
 -(bool)destroy{
     if(_managed){
-        [[[self class] managedObjectContext] deleteObject:_managed];
-        return [[self class] saveCoreData];
+        [[self.class managedObjectContext] deleteObject:_managed];
+        return [self.class saveCoreData];
     }
     else{
-        Daikiri *toDelete = [[self class] find:self.id];
+        Daikiri *toDelete = [self.class find:self.id];
         return [toDelete destroy];
     }
 }
@@ -85,17 +85,17 @@
 #pragma mark -
 //==================================================================
 +(bool)updateWith:(NSDictionary*)dict{
-    Daikiri* object = [[self class] fromDictionary:dict];
+    Daikiri* object = [self.class fromDictionary:dict];
     return [object update];
 }
 
 +(id)createWith:(NSDictionary*)dict{
-    Daikiri* object = [[self class] fromDictionary:dict];
-    return [[self class] create:object];
+    Daikiri* object = [self.class fromDictionary:dict];
+    return [self.class create:object];
 }
 
 +(bool)destroyWith:(NSNumber*)id{
-    Daikiri * object = [[self class] find:id];
+    Daikiri * object = [self.class find:id];
     return [object destroy];
 }
 
@@ -106,21 +106,21 @@
 +(id)find:(NSNumber*)id{
     if(id == nil) return nil;
     
-    NSString* entityName    = NSStringFromClass([self class]);
+    NSString* entityName    = NSStringFromClass(self.class);
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id = %@", id];
     [request setPredicate:predicate];
     
     NSError *error   = nil;
-    NSArray *results = [[[self class] managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *results = [[self.class managedObjectContext] executeFetchRequest:request error:&error];
     if (!results) {
         NSLog(@"Error fetching object: %@\n%@", [error localizedDescription], [error userInfo]);
         abort();
     }
     
     if([results count] > 0){
-        Daikiri *mo = [[self class] fromManaged:results[0]];
+        Daikiri *mo = [self.class fromManaged:results[0]];
         return mo;
     }
     else
@@ -128,18 +128,18 @@
 }
 
 +(NSArray*)all{
-    NSString* entityName    = NSStringFromClass([self class]);
+    NSString* entityName    = NSStringFromClass(self.class);
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
 
     
     NSError *error   = nil;
-    NSArray *results = [[[self class] managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *results = [[self.class managedObjectContext] executeFetchRequest:request error:&error];
     if (!results) {
         NSLog(@"Error fetching objects: %@\n%@", [error localizedDescription], [error userInfo]);
         abort();
     }
     
-    return [[self class] managedArrayToDaikiriArray:results];
+    return [self.class managedArrayToDaikiriArray:results];
 }
 
 -(Daikiri*)belongsTo:(NSString*)model localKey:(NSString*)localKey{
@@ -154,13 +154,13 @@
     [request setPredicate:predicate];
     
     NSError *error   = nil;
-    NSArray *results = [[[self class] managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *results = [[self.class managedObjectContext] executeFetchRequest:request error:&error];
     if (!results) {
         NSLog(@"Error fetching objects: %@\n%@", [error localizedDescription], [error userInfo]);
         abort();
     }
     
-    return [[self class] managedArrayToDaikiriArray:results];
+    return [self.class managedArrayToDaikiriArray:results];
 }
 
 -(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey{
@@ -171,7 +171,7 @@
     [request setPredicate:predicate];
     
     NSError *error   = nil;
-    NSArray *results = [[[self class] managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *results = [[self.class managedObjectContext] executeFetchRequest:request error:&error];
     if (!results) {
         NSLog(@"Error fetching objects: %@\n%@", [error localizedDescription], [error userInfo]);
         abort();
@@ -201,7 +201,7 @@
 //==================================================================
 -(void)valuesToManaged:(NSManagedObject*)managedObject{
     unsigned int numberOfProperties = 0;
-    objc_property_t *propertyArray  = class_copyPropertyList([self class], &numberOfProperties);
+    objc_property_t *propertyArray  = class_copyPropertyList(self.class, &numberOfProperties);
     
     //We se the id always
     [managedObject setValue:[self valueForKey:@"id"] forKey:@"id"];
@@ -227,7 +227,7 @@
 +(id)fromManaged:(NSManagedObject*)managedObject{
     Daikiri *newObject = [[[self class ]alloc] init];
     unsigned int numberOfProperties = 0;
-    objc_property_t *propertyArray  = class_copyPropertyList([self class], &numberOfProperties);
+    objc_property_t *propertyArray  = class_copyPropertyList(self.class, &numberOfProperties);
     
     [newObject setValue:[managedObject valueForKey:@"id"] forKey:@"id"];
     
@@ -258,7 +258,7 @@
 +(NSArray*)managedArrayToDaikiriArray:(NSArray*)results{
     NSMutableArray* daikiriObjects = [[NSMutableArray alloc] init];
     for(NSManagedObject* managed in results){
-        [daikiriObjects addObject:[[self class] fromManaged:managed]];
+        [daikiriObjects addObject:[self.class fromManaged:managed]];
     }
     return daikiriObjects;
 }
@@ -277,7 +277,7 @@
 
 +(BOOL)saveCoreData{
     NSError* error = nil;
-    if(![[[self class] managedObjectContext] save:&error]){
+    if(![[self.class managedObjectContext] save:&error]){
         NSLog(@"Error: %@", [error localizedDescription]);
         return false;
     }

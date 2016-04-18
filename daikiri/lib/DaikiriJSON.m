@@ -9,7 +9,6 @@
 #import "DaikiriJSON.h"
 #import <objc/runtime.h>
 
-#import "AppDelegate.h"
 
 @implementation DaikiriJSON
 
@@ -18,7 +17,7 @@
 #pragma mark -
 //==================================================================
 +(id)fromDictionary:(NSDictionary*)dict{
-    DaikiriJSON* model = [[[self class] alloc] init];
+    DaikiriJSON* model = [[self.class alloc] init];
     
     for(NSString* key in [dict allKeys]){
         
@@ -35,7 +34,7 @@
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     
     unsigned int numberOfProperties = 0;
-    objc_property_t *propertyArray  = class_copyPropertyList([self class], &numberOfProperties);
+    objc_property_t *propertyArray  = class_copyPropertyList(self.class, &numberOfProperties);
     
     for (NSUInteger i = 0; i < numberOfProperties; i++)
     {
