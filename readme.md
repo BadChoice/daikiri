@@ -217,4 +217,7 @@ for(Hero * hero in heroes){
 
 ```
 
+If you class names use a prefix (two chars) and your entities don't, you can override the function
+`usesPrefix` to return `true`. This will remove the prefix when fetching to the DB
+
 

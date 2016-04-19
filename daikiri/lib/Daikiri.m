@@ -243,6 +243,10 @@
     return context;
 }
 
++(BOOL)usesPrefix{
+    return false;
+}
+
 +(BOOL)saveCoreData{
     NSError* error = nil;
     if(![[self.class managedObjectContext] save:&error]){

@@ -12,6 +12,7 @@
 #import "Friend.h"
 #import "EnemyHero.h"
 #import "QueryBuilder.h"
+#import "GSHero.h"
 
 @interface ViewController ()
 
@@ -188,6 +189,13 @@
                              .first;
     
     NSLog(@"Enemy hero: %@ - %@", enemyHero.enemy.name ,enemyHero.hero.name);
+    
+    
+    NSLog(@"=========== With prefix");
+    heroes = [GSHero all];
+    for(Hero * hero in heroes){
+        NSLog(@"Hero: %@",hero.name);
+    }
     
 
     [batman             destroy];
