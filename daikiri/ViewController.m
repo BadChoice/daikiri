@@ -32,6 +32,8 @@
     
     [self example6]; //Relationships
     
+    [self example7]; //Dictionary with nulls
+    
     
 }
 
@@ -211,6 +213,25 @@
     [luxorSuperman      destroy];
     [jokerBatman        destroy];
     [greenGoblinSpider  destroy];
+    
+    
+}
+
+
+-(void)example7{
+    Hero* a = [Hero fromDictionary:@{
+                          @"id" : @200,
+                          @"name" : [NSNull null],
+                          @"age"  : [NSNull null],
+                          }];
+    
+    Hero* b = [Hero create:a];
+    
+    [b destroy];
+    
+    
+    
+    NSLog(@"%@",a.name);
     
     
 }
