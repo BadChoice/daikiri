@@ -23,7 +23,7 @@
  * - √ Submodels. Automatically converts to the submodel to its class as long as it extends `Daikiri`
  *
  * - √ Arrays. to be able to do the conversion to another model
- * the method `(Class)property_DaikiriArray` should be defined.
+ * the method `-(Class)property_DaikiriArray` should be defined.
  */
 +(id)fromDictionary:(NSDictionary*)dict;
 
