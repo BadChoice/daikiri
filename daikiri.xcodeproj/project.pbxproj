@@ -11,6 +11,7 @@
 		760AE0B81CC27FE8005DE071 /* Headquarter.m in Sources */ = {isa = PBXBuildFile; fileRef = 760AE0B31CC27FE8005DE071 /* Headquarter.m */; };
 		760AE0B91CC27FE8005DE071 /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 760AE0B51CC27FE8005DE071 /* Hero.m */; };
 		760AE0BA1CC27FE8005DE071 /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = 760AE0B71CC27FE8005DE071 /* Vehicle.m */; };
+		760B2C3A1CC61B31004300AD /* GSHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 760B2C391CC61B31004300AD /* GSHero.m */; };
 		760E42E91CC36ADE00796DCF /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 760E42E81CC36ADE00796DCF /* Enemy.m */; };
 		760E42EC1CC36AEB00796DCF /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 760E42EB1CC36AEB00796DCF /* Friend.m */; };
 		760E42EF1CC36B4900796DCF /* EnemyHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 760E42EE1CC36B4900796DCF /* EnemyHero.m */; };
@@ -26,7 +27,9 @@
 		762167CB1CC178A200C6CA80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762167C91CC178A200C6CA80 /* LaunchScreen.storyboard */; };
 		762167D71CC1791600C6CA80 /* Daikiri.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167D61CC1791600C6CA80 /* Daikiri.m */; };
 		764426CB1CC5364200F0F2C9 /* QueryBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426CA1CC5364200F0F2C9 /* QueryBuilder.m */; };
-		764426CE1CC7B40600F0F2C9 /* SampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426CD1CC7B40600F0F2C9 /* SampleModel.m */; };
+		764426D11CC7B52E00F0F2C9 /* SampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D01CC7B52E00F0F2C9 /* SampleModel.m */; };
+		764426D41CC7B54A00F0F2C9 /* GSEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D31CC7B54A00F0F2C9 /* GSEnemy.m */; };
+		764426D71CC7B67900F0F2C9 /* GSEnemyHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,8 @@
 		760AE0B51CC27FE8005DE071 /* Hero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hero.m; path = support/Hero.m; sourceTree = "<group>"; };
 		760AE0B61CC27FE8005DE071 /* Vehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vehicle.h; path = support/Vehicle.h; sourceTree = "<group>"; };
 		760AE0B71CC27FE8005DE071 /* Vehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Vehicle.m; path = support/Vehicle.m; sourceTree = "<group>"; };
+		760B2C381CC61B31004300AD /* GSHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSHero.h; path = support/GSHero.h; sourceTree = "<group>"; };
+		760B2C391CC61B31004300AD /* GSHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GSHero.m; path = support/GSHero.m; sourceTree = "<group>"; };
 		760E42E71CC36ADE00796DCF /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemy.h; path = support/Enemy.h; sourceTree = "<group>"; };
 		760E42E81CC36ADE00796DCF /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Enemy.m; path = support/Enemy.m; sourceTree = "<group>"; };
 		760E42EA1CC36AEB00796DCF /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Friend.h; path = support/Friend.h; sourceTree = "<group>"; };
@@ -63,8 +68,12 @@
 		762167D61CC1791600C6CA80 /* Daikiri.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Daikiri.m; path = lib/Daikiri.m; sourceTree = "<group>"; };
 		764426C91CC5364200F0F2C9 /* QueryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryBuilder.h; path = lib/QueryBuilder.h; sourceTree = "<group>"; };
 		764426CA1CC5364200F0F2C9 /* QueryBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueryBuilder.m; path = lib/QueryBuilder.m; sourceTree = "<group>"; };
-		764426CC1CC7B40600F0F2C9 /* SampleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SampleModel.h; path = support/SampleModel.h; sourceTree = "<group>"; };
-		764426CD1CC7B40600F0F2C9 /* SampleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SampleModel.m; path = support/SampleModel.m; sourceTree = "<group>"; };
+		764426CF1CC7B52E00F0F2C9 /* SampleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SampleModel.h; path = support/SampleModel.h; sourceTree = "<group>"; };
+		764426D01CC7B52E00F0F2C9 /* SampleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SampleModel.m; path = support/SampleModel.m; sourceTree = "<group>"; };
+		764426D21CC7B54A00F0F2C9 /* GSEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSEnemy.h; path = support/GSEnemy.h; sourceTree = "<group>"; };
+		764426D31CC7B54A00F0F2C9 /* GSEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GSEnemy.m; path = support/GSEnemy.m; sourceTree = "<group>"; };
+		764426D51CC7B67900F0F2C9 /* GSEnemyHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSEnemyHero.h; path = support/GSEnemyHero.h; sourceTree = "<group>"; };
+		764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GSEnemyHero.m; path = support/GSEnemyHero.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +87,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		760B2C371CC61B1F004300AD /* WithPrefix */ = {
+			isa = PBXGroup;
+			children = (
+				760B2C381CC61B31004300AD /* GSHero.h */,
+				760B2C391CC61B31004300AD /* GSHero.m */,
+				764426D21CC7B54A00F0F2C9 /* GSEnemy.h */,
+				764426D31CC7B54A00F0F2C9 /* GSEnemy.m */,
+				764426D51CC7B67900F0F2C9 /* GSEnemyHero.h */,
+				764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */,
+			);
+			name = WithPrefix;
+			sourceTree = "<group>";
+		};
 		760E42E51CC36A5E00796DCF /* Standard */ = {
 			isa = PBXGroup;
 			children = (
-				764426CC1CC7B40600F0F2C9 /* SampleModel.h */,
-				764426CD1CC7B40600F0F2C9 /* SampleModel.m */,
+				764426CF1CC7B52E00F0F2C9 /* SampleModel.h */,
+				764426D01CC7B52E00F0F2C9 /* SampleModel.m */,
 			);
 			name = Standard;
 			sourceTree = "<group>";
@@ -90,6 +112,7 @@
 		760E42E61CC36A7200796DCF /* Relationships */ = {
 			isa = PBXGroup;
 			children = (
+				760B2C371CC61B1F004300AD /* WithPrefix */,
 				760AE0B41CC27FE8005DE071 /* Hero.h */,
 				760AE0B51CC27FE8005DE071 /* Hero.m */,
 				760AE0B21CC27FE8005DE071 /* Headquarter.h */,
@@ -260,12 +283,15 @@
 				760E42EC1CC36AEB00796DCF /* Friend.m in Sources */,
 				762167C61CC178A200C6CA80 /* daikiri.xcdatamodeld in Sources */,
 				760AE0B81CC27FE8005DE071 /* Headquarter.m in Sources */,
+				764426D71CC7B67900F0F2C9 /* GSEnemyHero.m in Sources */,
 				760AE0BA1CC27FE8005DE071 /* Vehicle.m in Sources */,
 				764426CB1CC5364200F0F2C9 /* QueryBuilder.m in Sources */,
+				764426D41CC7B54A00F0F2C9 /* GSEnemy.m in Sources */,
+				764426D11CC7B52E00F0F2C9 /* SampleModel.m in Sources */,
 				762167BD1CC178A200C6CA80 /* AppDelegate.m in Sources */,
 				7616C91B1CC4133B00E1DEEE /* DaikiriCoreData.m in Sources */,
 				760E42EF1CC36B4900796DCF /* EnemyHero.m in Sources */,
-				764426CE1CC7B40600F0F2C9 /* SampleModel.m in Sources */,
+				760B2C3A1CC61B31004300AD /* GSHero.m in Sources */,
 				762167BA1CC178A200C6CA80 /* main.m in Sources */,
 				7611ED1B1CC2D09900A55B06 /* readme.md in Sources */,
 				760E42E91CC36ADE00796DCF /* Enemy.m in Sources */,

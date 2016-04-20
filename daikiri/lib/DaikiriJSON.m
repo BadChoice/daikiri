@@ -42,16 +42,16 @@
         NSString *name              = [[NSString alloc] initWithUTF8String:property_getName(property)];
         
         id value = [self valueForKey:name];
-        if(value == nil){
+        if(isNull(value)){
             dict[name] = [NSNull null];
         }
-        if([value isKindOfClass:[NSString class]]){
+        if([value isKindOfClass:NSString.class]){
             dict[name] = value;
         }
-        else if([value isKindOfClass:[NSNumber class]]){
-            dict[name] = value;
+        else if([value isKindOfClass:NSNumber.class]){
+            dict[name] = [self convertToNSNumber:value];
         }
-        else if([value isKindOfClass:[NSArray class]]){
+        else if([value isKindOfClass:NSArray.class]){
             NSMutableArray* dictArray = [[NSMutableArray alloc] init];
             for(id child in value){
                 [dictArray addObject:[child toDictionary]];
@@ -74,13 +74,16 @@
 //==================================================================
 -(id)valueConverted:(id)value forKey:(NSString*)key{
     
-    if([value isKindOfClass:[NSString class]]){
+    if(isNull(value)){
+        return nil;
+    }
+    if([value isKindOfClass:NSString.class]){
         return value;
     }
-    else if([value isKindOfClass:[NSNumber class]]){
-        return value;
+    else if([value isKindOfClass:NSNumber.class]){
+        return [self convertToNSNumber:value];
     }
-    else if([value isKindOfClass:[NSArray class]]){
+    else if([value isKindOfClass:NSArray.class]){
         NSString* methodName        = [NSString stringWithFormat:@"%@_DaikiriArray",key];
         SEL s                       = NSSelectorFromString(methodName);
         
@@ -126,6 +129,17 @@
     free(properties);
     
     return class;
+}
+
+-(NSNumber*)convertToNSNumber:(NSNumber*)value{
+    if([value isKindOfClass:NSString.class]){
+        return @([value floatValue]);
+    }
+    return value;
+}
+
+extern BOOL isNull(id value){
+    return (value == nil || [value isKindOfClass:[NSNull class]]);
 }
 
 

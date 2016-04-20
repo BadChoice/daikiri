@@ -31,7 +31,7 @@
 #pragma mark - Where
 #pragma mark -
 //============================================================
--(QueryBuilder*)where:(NSString*)field value:(id)value{
+-(QueryBuilder*)where:(NSString*)field is:(id)value{
     return [self where:field operator:@"=" value:value];
 }
 -(QueryBuilder*)where:(NSString*)field operator:(NSString*)operator value:(id)value{
@@ -58,12 +58,18 @@
 #pragma mark - Sort
 #pragma mark -
 //============================================================
--(QueryBuilder*)sort:(NSString*)key{
-    return [self sort:key ascendig:YES];
+-(QueryBuilder*)orderBy:(NSString*)key{
+    if(key != nil){
+        return [self orderBy:key ascendig:YES];
+    }
+    return self;
 }
 
--(QueryBuilder*)sort:(NSString*)key ascendig:(BOOL)ascending{
-    [_sortPredicates addObject:[[NSSortDescriptor alloc] initWithKey:key ascending:ascending]];
+-(QueryBuilder*)orderBy:(NSString*)key ascendig:(BOOL)ascending{
+    if(key != nil){
+        [_sortPredicates addObject:[[NSSortDescriptor alloc] initWithKey:key ascending:ascending]];
+    }
+    
     return self;
 }
 
@@ -75,14 +81,22 @@
 #pragma clang diagnostic ignored "-Wundeclared-selector"
 
 -(NSArray*)doQuery{
-    NSFetchRequest *request         = [NSFetchRequest fetchRequestWithEntityName:_model];
+    
+    NSFetchRequest *request;
+    
+    Class modelClass = NSClassFromString(_model);
+    if(![modelClass performSelector:@selector(usesPrefix)]){
+        request = [NSFetchRequest fetchRequestWithEntityName:_model];
+    }
+    else{
+        request = [NSFetchRequest fetchRequestWithEntityName:[_model substringFromIndex:2]];
+    }
+    
     
     NSPredicate *compoundPredicate  = [NSCompoundPredicate andPredicateWithSubpredicates:_predicates];
     [request setPredicate:compoundPredicate];
     
-    [request setSortDescriptors:_sortPredicates];
-    
-    Class modelClass = NSClassFromString(_model);
+    [request setSortDescriptors:_sortPredicates];    
     
     NSError *error   = nil;
     NSArray *results = [[modelClass managedObjectContext] executeFetchRequest:request error:&error];

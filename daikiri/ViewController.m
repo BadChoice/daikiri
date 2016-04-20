@@ -12,6 +12,8 @@
 #import "Friend.h"
 #import "EnemyHero.h"
 #import "QueryBuilder.h"
+#import "GSHero.h"
+#import "GSEnemy.h"
 #import "SampleModel.h"
 
 @interface ViewController ()
@@ -23,12 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-
-    
-    
-    
-    
     //[self example1]; //Json
     //[self example2];
     //[self example3];
@@ -37,6 +33,8 @@
     //[self example5]; //CoreData
     
     [self example6]; //Relationships
+    
+    [self example7]; //Dictionary with nulls
     
     
 }
@@ -48,9 +46,6 @@
                                                     @"name":@"A sample model",
                                                     @"numbers":@[@1,@2,@3,@4]
                                                     }];
-    
-    NSLog(@"Sample model: %@ - %@",sm.name,sm.numbers);
-    
     
     NSDictionary* d = @{
                         @"name" : @"Batman",
@@ -147,8 +142,7 @@
 }
 
 -(void)example6{
-    
-    
+        
     //Add models to database
     Hero * batman               = [Hero createWith:@{@"id":@1, @"name":@"Batman"         ,@"age":@49}];
     Hero * spiderman            = [Hero createWith:@{@"id":@2, @"name":@"Spiderman"      ,@"age":@19}];
@@ -168,39 +162,89 @@
     EnemyHero* greenGoblinSpider= [EnemyHero createWith:@{@"id":@4, @"hero_id":spiderman.id   ,@"enemy_id":greenGoblin.id, @"level":@10}];
     
     
+    NSLog(@"=========== All");
+    NSArray* heroes = [Hero all:@"age"];  //Query builder with sort
+    for(Hero * hero in heroes){
+        NSLog(@"Hero: %@",hero.name);
+    }
+    
+    NSLog(@"=========== Find");
+    Friend* f = [Friend find:@2];
+    NSLog(@"Firend: %@",f.name);
+    
+    NSLog(@"=========== BELONGS TO");
     NSLog(@"Robin's hero is: %@",robin.hero.name);      //Belongs to
     
+    NSLog(@"=========== HAS MANY");
     for(Friend* friend in spiderman.friends){           //has many
         NSLog(@"Spiderman friend: %@",friend.name);
     }
     
+    NSLog(@"=========== BELONGS TO MANY (with pivot)");
     for(Enemy* enemy in batman.enemies){                //Belongs to many
         NSLog(@"Batman enemy: %@ with level: %@",enemy.name, ((EnemyHero*)enemy.pivot).level);
     }
     
-    
-    NSArray* heros = [QueryBuilder query:@"Hero"].get;  //Query builder
-    for(Hero * hero in heros){
+    NSLog(@"=========== QUERY BUILDER standard");
+    heroes = Hero.query.get;  //Query builder
+    for(Hero * hero in heroes){
         NSLog(@"Hero: %@",hero.name);
     }
     
-    EnemyHero * enemyHero = [[[QueryBuilder query:@"EnemyHero"] where:@"hero_id" value:batman.id] where:@"enemy_id" value:joker.id].first;
+    
+    NSLog(@"=========== QUERY BUILDER with wheres");
+    EnemyHero * enemyHero = [[EnemyHero.query
+                               where:@"hero_id"  is:batman.id]
+                               where:@"enemy_id" is:joker.id]
+                             .first;
+    
     NSLog(@"Enemy hero: %@ - %@", enemyHero.enemy.name ,enemyHero.hero.name);
+    
+    
+    NSLog(@"=========== With prefix");
+    heroes = [GSHero all];
+    for(Hero * hero in heroes){
+        NSLog(@"Hero: %@",hero.name);
         
+        for(GSEnemy* enemy in hero.enemies){
+            NSLog(@"- Enemy: %@",enemy.name);
+        }
+    }
+    
 
-    [batman         destroy];
-    [spiderman      destroy];
-    [superman       destroy];
-    [luxor          destroy];
-    [greenGoblin    destroy];
-    [joker          destroy];
-    [robin          destroy];
-    [maryJane       destroy];
-    [blackCat       destroy];
-    [luxorBatman    destroy];
-    [luxorSuperman  destroy];
-    [jokerBatman    destroy];
-    [greenGoblinSpider destroy];
+    [batman             destroy];
+    [spiderman          destroy];
+    [superman           destroy];
+    [luxor          	destroy];
+    [greenGoblin    	destroy];
+    [joker          	destroy];
+    [robin          	destroy];
+    [maryJane       	destroy];
+    [blackCat       	destroy];
+    [luxorBatman        destroy];
+    [luxorSuperman      destroy];
+    [jokerBatman        destroy];
+    [greenGoblinSpider  destroy];
+    
+    
+}
+
+
+-(void)example7{
+    NSLog(@"=========== Null values");
+    Hero* a = [Hero fromDictionary:@{
+                          @"id" : @200,
+                          @"name" : [NSNull null],
+                          @"age"  : [NSNull null],
+                          }];
+    
+    Hero* b = [Hero create:a];
+    
+    [b destroy];
+    
+    
+    
+    NSLog(@"%@",a.name);
     
     
 }

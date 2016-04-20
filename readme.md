@@ -197,5 +197,27 @@ for(Enemy* enemy in batman.enemies){                //Belongs to many
 }
 ```
 
+#### Query builder
+We have a `QueryBuilder` to create custom queries, you can do things like
+
+```
+EnemyHero * enemyHero = [[EnemyHero.query
+                            where:@"hero_id"  is:batman.id]
+                            where:@"enemy_id" is:joker.id]
+                        .first;
+
+NSArray * heroes = [[Hero.query 
+                        where:@"id" operator:@">" value:@2] 
+                        orderBy:@"age"]
+                    .get;
+
+for(Hero * hero in heroes){
+    NSLog(@"Hero: %@",hero.name);
+}
+
+```
+
+If you class names use a prefix (two chars) and your entities don't, you can override the function
+`usesPrefix` to return `true`. This will remove the prefix when fetching to the DB
 
 

@@ -7,7 +7,7 @@
     },
     "source": {
         "git": "https://github.com/BadChoice/daikiri.git",
-        "tag": "0.1"
+        "tag": "0.2"
     },
     "description": "Daikiri json - model - coredata made easy",
     "homepage": "https://github.com/BadChoice/daikiri",
