@@ -12,6 +12,7 @@
 #import "Friend.h"
 #import "EnemyHero.h"
 #import "QueryBuilder.h"
+#import "SampleModel.h"
 
 @interface ViewController ()
 
@@ -21,6 +22,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+
+    
+    
+    
     
     //[self example1]; //Json
     //[self example2];
@@ -36,6 +43,15 @@
 
 // json with submodels and arrays
 -(void)example1{
+    
+    SampleModel* sm = [SampleModel fromDictionary:@{
+                                                    @"name":@"A sample model",
+                                                    @"numbers":@[@1,@2,@3,@4]
+                                                    }];
+    
+    NSLog(@"Sample model: %@ - %@",sm.name,sm.numbers);
+    
+    
     NSDictionary* d = @{
                         @"name" : @"Batman",
                         @"age"  : @10,

@@ -26,6 +26,7 @@
 		762167CB1CC178A200C6CA80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762167C91CC178A200C6CA80 /* LaunchScreen.storyboard */; };
 		762167D71CC1791600C6CA80 /* Daikiri.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167D61CC1791600C6CA80 /* Daikiri.m */; };
 		764426CB1CC5364200F0F2C9 /* QueryBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426CA1CC5364200F0F2C9 /* QueryBuilder.m */; };
+		764426CE1CC7B40600F0F2C9 /* SampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426CD1CC7B40600F0F2C9 /* SampleModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,8 @@
 		762167D61CC1791600C6CA80 /* Daikiri.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Daikiri.m; path = lib/Daikiri.m; sourceTree = "<group>"; };
 		764426C91CC5364200F0F2C9 /* QueryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryBuilder.h; path = lib/QueryBuilder.h; sourceTree = "<group>"; };
 		764426CA1CC5364200F0F2C9 /* QueryBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueryBuilder.m; path = lib/QueryBuilder.m; sourceTree = "<group>"; };
+		764426CC1CC7B40600F0F2C9 /* SampleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SampleModel.h; path = support/SampleModel.h; sourceTree = "<group>"; };
+		764426CD1CC7B40600F0F2C9 /* SampleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SampleModel.m; path = support/SampleModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,8 @@
 		760E42E51CC36A5E00796DCF /* Standard */ = {
 			isa = PBXGroup;
 			children = (
+				764426CC1CC7B40600F0F2C9 /* SampleModel.h */,
+				764426CD1CC7B40600F0F2C9 /* SampleModel.m */,
 			);
 			name = Standard;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				762167BD1CC178A200C6CA80 /* AppDelegate.m in Sources */,
 				7616C91B1CC4133B00E1DEEE /* DaikiriCoreData.m in Sources */,
 				760E42EF1CC36B4900796DCF /* EnemyHero.m in Sources */,
+				764426CE1CC7B40600F0F2C9 /* SampleModel.m in Sources */,
 				762167BA1CC178A200C6CA80 /* main.m in Sources */,
 				7611ED1B1CC2D09900A55B06 /* readme.md in Sources */,
 				760E42E91CC36ADE00796DCF /* Enemy.m in Sources */,

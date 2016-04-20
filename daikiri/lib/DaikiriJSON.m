@@ -93,6 +93,9 @@
             }
             return newArray;
         }
+        else{
+            return value;
+        }
     }
     else{
         id subValue = [[self classForKeyPath:key] fromDictionary:value];
