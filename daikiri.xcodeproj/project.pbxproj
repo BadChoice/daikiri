@@ -27,6 +27,9 @@
 		762167CB1CC178A200C6CA80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762167C91CC178A200C6CA80 /* LaunchScreen.storyboard */; };
 		762167D71CC1791600C6CA80 /* Daikiri.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167D61CC1791600C6CA80 /* Daikiri.m */; };
 		764426CB1CC5364200F0F2C9 /* QueryBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426CA1CC5364200F0F2C9 /* QueryBuilder.m */; };
+		764426D11CC7B52E00F0F2C9 /* SampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D01CC7B52E00F0F2C9 /* SampleModel.m */; };
+		764426D41CC7B54A00F0F2C9 /* GSEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D31CC7B54A00F0F2C9 /* GSEnemy.m */; };
+		764426D71CC7B67900F0F2C9 /* GSEnemyHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +68,12 @@
 		762167D61CC1791600C6CA80 /* Daikiri.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Daikiri.m; path = lib/Daikiri.m; sourceTree = "<group>"; };
 		764426C91CC5364200F0F2C9 /* QueryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryBuilder.h; path = lib/QueryBuilder.h; sourceTree = "<group>"; };
 		764426CA1CC5364200F0F2C9 /* QueryBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueryBuilder.m; path = lib/QueryBuilder.m; sourceTree = "<group>"; };
+		764426CF1CC7B52E00F0F2C9 /* SampleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SampleModel.h; path = support/SampleModel.h; sourceTree = "<group>"; };
+		764426D01CC7B52E00F0F2C9 /* SampleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SampleModel.m; path = support/SampleModel.m; sourceTree = "<group>"; };
+		764426D21CC7B54A00F0F2C9 /* GSEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSEnemy.h; path = support/GSEnemy.h; sourceTree = "<group>"; };
+		764426D31CC7B54A00F0F2C9 /* GSEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GSEnemy.m; path = support/GSEnemy.m; sourceTree = "<group>"; };
+		764426D51CC7B67900F0F2C9 /* GSEnemyHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSEnemyHero.h; path = support/GSEnemyHero.h; sourceTree = "<group>"; };
+		764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GSEnemyHero.m; path = support/GSEnemyHero.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +92,10 @@
 			children = (
 				760B2C381CC61B31004300AD /* GSHero.h */,
 				760B2C391CC61B31004300AD /* GSHero.m */,
+				764426D21CC7B54A00F0F2C9 /* GSEnemy.h */,
+				764426D31CC7B54A00F0F2C9 /* GSEnemy.m */,
+				764426D51CC7B67900F0F2C9 /* GSEnemyHero.h */,
+				764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */,
 			);
 			name = WithPrefix;
 			sourceTree = "<group>";
@@ -90,6 +103,8 @@
 		760E42E51CC36A5E00796DCF /* Standard */ = {
 			isa = PBXGroup;
 			children = (
+				764426CF1CC7B52E00F0F2C9 /* SampleModel.h */,
+				764426D01CC7B52E00F0F2C9 /* SampleModel.m */,
 			);
 			name = Standard;
 			sourceTree = "<group>";
@@ -268,8 +283,11 @@
 				760E42EC1CC36AEB00796DCF /* Friend.m in Sources */,
 				762167C61CC178A200C6CA80 /* daikiri.xcdatamodeld in Sources */,
 				760AE0B81CC27FE8005DE071 /* Headquarter.m in Sources */,
+				764426D71CC7B67900F0F2C9 /* GSEnemyHero.m in Sources */,
 				760AE0BA1CC27FE8005DE071 /* Vehicle.m in Sources */,
 				764426CB1CC5364200F0F2C9 /* QueryBuilder.m in Sources */,
+				764426D41CC7B54A00F0F2C9 /* GSEnemy.m in Sources */,
+				764426D11CC7B52E00F0F2C9 /* SampleModel.m in Sources */,
 				762167BD1CC178A200C6CA80 /* AppDelegate.m in Sources */,
 				7616C91B1CC4133B00E1DEEE /* DaikiriCoreData.m in Sources */,
 				760E42EF1CC36B4900796DCF /* EnemyHero.m in Sources */,

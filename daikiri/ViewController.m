@@ -13,6 +13,8 @@
 #import "EnemyHero.h"
 #import "QueryBuilder.h"
 #import "GSHero.h"
+#import "GSEnemy.h"
+#import "SampleModel.h"
 
 @interface ViewController ()
 
@@ -39,6 +41,12 @@
 
 // json with submodels and arrays
 -(void)example1{
+    
+    SampleModel* sm = [SampleModel fromDictionary:@{
+                                                    @"name":@"A sample model",
+                                                    @"numbers":@[@1,@2,@3,@4]
+                                                    }];
+    
     NSDictionary* d = @{
                         @"name" : @"Batman",
                         @"age"  : @10,
@@ -197,6 +205,10 @@
     heroes = [GSHero all];
     for(Hero * hero in heroes){
         NSLog(@"Hero: %@",hero.name);
+        
+        for(GSEnemy* enemy in hero.enemies){
+            NSLog(@"- Enemy: %@",enemy.name);
+        }
     }
     
 
@@ -219,6 +231,7 @@
 
 
 -(void)example7{
+    NSLog(@"=========== Null values");
     Hero* a = [Hero fromDictionary:@{
                           @"id" : @200,
                           @"name" : [NSNull null],

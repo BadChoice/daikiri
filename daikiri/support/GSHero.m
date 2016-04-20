@@ -13,4 +13,12 @@
 +(BOOL)usesPrefix{
     return true;
 }
+
+-(NSArray*)friends{
+    return [self hasMany:@"Friend" foreignKey:@"hero_id"];
+}
+
+-(NSArray*)enemies{
+    return [self belongsToMany:@"GSEnemy" pivot:@"GSEnemyHero" localKey:@"hero_id" foreignKey:@"enemy_id"];
+}
 @end
