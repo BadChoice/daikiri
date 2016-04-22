@@ -77,14 +77,14 @@
     if(isNull(value)){
         return nil;
     }
-		
+
+    if([key isEqualToString:@"id"]){
+        return [self convertToNSNumber:value];
+    }
     if ([self classForKeyPath:key] == NSString.class){
         return value;   //TODO: convert to string if nsnumber
     }
     if ([self classForKeyPath:key] == NSNumber.class){
-        return [self convertToNSNumber:value];
-    }
-    if([key isEqualToString:@"id"]){
         return [self convertToNSNumber:value];
     }
     else if([value isKindOfClass:NSArray.class]){
