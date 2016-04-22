@@ -144,7 +144,7 @@
 -(void)example6{
         
     //Add models to database
-    Hero * batman               = [Hero createWith:@{@"id":@1, @"name":@"Batman"         ,@"age":@49}];
+    Hero * batman               = [Hero createWith:@{@"id":@1, @"name":@"Batman"         ,@"age":@"49"}];
     Hero * spiderman            = [Hero createWith:@{@"id":@2, @"name":@"Spiderman"      ,@"age":@19}];
     Hero * superman             = [Hero createWith:@{@"id":@3, @"name":@"Superman"       ,@"age":@99}];
     

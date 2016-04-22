@@ -77,10 +77,11 @@
     if(isNull(value)){
         return nil;
     }
-    if([value isKindOfClass:NSString.class]){
-        return value;
+		
+    if ([self classForKeyPath:key] == NSString.class){
+        return value;   //TODO: convert to string if nsnumber
     }
-    else if([value isKindOfClass:NSNumber.class]){
+    if ([self classForKeyPath:key] == NSNumber.class){
         return [self convertToNSNumber:value];
     }
     else if([value isKindOfClass:NSArray.class]){
