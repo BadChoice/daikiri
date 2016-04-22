@@ -84,6 +84,9 @@
     if ([self classForKeyPath:key] == NSNumber.class){
         return [self convertToNSNumber:value];
     }
+    if([key isEqualToString:@"id"]){
+        return [self convertToNSNumber:value];
+    }
     else if([value isKindOfClass:NSArray.class]){
         NSString* methodName        = [NSString stringWithFormat:@"%@_DaikiriArray",key];
         SEL s                       = NSSelectorFromString(methodName);
