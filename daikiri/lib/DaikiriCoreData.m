@@ -38,13 +38,24 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+- (NSURL* )applicationSupportDirectory{
+    NSError *error;
+    NSURL* appSupportDir = [[NSFileManager defaultManager]
+                            URLForDirectory:NSApplicationSupportDirectory
+                            inDomain:NSUserDomainMask
+                            appropriateForURL:nil
+                            create:YES
+                            error:&error];
+    return appSupportDir;
+}
+
 - (NSManagedObjectModel *)managedObjectModel {
     // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:self.databaseName withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    
+    _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     return _managedObjectModel;
 }
 
@@ -59,7 +70,7 @@
     NSString* dbFilename = [NSString stringWithFormat:@"%@.sqlite",self.databaseName];
     
     //_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL         = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:dbFilename];
+    NSURL *storeURL         = [[self applicationSupportDirectory] URLByAppendingPathComponent:dbFilename];
     NSError *error          = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     
