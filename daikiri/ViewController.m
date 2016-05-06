@@ -25,6 +25,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    Hero* hero = [[Hero alloc] init];
+    hero.name = @"patata";
+    hero.age  = nil;
+    
+    NSDictionary* d = [hero toDictionary];
+    NSLog(@"%@",d);
+    
+    return;
+    
+    
     //[self example1]; //Json
     //[self example2];
     //[self example3];

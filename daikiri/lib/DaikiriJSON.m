@@ -45,7 +45,7 @@
         if(isNull(value)){
             dict[name] = [NSNull null];
         }
-        if([value isKindOfClass:NSString.class]){
+        else if([value isKindOfClass:NSString.class]){
             dict[name] = value;
         }
         else if([value isKindOfClass:NSNumber.class]){
