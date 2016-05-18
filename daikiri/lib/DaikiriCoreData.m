@@ -138,5 +138,28 @@
     }
 }
 
+#pragma mark - Clear DB
+- (void)deleteDatabase{
+    NSError *error      = nil;
+    BOOL result         = YES;
+    
+    NSString* dbFilename = [NSString stringWithFormat:@"%@.sqlite",self.databaseName];
+    
+    NSURL *storeURL     = [[self applicationSupportDirectory]    URLByAppendingPathComponent:dbFilename];
+    NSURL *walURL       = [[storeURL URLByDeletingPathExtension] URLByAppendingPathExtension:@"sqlite-wal"];
+    NSURL *shmURL       = [[storeURL URLByDeletingPathExtension] URLByAppendingPathExtension:@"sqlite-shm"];
+    
+    
+    for (NSURL *url in @[storeURL, walURL, shmURL]) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:url.path]) {
+            result = [[NSFileManager defaultManager] removeItemAtURL:url error:&error];
+        }
+    }
+    
+    _managedObjectContext       = nil;
+    _persistentStoreCoordinator = nil;
+    _managedObjectModel         = nil;
+    
+}
 
 @end
