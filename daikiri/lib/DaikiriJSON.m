@@ -42,7 +42,7 @@
         NSString *name              = [[NSString alloc] initWithUTF8String:property_getName(property)];
         
         id value = [self valueForKey:name];
-        if(isNull(value)){
+        if([self isNull:value]){
             dict[name] = [NSNull null];
         }
         else if([value isKindOfClass:NSString.class]){
@@ -74,7 +74,7 @@
 //==================================================================
 -(id)valueConverted:(id)value forKey:(NSString*)key{
     
-    if(isNull(value)){
+    if([self isNull:value]){
         return nil;
     }
 
@@ -142,7 +142,7 @@
     return value;
 }
 
-extern BOOL isNull(id value){
+-(BOOL)isNull:(id)value{
     return (value == nil || [value isKindOfClass:[NSNull class]]);
 }
 
