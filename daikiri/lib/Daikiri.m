@@ -109,6 +109,13 @@
     return [self.query where:@"id" is:id].first;
 }
 
++(id)first{
+    return [self first:@"id"];
+}
++(id)first:(NSString*)sort{
+    return [self.query orderBy:sort].first;
+}
+
 +(NSArray*)all{
     return [self all:nil];
 }

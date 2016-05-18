@@ -68,6 +68,17 @@
  */
 +(id)find:(NSNumber*)id;
 
+
+/**
+ * Returns the first model found
+ */
++(id)first;
+
+/**
+ * Returns the first model found sorted by 
+ */
++(id)first:(NSString*)sort;
+
 /**
  * Returns all the models in the database
  */
