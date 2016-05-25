@@ -140,6 +140,8 @@
 
 #pragma mark - Clear DB
 - (void)deleteDatabase{
+    [self deleteAllEntities];
+    
     NSError *error      = nil;
     BOOL result         = YES;
     
@@ -160,6 +162,17 @@
     _persistentStoreCoordinator = nil;
     _managedObjectModel         = nil;
     
+}
+
+-(void)deleteAllEntities{
+    NSArray* entities = self.managedObjectModel.entities;
+    for(NSEntityDescription* entity in entities) {        
+        NSFetchRequest*  fetchRequest       = [[NSFetchRequest alloc] initWithEntityName:entity.name];
+        NSBatchDeleteRequest* deleteReqest  = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
+        
+        NSError* error;
+        [self.managedObjectContext executeRequest:deleteReqest error:&error];
+    }
 }
 
 @end
