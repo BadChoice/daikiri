@@ -17,4 +17,8 @@
 -(NSArray*)enemies{
     return [self belongsToMany:@"Enemy" pivot:@"EnemyHero" localKey:@"hero_id" foreignKey:@"enemy_id"];
 }
+
+/*-(NSArray*)toDictionaryIgnore{
+    return @[@"headquarter"];
+}*/
 @end

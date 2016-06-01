@@ -35,6 +35,11 @@
  */
 -(NSDictionary*)toDictionary;
 
+/**
+ * Return an array of strings with the names of the values to ignore
+ */
+-(NSArray*)toDictionaryIgnore;
+
 
 
 @end

@@ -41,31 +41,42 @@
         objc_property_t property = propertyArray[i];
         NSString *name              = [[NSString alloc] initWithUTF8String:property_getName(property)];
         
-        id value = [self valueForKey:name];
-        if([self isNull:value]){
-            dict[name] = [NSNull null];
-        }
-        else if([value isKindOfClass:NSString.class]){
-            dict[name] = value;
-        }
-        else if([value isKindOfClass:NSNumber.class]){
-            dict[name] = [self convertToNSNumber:value];
-        }
-        else if([value isKindOfClass:NSArray.class]){
-            NSMutableArray* dictArray = [[NSMutableArray alloc] init];
-            for(id child in value){
-                [dictArray addObject:[child toDictionary]];
+        if(![self shouldIgnoreKey:name]){
+        
+            id value = [self valueForKey:name];
+            if([self isNull:value]){
+                dict[name] = [NSNull null];
             }
-            dict[name] = dictArray;
-        }
-        else{
-            id subValue = [value toDictionary];
-            dict[name] = subValue;
+            else if([value isKindOfClass:NSString.class]){
+                dict[name] = value;
+            }
+            else if([value isKindOfClass:NSNumber.class]){
+                dict[name] = [self convertToNSNumber:value];
+            }
+            else if([value isKindOfClass:NSArray.class]){
+                NSMutableArray* dictArray = [[NSMutableArray alloc] init];
+                for(id child in value){
+                    [dictArray addObject:[child toDictionary]];
+                }
+                dict[name] = dictArray;
+            }
+            else{
+                id subValue = [value toDictionary];
+                dict[name] = subValue;
+            }
         }
     }
     free(propertyArray);
     
     return dict;
+}
+
+-(BOOL)shouldIgnoreKey:(NSString*)key{
+    return [self.toDictionaryIgnore containsObject:key];
+}
+
+-(NSArray*)toDictionaryIgnore{
+    return @[];
 }
 
 //==================================================================
