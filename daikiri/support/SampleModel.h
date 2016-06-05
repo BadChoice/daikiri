@@ -14,5 +14,6 @@
 @property (strong,nonatomic) NSString* name;
 @property (strong,nonatomic) NSArray* numbers;
 @property (strong,nonatomic) NonDaikiri * nonDaikiri;
+@property (strong,nonatomic) NSString* toBeIgnored;
 
 @end

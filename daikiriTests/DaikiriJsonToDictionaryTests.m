@@ -78,9 +78,56 @@
     XCTAssert( [vehicles[0][@"model"] isEqualToString:@"Batmobile"] );
 }
 
+-(void)testToDictionaryDaikiriNestedModel{
+    Hero* h         = [[Hero alloc] init];
+    h.name          = @"Batman";
+    Headquarter* hq = [[Headquarter alloc] init];
+    hq.address      = @"Batcave";
+    h.headquarter   = hq;
+    
+    NSDictionary* result = h.toDictionary;
+    
+    XCTAssert( [result[@"headquarter"] isKindOfClass:[NSDictionary class]]);
+    XCTAssert( [result[@"headquarter"][@"address"] isEqualToString:@"Batcave"]);
+}
+
+-(void)testToDictionaryNonDaikiriNestedModel{
+    SampleModel* sm         = [[SampleModel alloc] init];
+    sm.name                 = @"Hello";
+    NonDaikiri* nonDaikiri  = [[NonDaikiri alloc] init];
+    nonDaikiri.name         = @"Bye";
+    sm.nonDaikiri           = nonDaikiri;
+    
+    XCTAssertThrows(sm.toDictionary);
+}
+
+-(void)testToDictionaryIngnoredKeys{
+    SampleModel* sm     = [[SampleModel alloc] init];
+    sm.name             = @"Hello";
+    sm.toBeIgnored      = @"Ignore me";
+    
+    NSDictionary* result = sm.toDictionary;
+    XCTAssert(result[@"toBeIgnored"] == nil);    
+}
+
 - (void)testPerformanceExample {
     [self measureBlock:^{
+        NSDictionary* d = @{
+                            @"name" : @"Batman",
+                            @"age"  : @10,
+                            @"headquarter":@{
+                                    @"address" : @"patata",
+                                    @"isActive" : @1,
+                                    @"vehicles"   : @[
+                                            @{@"model" : @"Batmobile"},
+                                            @{@"model" : @"Batwing"},
+                                            @{@"model" : @"Tumbler"},
+                                            ]
+                                    }
+                            };
         
+        Hero * model = [Hero fromDictionary:d];
+        [model toDictionary];        
     }];
 }
 

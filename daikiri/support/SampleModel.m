@@ -10,4 +10,7 @@
 
 @implementation SampleModel
 
+-(NSArray*)toDictionaryIgnore{
+    return @[@"toBeIgnored"];
+}
 @end
