@@ -26,11 +26,23 @@
 		762167C81CC178A200C6CA80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 762167C71CC178A200C6CA80 /* Assets.xcassets */; };
 		762167CB1CC178A200C6CA80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762167C91CC178A200C6CA80 /* LaunchScreen.storyboard */; };
 		762167D71CC1791600C6CA80 /* Daikiri.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167D61CC1791600C6CA80 /* Daikiri.m */; };
+		762B8EF61D0403080081ADA6 /* daikiriTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 762B8EF51D0403080081ADA6 /* daikiriTests.m */; };
+		762B8EFF1D04067B0081ADA6 /* NonDaikiri.m in Sources */ = {isa = PBXBuildFile; fileRef = 762B8EFE1D04067B0081ADA6 /* NonDaikiri.m */; };
 		764426CB1CC5364200F0F2C9 /* QueryBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426CA1CC5364200F0F2C9 /* QueryBuilder.m */; };
 		764426D11CC7B52E00F0F2C9 /* SampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D01CC7B52E00F0F2C9 /* SampleModel.m */; };
 		764426D41CC7B54A00F0F2C9 /* GSEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D31CC7B54A00F0F2C9 /* GSEnemy.m */; };
 		764426D71CC7B67900F0F2C9 /* GSEnemyHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		762B8EF81D0403080081ADA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 762167AD1CC178A200C6CA80 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 762167B41CC178A200C6CA80;
+			remoteInfo = daikiri;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		760AE0AF1CC27563005DE071 /* DaikiriJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DaikiriJSON.h; path = lib/DaikiriJSON.h; sourceTree = "<group>"; };
@@ -66,6 +78,11 @@
 		762167CC1CC178A200C6CA80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		762167D51CC1791600C6CA80 /* Daikiri.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Daikiri.h; path = lib/Daikiri.h; sourceTree = "<group>"; };
 		762167D61CC1791600C6CA80 /* Daikiri.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Daikiri.m; path = lib/Daikiri.m; sourceTree = "<group>"; };
+		762B8EF31D0403080081ADA6 /* daikiriTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = daikiriTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		762B8EF51D0403080081ADA6 /* daikiriTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = daikiriTests.m; sourceTree = "<group>"; };
+		762B8EF71D0403080081ADA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		762B8EFD1D04067B0081ADA6 /* NonDaikiri.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NonDaikiri.h; path = support/NonDaikiri.h; sourceTree = "<group>"; };
+		762B8EFE1D04067B0081ADA6 /* NonDaikiri.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NonDaikiri.m; path = support/NonDaikiri.m; sourceTree = "<group>"; };
 		764426C91CC5364200F0F2C9 /* QueryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryBuilder.h; path = lib/QueryBuilder.h; sourceTree = "<group>"; };
 		764426CA1CC5364200F0F2C9 /* QueryBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueryBuilder.m; path = lib/QueryBuilder.m; sourceTree = "<group>"; };
 		764426CF1CC7B52E00F0F2C9 /* SampleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SampleModel.h; path = support/SampleModel.h; sourceTree = "<group>"; };
@@ -78,6 +95,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		762167B21CC178A200C6CA80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		762B8EF01D0403080081ADA6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -105,6 +129,8 @@
 			children = (
 				764426CF1CC7B52E00F0F2C9 /* SampleModel.h */,
 				764426D01CC7B52E00F0F2C9 /* SampleModel.m */,
+				762B8EFD1D04067B0081ADA6 /* NonDaikiri.h */,
+				762B8EFE1D04067B0081ADA6 /* NonDaikiri.m */,
 			);
 			name = Standard;
 			sourceTree = "<group>";
@@ -133,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				762167B71CC178A200C6CA80 /* daikiri */,
+				762B8EF41D0403080081ADA6 /* daikiriTests */,
 				762167B61CC178A200C6CA80 /* Products */,
 				7611ED1A1CC2D09900A55B06 /* readme.md */,
 				7611ED181CC2CF7600A55B06 /* daikiri.podspec.json */,
@@ -143,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				762167B51CC178A200C6CA80 /* daikiri.app */,
+				762B8EF31D0403080081ADA6 /* daikiriTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,6 +234,15 @@
 			name = support;
 			sourceTree = "<group>";
 		};
+		762B8EF41D0403080081ADA6 /* daikiriTests */ = {
+			isa = PBXGroup;
+			children = (
+				762B8EF51D0403080081ADA6 /* daikiriTests.m */,
+				762B8EF71D0403080081ADA6 /* Info.plist */,
+			);
+			path = daikiriTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -226,6 +263,24 @@
 			productReference = 762167B51CC178A200C6CA80 /* daikiri.app */;
 			productType = "com.apple.product-type.application";
 		};
+		762B8EF21D0403080081ADA6 /* daikiriTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 762B8EFC1D0403080081ADA6 /* Build configuration list for PBXNativeTarget "daikiriTests" */;
+			buildPhases = (
+				762B8EEF1D0403080081ADA6 /* Sources */,
+				762B8EF01D0403080081ADA6 /* Frameworks */,
+				762B8EF11D0403080081ADA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				762B8EF91D0403080081ADA6 /* PBXTargetDependency */,
+			);
+			name = daikiriTests;
+			productName = daikiriTests;
+			productReference = 762B8EF31D0403080081ADA6 /* daikiriTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -237,6 +292,10 @@
 				TargetAttributes = {
 					762167B41CC178A200C6CA80 = {
 						CreatedOnToolsVersion = 7.3;
+					};
+					762B8EF21D0403080081ADA6 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 762167B41CC178A200C6CA80;
 					};
 				};
 			};
@@ -254,6 +313,7 @@
 			projectRoot = "";
 			targets = (
 				762167B41CC178A200C6CA80 /* daikiri */,
+				762B8EF21D0403080081ADA6 /* daikiriTests */,
 			);
 		};
 /* End PBXProject section */
@@ -267,6 +327,13 @@
 				7611ED191CC2CF7600A55B06 /* daikiri.podspec.json in Resources */,
 				762167C81CC178A200C6CA80 /* Assets.xcassets in Resources */,
 				762167C31CC178A200C6CA80 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		762B8EF11D0403080081ADA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +359,7 @@
 				7616C91B1CC4133B00E1DEEE /* DaikiriCoreData.m in Sources */,
 				760E42EF1CC36B4900796DCF /* EnemyHero.m in Sources */,
 				760B2C3A1CC61B31004300AD /* GSHero.m in Sources */,
+				762B8EFF1D04067B0081ADA6 /* NonDaikiri.m in Sources */,
 				762167BA1CC178A200C6CA80 /* main.m in Sources */,
 				7611ED1B1CC2D09900A55B06 /* readme.md in Sources */,
 				760E42E91CC36ADE00796DCF /* Enemy.m in Sources */,
@@ -299,7 +367,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		762B8EEF1D0403080081ADA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				762B8EF61D0403080081ADA6 /* daikiriTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		762B8EF91D0403080081ADA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 762167B41CC178A200C6CA80 /* daikiri */;
+			targetProxy = 762B8EF81D0403080081ADA6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		762167C11CC178A200C6CA80 /* Main.storyboard */ = {
@@ -427,6 +511,30 @@
 			};
 			name = Release;
 		};
+		762B8EFA1D0403080081ADA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = daikiriTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = works.revo.daikiriTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/daikiri.app/daikiri";
+			};
+			name = Debug;
+		};
+		762B8EFB1D0403080081ADA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = daikiriTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = works.revo.daikiriTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/daikiri.app/daikiri";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -447,6 +555,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		762B8EFC1D0403080081ADA6 /* Build configuration list for PBXNativeTarget "daikiriTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				762B8EFA1D0403080081ADA6 /* Debug */,
+				762B8EFB1D0403080081ADA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

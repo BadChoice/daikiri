@@ -7,10 +7,12 @@
 //
 
 #import "Daikiri.h"
+#import "NonDaikiri.h"
 
 @interface SampleModel : Daikiri
 
 @property (strong,nonatomic) NSString* name;
 @property (strong,nonatomic) NSArray* numbers;
+@property (strong,nonatomic) NonDaikiri * nonDaikiri;
 
 @end
