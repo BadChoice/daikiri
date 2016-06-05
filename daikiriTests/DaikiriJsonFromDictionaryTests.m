@@ -13,11 +13,11 @@
 #import "Friend.h"
 #import "Vehicle.h"
 
-@interface daikiriTests : XCTestCase
+@interface DaikiriJsonFromDictionaryTests : XCTestCase
 
 @end
 
-@implementation daikiriTests
+@implementation DaikiriJsonFromDictionaryTests
 
 - (void)setUp {
     [super setUp];

@@ -26,8 +26,9 @@
 		762167C81CC178A200C6CA80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 762167C71CC178A200C6CA80 /* Assets.xcassets */; };
 		762167CB1CC178A200C6CA80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 762167C91CC178A200C6CA80 /* LaunchScreen.storyboard */; };
 		762167D71CC1791600C6CA80 /* Daikiri.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167D61CC1791600C6CA80 /* Daikiri.m */; };
-		762B8EF61D0403080081ADA6 /* daikiriTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 762B8EF51D0403080081ADA6 /* daikiriTests.m */; };
+		762B8EF61D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 762B8EF51D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m */; };
 		762B8EFF1D04067B0081ADA6 /* NonDaikiri.m in Sources */ = {isa = PBXBuildFile; fileRef = 762B8EFE1D04067B0081ADA6 /* NonDaikiri.m */; };
+		762B8F011D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 762B8F001D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m */; };
 		764426CB1CC5364200F0F2C9 /* QueryBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426CA1CC5364200F0F2C9 /* QueryBuilder.m */; };
 		764426D11CC7B52E00F0F2C9 /* SampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D01CC7B52E00F0F2C9 /* SampleModel.m */; };
 		764426D41CC7B54A00F0F2C9 /* GSEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D31CC7B54A00F0F2C9 /* GSEnemy.m */; };
@@ -79,10 +80,11 @@
 		762167D51CC1791600C6CA80 /* Daikiri.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Daikiri.h; path = lib/Daikiri.h; sourceTree = "<group>"; };
 		762167D61CC1791600C6CA80 /* Daikiri.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Daikiri.m; path = lib/Daikiri.m; sourceTree = "<group>"; };
 		762B8EF31D0403080081ADA6 /* daikiriTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = daikiriTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		762B8EF51D0403080081ADA6 /* daikiriTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = daikiriTests.m; sourceTree = "<group>"; };
+		762B8EF51D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaikiriJsonFromDictionaryTests.m; sourceTree = "<group>"; };
 		762B8EF71D0403080081ADA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		762B8EFD1D04067B0081ADA6 /* NonDaikiri.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NonDaikiri.h; path = support/NonDaikiri.h; sourceTree = "<group>"; };
 		762B8EFE1D04067B0081ADA6 /* NonDaikiri.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NonDaikiri.m; path = support/NonDaikiri.m; sourceTree = "<group>"; };
+		762B8F001D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaikiriJsonToDictionaryTests.m; sourceTree = "<group>"; };
 		764426C91CC5364200F0F2C9 /* QueryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryBuilder.h; path = lib/QueryBuilder.h; sourceTree = "<group>"; };
 		764426CA1CC5364200F0F2C9 /* QueryBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueryBuilder.m; path = lib/QueryBuilder.m; sourceTree = "<group>"; };
 		764426CF1CC7B52E00F0F2C9 /* SampleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SampleModel.h; path = support/SampleModel.h; sourceTree = "<group>"; };
@@ -237,7 +239,8 @@
 		762B8EF41D0403080081ADA6 /* daikiriTests */ = {
 			isa = PBXGroup;
 			children = (
-				762B8EF51D0403080081ADA6 /* daikiriTests.m */,
+				762B8EF51D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m */,
+				762B8F001D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m */,
 				762B8EF71D0403080081ADA6 /* Info.plist */,
 			);
 			path = daikiriTests;
@@ -371,7 +374,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				762B8EF61D0403080081ADA6 /* daikiriTests.m in Sources */,
+				762B8F011D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m in Sources */,
+				762B8EF61D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

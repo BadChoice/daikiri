@@ -56,7 +56,10 @@
             else if([value isKindOfClass:NSArray.class]){
                 NSMutableArray* dictArray = [[NSMutableArray alloc] init];
                 for(id child in value){
-                    [dictArray addObject:[child toDictionary]];
+                    if([child isKindOfClass:[DaikiriJSON class]])
+                        [dictArray addObject:[child toDictionary]];
+                    else
+                        [dictArray addObject:child];
                 }
                 dict[name] = dictArray;
             }
