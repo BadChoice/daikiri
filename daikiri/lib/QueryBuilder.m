@@ -46,7 +46,7 @@
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K < %@",field, value]];
     }
     else if([operator isEqualToString:@"like"]){
-        [_predicates addObject:[NSPredicate predicateWithFormat:@"%K like %@",field, value]];
+        [_predicates addObject:[NSPredicate predicateWithFormat:@"%K contains[c] %@",field, value]];
     }
     else if([operator isEqualToString:@"in"] || [operator isEqualToString:@"IN"]){
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K IN %@",field, value]];
