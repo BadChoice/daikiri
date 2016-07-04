@@ -84,8 +84,9 @@
 
 //==================================================================
 #pragma mark - HELPERS
-#pragma mark -
 //==================================================================
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 -(id)valueConverted:(id)value forKey:(NSString*)key{
     
     if([self isNull:value]){
@@ -124,6 +125,7 @@
     }
     return nil;
 }
+#pragma clang diagnostic pop
 
 -(Class)classForKeyPath:(NSString*)keyPath {
     Class class = 0;

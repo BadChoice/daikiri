@@ -124,5 +124,9 @@
  */
 -(Daikiri*)pivot;
 
-
+/**
+ * Overridable function so each model can define its managedObjectContext
+ * By default it returns the DaikiriCoredata.manager
+ */
++(NSManagedObjectContext*)managedObjectContext;
 @end

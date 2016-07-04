@@ -244,7 +244,6 @@
 
 //==================================================================
 #pragma mark - Core data
-#pragma mark -
 //==================================================================
 +(NSManagedObjectContext*)managedObjectContext{
     NSManagedObjectContext * context = [DaikiriCoreData manager].managedObjectContext;
