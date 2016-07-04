@@ -10,7 +10,7 @@ Using pods:
 
 
 ```
-pod 'daikiri' ,:git => 'https://github.com/BadChoice/daikiri.git'
+pod 'daikiri'
 ```
 
 ## Usage
