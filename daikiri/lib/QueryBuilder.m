@@ -95,13 +95,9 @@
     
     NSFetchRequest *request;
     
-    Class modelClass = NSClassFromString(_model);
-    if(![modelClass performSelector:@selector(usesPrefix)]){
-        request = [NSFetchRequest fetchRequestWithEntityName:_model];
-    }
-    else{
-        request = [NSFetchRequest fetchRequestWithEntityName:[_model substringFromIndex:2]];
-    }
+    Class modelClass        = NSClassFromString(_model);
+    NSString* entityName    = [modelClass performSelector:@selector(entityName)];
+    request                 = [NSFetchRequest fetchRequestWithEntityName:entityName];
     
     
     NSPredicate *compoundPredicate  = [NSCompoundPredicate andPredicateWithSubpredicates:_predicates];

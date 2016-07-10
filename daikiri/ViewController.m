@@ -42,7 +42,7 @@
     
     //[self example5]; //CoreData
     
-    //[self example6]; //Relationships
+    [self example6]; //Relationships
     
     [self example7]; //Dictionary with nulls
     

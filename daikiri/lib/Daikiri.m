@@ -16,7 +16,6 @@
 
 //==================================================================
 #pragma mark - Create / Save / Update / Destroy
-#pragma mark -
 //==================================================================
 +(id)create:(Daikiri*)toCreate{
     
@@ -31,8 +30,7 @@
         return previous;
     }
     
-    NSString* entityName    = NSStringFromClass(self.class);
-    NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:[self.class managedObjectContext]];
+    NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:self.class.entityName inManagedObjectContext:[self.class managedObjectContext]];
     
     [toCreate valuesToManaged:object];
     [self.class saveCoreData];
@@ -249,6 +247,14 @@
 //==================================================================
 #pragma mark - Core data
 //==================================================================
++(NSString*)entityName{
+    NSString* entityName = NSStringFromClass(self.class);
+    if(self.class.usesPrefix){
+        return [entityName substringFromIndex:2];
+    }
+    return entityName;
+}
+
 +(NSManagedObjectContext*)managedObjectContext{
     NSManagedObjectContext * context = [DaikiriCoreData manager].managedObjectContext;
     return context;
