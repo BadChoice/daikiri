@@ -109,6 +109,10 @@
     return [self.query where:@"id" is:id].first;
 }
 
++(NSArray*)findIn:(NSArray*)identifiers{
+    return [self.query where:@"id" in:identifiers].get;
+}
+
 +(id)first{
     return [self first:@"id"];
 }

@@ -54,6 +54,11 @@
     return self;
 }
 
+-(QueryBuilder*)where:(NSString*)field in:(NSArray*)values{
+    [_predicates addObject:[NSPredicate predicateWithFormat:@"id IN %@", values]];
+    return self;
+}
+
 //============================================================
 #pragma mark - Sort
 #pragma mark -

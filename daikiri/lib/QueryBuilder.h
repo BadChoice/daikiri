@@ -18,6 +18,7 @@
 
 -(QueryBuilder*)where:(NSString*)field is:(id)value;
 -(QueryBuilder*)where:(NSString*)field operator:(NSString*)operator value:(id)value;
+-(QueryBuilder*)where:(NSString*)field in:(NSArray*)values;
 
 -(QueryBuilder*)orderBy:(NSString*)key;
 -(QueryBuilder*)orderBy:(NSString*)key ascendig:(BOOL)ascending;

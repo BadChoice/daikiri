@@ -68,6 +68,10 @@
  */
 +(id)find:(NSNumber*)id;
 
+/**
+ * Returns all the models that the id is in the identifiers array
+ */
++(NSArray*)findIn:(NSArray*)identifiers;
 
 /**
  * Returns the first model found
