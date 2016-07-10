@@ -29,7 +29,6 @@
 
 //============================================================
 #pragma mark - Where
-#pragma mark -
 //============================================================
 -(QueryBuilder*)where:(NSString*)field is:(id)value{
     return [self where:field operator:@"=" value:value];
@@ -61,7 +60,6 @@
 
 //============================================================
 #pragma mark - Sort
-#pragma mark -
 //============================================================
 -(QueryBuilder*)orderBy:(NSString*)key{
     if(key != nil){
@@ -78,9 +76,17 @@
     return self;
 }
 
+
+//============================================================
+#pragma mark - Raw
+//============================================================
+-(QueryBuilder*)raw:(NSString*)raw{
+    [_predicates addObject:[NSPredicate predicateWithFormat:raw]];
+    return self;
+}
+
 //============================================================
 #pragma mark - Execute query
-#pragma mark -
 //============================================================
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"

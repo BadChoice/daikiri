@@ -23,6 +23,8 @@
 -(QueryBuilder*)orderBy:(NSString*)key;
 -(QueryBuilder*)orderBy:(NSString*)key ascendig:(BOOL)ascending;
 
+-(QueryBuilder*)raw:(NSString*)raw;
+    
 -(NSArray*)get;
 -(id)first;
 @end
