@@ -127,6 +127,7 @@
  * this method, otherwise, it will be nil
  */
 -(Daikiri*)pivot;
+-(void)setPivot:(Daikiri*)pivot;
 
 /**
  * Overridable function so each model can define its managedObjectContext
