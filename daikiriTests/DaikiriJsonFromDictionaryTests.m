@@ -112,6 +112,15 @@
     
 }
 
+-(void)testFromDictionaryWithUndefinedValue{
+    SampleModel* sm = [SampleModel fromDictionary:@{
+                                                    @"name":@"A sample model",
+                                                    @"numbers":@[@1,@2,@3,@4],
+                                                    @"undefinedKey":@"undefined",
+                                                    }];
+    XCTAssert(sm != nil);
+}
+
 - (void)testPerformanceExample {
     [self measureBlock:^{
         [SampleModel fromDictionary:@{

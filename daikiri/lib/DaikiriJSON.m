@@ -158,6 +158,11 @@
     return value;
 }
 
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key{
+    
+}
+
+
 -(BOOL)isNull:(id)value{
     return (value == nil || [value isKindOfClass:[NSNull class]]);
 }
