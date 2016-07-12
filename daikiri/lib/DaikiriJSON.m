@@ -14,7 +14,6 @@
 
 //==================================================================
 #pragma mark - FROM/TO DICTIONARY
-#pragma mark -
 //==================================================================
 +(id)fromDictionary:(NSDictionary*)dict{
     
@@ -31,7 +30,7 @@
         }
         return model;
     }
-    if([self.class isNull:dict]){
+    if([self.class isNull:dict] || [@"" isEqualToString:(NSString*)dict] ){
         return nil;
     }
     
@@ -89,6 +88,13 @@
 
 -(NSArray*)toDictionaryIgnore{
     return @[];
+}
+
+//==================================================================
+#pragma mark - Copy with zone
+//==================================================================
+- (id)copyWithZone:(NSZone *)zone{
+    return [self.class fromDictionary:self.toDictionary];
 }
 
 //==================================================================
@@ -170,7 +176,6 @@
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key{
     
 }
-
 
 +(BOOL)isNull:(id)value{
     return (value == nil || [value isKindOfClass:[NSNull class]]);

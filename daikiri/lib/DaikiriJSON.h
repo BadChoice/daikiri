@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@interface DaikiriJSON : NSObject
+@interface DaikiriJSON : NSObject <NSCopying>
 
 /*
  Things left to do:
