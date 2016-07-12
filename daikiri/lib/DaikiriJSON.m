@@ -17,17 +17,22 @@
 #pragma mark -
 //==================================================================
 +(id)fromDictionary:(NSDictionary*)dict{
-    DaikiriJSON* model = [[self.class alloc] init];
     
-    for(NSString* key in [dict allKeys]){
+    if([dict isKindOfClass:[NSDictionary class]]){
+        DaikiriJSON* model = [[self.class alloc] init];
         
-        id value = dict[key];
-        id valueConverted = [model valueConverted:value forKey:key];
-        if(valueConverted != nil){
-            [model setValue:valueConverted forKey:key];
+        for(NSString* key in [dict allKeys]){
+            
+            id value = dict[key];
+            id valueConverted = [model valueConverted:value forKey:key];
+            if(valueConverted != nil){
+                [model setValue:valueConverted forKey:key];
+            }
         }
+        return model;
     }
-    return model;
+    [NSException raise:@"Not a NSDictionary" format:@"Trying to create a Daikiri model from a non dictionary object"];
+    return nil;
 }
 
 -(NSDictionary*)toDictionary{

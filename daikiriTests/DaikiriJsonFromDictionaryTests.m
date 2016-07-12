@@ -121,6 +121,11 @@
     XCTAssert(sm != nil);
 }
 
+-(void)testFromDictionaryWithoutDictionary{
+    XCTAssertThrows([SampleModel fromDictionary:((NSDictionary*)@"a non dictionary")]);
+    
+}
+
 - (void)testPerformanceExample {
     [self measureBlock:^{
         [SampleModel fromDictionary:@{
