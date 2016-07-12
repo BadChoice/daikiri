@@ -31,6 +31,10 @@
         }
         return model;
     }
+    if([self.class isNull:dict]){
+        return nil;
+    }
+    
     [NSException raise:@"Not a NSDictionary" format:@"Trying to create a Daikiri model from a non dictionary object"];
     return nil;
 }
@@ -47,9 +51,9 @@
         NSString *name              = [[NSString alloc] initWithUTF8String:property_getName(property)];
         
         if(![self shouldIgnoreKey:name]){
-        
+            
             id value = [self valueForKey:name];
-            if([self isNull:value]){
+            if([self.class isNull:value]){
                 dict[name] = [NSNull null];
             }
             else if([value isKindOfClass:NSString.class]){
@@ -94,10 +98,10 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 -(id)valueConverted:(id)value forKey:(NSString*)key{
     
-    if([self isNull:value]){
+    if([self.class isNull:value]){
         return nil;
     }
-
+    
     if([key isEqualToString:@"id"]){
         return [self convertToNSNumber:value];
     }
@@ -168,7 +172,7 @@
 }
 
 
--(BOOL)isNull:(id)value{
++(BOOL)isNull:(id)value{
     return (value == nil || [value isKindOfClass:[NSNull class]]);
 }
 

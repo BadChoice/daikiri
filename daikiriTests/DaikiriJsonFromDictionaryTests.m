@@ -126,6 +126,11 @@
     
 }
 
+-(void)testFromDictionaryWithNil{
+    SampleModel* sm = [SampleModel fromDictionary:nil];
+    XCTAssert(sm == nil);
+}
+
 - (void)testPerformanceExample {
     [self measureBlock:^{
         [SampleModel fromDictionary:@{
