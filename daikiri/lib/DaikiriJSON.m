@@ -8,7 +8,7 @@
 
 #import "DaikiriJSON.h"
 #import <objc/runtime.h>
-
+#define IsEqual(x,y) ((x && [x isEqual:y]) || (!x && !y))
 
 @implementation DaikiriJSON
 
@@ -41,13 +41,7 @@
 -(NSDictionary*)toDictionary{
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     
-    unsigned int numberOfProperties = 0;
-    objc_property_t *propertyArray  = class_copyPropertyList(self.class, &numberOfProperties);
-    
-    for (NSUInteger i = 0; i < numberOfProperties; i++)
-    {
-        objc_property_t property = propertyArray[i];
-        NSString *name              = [[NSString alloc] initWithUTF8String:property_getName(property)];
+    [self properties:^(NSString *name, objc_property_t property) {
         
         if(![self shouldIgnoreKey:name]){
             
@@ -76,8 +70,8 @@
                 dict[name] = subValue;
             }
         }
-    }
-    free(propertyArray);
+        
+    }];    
     
     return dict;
 }
@@ -94,7 +88,24 @@
 #pragma mark - Copy with zone
 //==================================================================
 - (id)copyWithZone:(NSZone *)zone{
-    return [self.class fromDictionary:self.toDictionary];
+    id newObject = [[self.class alloc] init];
+    
+    [self properties:^(NSString *name, objc_property_t property) {
+        [newObject setValue:[self valueForKey:name] forKey:name];
+    }];
+    
+    return newObject;
+}
+
+-(BOOL)isEqual:(id)object{
+    __block bool isEqual = YES;
+    
+    [self properties:^(NSString *name, objc_property_t property) {
+        if( ! IsEqual ( [object valueForKey:name] , [self valueForKey:name]))
+            isEqual = NO;
+    }];
+    
+    return isEqual;
 }
 
 //==================================================================
@@ -143,28 +154,39 @@
 #pragma clang diagnostic pop
 
 -(Class)classForKeyPath:(NSString*)keyPath {
-    Class class = 0;
     
-    unsigned int n = 0;
-    objc_property_t* properties = class_copyPropertyList(self.class, &n);
-    for (unsigned int i=0; i<n; i++) {
-        objc_property_t* property = properties + i;
-        NSString* name = [NSString stringWithCString:property_getName(*property) encoding:NSUTF8StringEncoding];
-        if (![keyPath isEqualToString:name]) continue;
+    __block Class class = 0;
+    [self properties:^(NSString *name, objc_property_t property) {
         
-        const char* attributes = property_getAttributes(*property);
-        if (attributes[1] == '@') {
-            NSMutableString* className = [NSMutableString new];
-            for (int j=3; attributes[j] && attributes[j]!='"'; j++)
-                [className appendFormat:@"%c", attributes[j]];
-            class = NSClassFromString(className);
+        if ( [keyPath isEqualToString:name] ){
+            const char* attributes = property_getAttributes(property);
+            if (attributes[1] == '@') {
+                NSMutableString* className = [NSMutableString new];
+                
+                for (int j=3; attributes[j] && attributes[j]!='"'; j++){
+                    [className appendFormat:@"%c", attributes[j]];
+                }
+                class = NSClassFromString(className);
+            }
         }
-        break;
-    }
-    free(properties);
+    }];
     
     return class;
 }
+
+-(void)properties:(void (^)(NSString* name, objc_property_t property))block{
+    unsigned int numberOfProperties = 0;
+    objc_property_t *propertyArray  = class_copyPropertyList(self.class, &numberOfProperties);
+    
+    for (NSUInteger i = 0; i < numberOfProperties; i++)
+    {
+        objc_property_t property = propertyArray[i];
+        NSString *name           = [[NSString alloc] initWithUTF8String:property_getName(property)];
+        block(name, property);
+    }
+    free(propertyArray);
+}
+
 
 -(NSNumber*)convertToNSNumber:(NSNumber*)value{
     if([value isKindOfClass:NSString.class]){

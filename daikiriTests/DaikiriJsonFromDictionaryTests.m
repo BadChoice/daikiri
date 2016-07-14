@@ -131,6 +131,18 @@
     XCTAssert(sm == nil);
 }
 
+-(void)testCopy{
+    SampleModel* sm = [SampleModel fromDictionary:@{
+                                                    @"name":@"A sample model",
+                                                    @"numbers":@[@1,@2,@3,@4]
+                                                    }];
+    
+    SampleModel* copy = [sm copy];
+    
+    XCTAssertTrue ([sm isEqual:copy]);
+    
+}
+
 - (void)testPerformanceExample {
     [self measureBlock:^{
         [SampleModel fromDictionary:@{
