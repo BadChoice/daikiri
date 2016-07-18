@@ -30,7 +30,7 @@
         }
         return model;
     }
-    if([self.class isNull:dict] || [@"" isEqualToString:(NSString*)dict] ){
+    if([self.class isNull:dict] || [@"null" isEqualToString:(NSString*)dict] || [@"" isEqualToString:(NSString*)dict] ){
         return nil;
     }
     
