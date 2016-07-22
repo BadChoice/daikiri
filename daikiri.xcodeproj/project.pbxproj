@@ -33,6 +33,8 @@
 		764426D11CC7B52E00F0F2C9 /* SampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D01CC7B52E00F0F2C9 /* SampleModel.m */; };
 		764426D41CC7B54A00F0F2C9 /* GSEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D31CC7B54A00F0F2C9 /* GSEnemy.m */; };
 		764426D71CC7B67900F0F2C9 /* GSEnemyHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */; };
+		76488E3F1D41FFB40036C260 /* DaikiriTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76488E3E1D41FFB40036C260 /* DaikiriTests.m */; };
+		76488E411D4200600036C260 /* QueryBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76488E401D4200600036C260 /* QueryBuilderTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		764426D31CC7B54A00F0F2C9 /* GSEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GSEnemy.m; path = support/GSEnemy.m; sourceTree = "<group>"; };
 		764426D51CC7B67900F0F2C9 /* GSEnemyHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSEnemyHero.h; path = support/GSEnemyHero.h; sourceTree = "<group>"; };
 		764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GSEnemyHero.m; path = support/GSEnemyHero.m; sourceTree = "<group>"; };
+		76488E3E1D41FFB40036C260 /* DaikiriTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaikiriTests.m; sourceTree = "<group>"; };
+		76488E401D4200600036C260 /* QueryBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryBuilderTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +245,8 @@
 			children = (
 				762B8EF51D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m */,
 				762B8F001D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m */,
+				76488E3E1D41FFB40036C260 /* DaikiriTests.m */,
+				76488E401D4200600036C260 /* QueryBuilderTests.m */,
 				762B8EF71D0403080081ADA6 /* Info.plist */,
 			);
 			path = daikiriTests;
@@ -374,7 +380,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76488E3F1D41FFB40036C260 /* DaikiriTests.m in Sources */,
 				762B8F011D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m in Sources */,
+				76488E411D4200600036C260 /* QueryBuilderTests.m in Sources */,
 				762B8EF61D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,6 +575,7 @@
 				762B8EFB1D0403080081ADA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

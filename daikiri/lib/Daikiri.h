@@ -54,6 +54,7 @@
 +(id)createWith:(NSDictionary*)dict;
 +(bool)updateWith:(NSDictionary*)dict;
 +(bool)destroyWith:(NSNumber*)id;
++(void)destroyWithArray:(NSArray*)idsArray;
 
 // -----------------------------------------
 // Eloquent like

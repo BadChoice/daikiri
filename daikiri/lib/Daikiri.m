@@ -7,8 +7,6 @@
 //
 
 #import "Daikiri.h"
-#import <objc/runtime.h>
-
 #import "DaikiriCoreData.h"
 #import "QueryBuilder.h"
 
@@ -98,6 +96,12 @@
     return [object destroy];
 }
 
++(void)destroyWithArray:(NSArray*)idsArray{
+    for(NSNumber* objectId in idsArray){
+        [self.class destroyWith:objectId];
+    }
+}
+
 //==================================================================
 #pragma mark - Active record
 #pragma mark -
@@ -166,21 +170,14 @@
 
 //==================================================================
 #pragma mark - HELPERS
-#pragma mark -
 //==================================================================
 -(void)valuesToManaged:(NSManagedObject*)managedObject{
-    unsigned int numberOfProperties = 0;
-    objc_property_t *propertyArray  = class_copyPropertyList(self.class, &numberOfProperties);
     
-    //We se the id always
     [managedObject setValue:[self valueForKey:@"id"] forKey:@"id"];
     
-    for (NSUInteger i = 0; i < numberOfProperties; i++)
-    {
-        objc_property_t property = propertyArray[i];
-        NSString *name           = [[NSString alloc] initWithUTF8String:property_getName(property)];
+    [self.class properties:^(NSString *name, objc_property_t property) {
         
-        id value = [self valueForKey:name];
+        id value    = [self valueForKey:name];
         
         if([value isKindOfClass:[NSString class]]){
             [managedObject setValue:value forKey:name];
@@ -188,23 +185,16 @@
         else if([value isKindOfClass:[NSNumber class]]){
             [managedObject setValue:value forKey:name];
         }
-        
-    }
-    free(propertyArray);
+    }];
+    
 }
 
 +(id)fromManaged:(NSManagedObject*)managedObject{
     Daikiri *newObject = [[[self class ]alloc] init];
-    unsigned int numberOfProperties = 0;
-    objc_property_t *propertyArray  = class_copyPropertyList(self.class, &numberOfProperties);
     
     [newObject setValue:[managedObject valueForKey:@"id"] forKey:@"id"];
     
-    for (NSUInteger i = 0; i < numberOfProperties; i++)
-    {
-        objc_property_t property = propertyArray[i];
-        NSString *name           = [[NSString alloc] initWithUTF8String:property_getName(property)];
-        
+    [self.class properties:^(NSString *name, objc_property_t property) {
         @try{
             id value = [managedObject valueForKey:name];
             
@@ -217,9 +207,7 @@
         }@catch (NSException * e) {
             //NSLog(@"Model value not in core data entity: %@", e);
         }
-        
-    }
-    free(propertyArray);
+    }];
     [newObject setManaged:managedObject];
     return newObject;
 }

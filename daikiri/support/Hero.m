@@ -11,7 +11,7 @@
 @implementation Hero
 
 -(NSArray*)friends{
-    return [self hasMany:@"Friend" foreignKey:@"hero_id"];
+    return [self hasMany:@"Friend" foreignKey:@"hero_id" sort:@"id"];
 }
 
 -(NSArray*)enemies{

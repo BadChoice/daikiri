@@ -7,7 +7,6 @@
 //
 
 #import "DaikiriJSON.h"
-#import <objc/runtime.h>
 #define IsEqual(x,y) ((x && [x isEqual:y]) || (!x && !y))
 
 @implementation DaikiriJSON
@@ -41,7 +40,7 @@
 -(NSDictionary*)toDictionary{
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     
-    [self properties:^(NSString *name, objc_property_t property) {
+    [self.class properties:^(NSString *name, objc_property_t property) {
         
         if(![self shouldIgnoreKey:name]){
             
@@ -90,7 +89,7 @@
 - (id)copyWithZone:(NSZone *)zone{
     id newObject = [[self.class alloc] init];
     
-    [self properties:^(NSString *name, objc_property_t property) {
+    [self.class properties:^(NSString *name, objc_property_t property) {
         [newObject setValue:[self valueForKey:name] forKey:name];
     }];
     
@@ -100,7 +99,7 @@
 -(BOOL)isEqual:(id)object{
     __block bool isEqual = YES;
     
-    [self properties:^(NSString *name, objc_property_t property) {
+    [self.class properties:^(NSString *name, objc_property_t property) {
         if( ! IsEqual ( [object valueForKey:name] , [self valueForKey:name]))
             isEqual = NO;
     }];
@@ -156,7 +155,7 @@
 -(Class)classForKeyPath:(NSString*)keyPath {
     
     __block Class class = 0;
-    [self properties:^(NSString *name, objc_property_t property) {
+    [self.class properties:^(NSString *name, objc_property_t property) {
         
         if ( [keyPath isEqualToString:name] ){
             const char* attributes = property_getAttributes(property);
@@ -174,7 +173,7 @@
     return class;
 }
 
--(void)properties:(void (^)(NSString* name, objc_property_t property))block{
++(void)properties:(void (^)(NSString* name, objc_property_t property))block{
     unsigned int numberOfProperties = 0;
     objc_property_t *propertyArray  = class_copyPropertyList(self.class, &numberOfProperties);
     
