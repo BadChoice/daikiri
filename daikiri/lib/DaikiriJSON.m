@@ -49,7 +49,7 @@
                 dict[name] = [NSNull null];
             }
             else if([value isKindOfClass:NSString.class]){
-                dict[name] = value;
+                dict[name] = [self convertoNSString:value];
             }
             else if([value isKindOfClass:NSNumber.class]){
                 dict[name] = [self convertToNSNumber:value];
@@ -122,7 +122,7 @@
         return [self convertToNSNumber:value];
     }
     if ([self classForKeyPath:key] == NSString.class){
-        return value;   //TODO: convert to string if nsnumber
+        return [self convertoNSString:value];
     }
     if ([self classForKeyPath:key] == NSNumber.class){
         return [self convertToNSNumber:value];
@@ -150,8 +150,8 @@
     }
     return nil;
 }
-#pragma clang diagnostic pop
 
+#pragma clang diagnostic pop
 -(Class)classForKeyPath:(NSString*)keyPath {
     
     __block Class class = 0;
@@ -168,8 +168,7 @@
                 class = NSClassFromString(className);
             }
         }
-    }];
-    
+    }];    
     return class;
 }
 
@@ -190,6 +189,13 @@
 -(NSNumber*)convertToNSNumber:(NSNumber*)value{
     if([value isKindOfClass:NSString.class]){
         return @([value floatValue]);
+    }
+    return value;
+}
+
+-(NSString*)convertoNSString:(NSString*)value{
+    if([value isKindOfClass:NSNumber.class]){
+        return ((NSNumber*)value).stringValue;
     }
     return value;
 }
