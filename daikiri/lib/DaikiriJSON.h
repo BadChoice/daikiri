@@ -30,6 +30,12 @@
 +(id)fromDictionary:(NSDictionary*)dict;
 
 /**
+ * It calls the +(id)fromDictionary but first 
+ * converting the string to a dict
+ */
++(id)fromDictionaryString:(NSString*)string;
+
+/**
  * Creates a dictionary from the model
  *
  * - √ Submodels

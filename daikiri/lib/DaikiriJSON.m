@@ -37,6 +37,13 @@
     return nil;
 }
 
++(id)fromDictionaryString:(NSString*)string{
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    return [self.class fromDictionary:dict];
+}
+
 -(NSDictionary*)toDictionary{
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     

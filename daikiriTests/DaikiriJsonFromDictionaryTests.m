@@ -42,6 +42,16 @@
     XCTAssert( [sm.numbers[0] isEqual:@1] );
 }
 
+- (void)testFromDictionaryString {
+    NSString* dictString = @"{\"name\":\"A sample model\",\"numbers\":[1,2,3,4]}";
+    SampleModel* sm = [SampleModel fromDictionaryString:dictString];
+    
+    XCTAssert( [sm.name     isEqualToString:@"A sample model"]);
+    XCTAssert( [sm.numbers  isKindOfClass:[NSArray class]]);
+    XCTAssert( sm.numbers.count == 4 );
+    XCTAssert( [sm.numbers[0] isEqual:@1] );
+}
+
 -(void)testFromDictionaryWithNonExistingKeys{
     SampleModel* sm = [SampleModel fromDictionary:@{
                                                     @"name":@"A sample model",
