@@ -7,7 +7,6 @@
 //
 
 #import "DaikiriJSON.h"
-#define IsEqual(x,y) ((x && [x isEqual:y]) || (!x && !y))
 
 @implementation DaikiriJSON
 
@@ -16,10 +15,10 @@
 //==================================================================
 +(id)fromDictionary:(NSDictionary*)dict{
     
-    if([dict isKindOfClass:[NSDictionary class]]){
+    if([dict isKindOfClass:NSDictionary.class]){
         DaikiriJSON* model = [[self.class alloc] init];
         
-        for(NSString* key in [dict allKeys]){
+        for(NSString* key in dict.allKeys){
             
             id value = dict[key];
             id valueConverted = [model valueConverted:value forKey:key];
@@ -38,9 +37,8 @@
 }
 
 +(id)fromDictionaryString:(NSString*)string{
-    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    
+    NSData *data        = [string dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* dict  = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     return [self.class fromDictionary:dict];
 }
 
@@ -53,7 +51,7 @@
             
             id value = [self valueForKey:name];
             if([self.class isNull:value]){
-                dict[name] = [NSNull null];
+                dict[name] = NSNull.null;
             }
             else if([value isKindOfClass:NSString.class]){
                 dict[name] = [self convertoNSString:value];
@@ -64,7 +62,7 @@
             else if([value isKindOfClass:NSArray.class]){
                 NSMutableArray* dictArray = [[NSMutableArray alloc] init];
                 for(id child in value){
-                    if([child isKindOfClass:[DaikiriJSON class]])
+                    if([child isKindOfClass:DaikiriJSON.class])
                         [dictArray addObject:[child toDictionary]];
                     else
                         [dictArray addObject:child];
@@ -76,7 +74,6 @@
                 dict[name] = subValue;
             }
         }
-        
     }];    
     
     return dict;
@@ -91,44 +88,6 @@
 }
 
 //==================================================================
-#pragma mark - Copy with zone
-//==================================================================
-- (id)copyWithZone:(NSZone *)zone{
-    id newObject = [[self.class alloc] init];
-    
-    [self.class properties:^(NSString *name, objc_property_t property) {
-        [newObject setValue:[self valueForKey:name] forKey:name];
-    }];
-    
-    return newObject;
-}
-
--(BOOL)isEqual:(id)object{
-    __block bool isEqual = YES;
-    
-    [self.class properties:^(NSString *name, objc_property_t property) {
-        if( ! IsEqual ( [object valueForKey:name] , [self valueForKey:name]))
-            isEqual = NO;
-    }];
-    
-    return isEqual;
-}
-
-- (NSUInteger)hash {
-    NSUInteger __block hash = 0;
-    [self.class properties:^(NSString *name, objc_property_t property) {
-        hash = hash ^ [[self valueForKey:name] hash];
-    }];
-    return hash;
-}
-
-/*-(NSString*)description{
-    [self.class properties:^(NSString *name, objc_property_t property) {
-        NSLog(@"%@ => %@", name, [self valueForKey:name] );
-    }];
-}*/
-
-//==================================================================
 #pragma mark - HELPERS
 //==================================================================
 #pragma clang diagnostic push
@@ -138,7 +97,6 @@
     if([self.class isNull:value]){
         return nil;
     }
-    
     if([key isEqualToString:@"id"]){
         return [self convertToNSNumber:value];
     }
@@ -193,20 +151,6 @@
     return class;
 }
 
-+(void)properties:(void (^)(NSString* name, objc_property_t property))block{
-    unsigned int numberOfProperties = 0;
-    objc_property_t *propertyArray  = class_copyPropertyList(self.class, &numberOfProperties);
-    
-    for (NSUInteger i = 0; i < numberOfProperties; i++)
-    {
-        objc_property_t property = propertyArray[i];
-        NSString *name           = [[NSString alloc] initWithUTF8String:property_getName(property)];
-        block(name, property);
-    }
-    free(propertyArray);
-}
-
-
 -(NSNumber*)convertToNSNumber:(NSNumber*)value{
     if([value isKindOfClass:NSString.class]){
         return @([value floatValue]);
@@ -228,6 +172,5 @@
 +(BOOL)isNull:(id)value{
     return (value == nil || [value isKindOfClass:[NSNull class]]);
 }
-
 
 @end

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <objc/runtime.h>
+#import "DKObject.h"
 
-@interface DaikiriJSON : NSObject <NSCopying>
+@interface DaikiriJSON : DKObject
 
 /*
  Things left to do:
@@ -48,10 +48,5 @@
  */
 -(NSArray*)toDictionaryIgnore;
 
-
-/**
- * Iterates through all properties of the object
- */
-+(void)properties:(void (^)(NSString* name, objc_property_t property))block;
 
 @end
