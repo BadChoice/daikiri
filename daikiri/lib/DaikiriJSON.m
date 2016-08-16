@@ -122,11 +122,11 @@
     return hash;
 }
 
--(NSString*)description{
+/*-(NSString*)description{
     [self.class properties:^(NSString *name, objc_property_t property) {
         NSLog(@"%@ => %@", name, [self valueForKey:name] );
     }];
-}
+}*/
 
 //==================================================================
 #pragma mark - HELPERS
