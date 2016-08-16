@@ -114,6 +114,20 @@
     return isEqual;
 }
 
+- (NSUInteger)hash {
+    NSUInteger __block hash = 0;
+    [self.class properties:^(NSString *name, objc_property_t property) {
+        hash = hash ^ [[self valueForKey:name] hash];
+    }];
+    return hash;
+}
+
+-(NSString*)description{
+    [self.class properties:^(NSString *name, objc_property_t property) {
+        NSLog(@"%@ => %@", name, [self valueForKey:name] );
+    }];
+}
+
 //==================================================================
 #pragma mark - HELPERS
 //==================================================================
