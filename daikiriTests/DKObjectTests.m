@@ -56,7 +56,7 @@
 
 -(void) testProperties{
     NSMutableArray* propertiesArray = [NSMutableArray new];
-    [Hero properties:^(NSString *name, objc_property_t property) {
+    [Hero properties:^(NSString *name) {
         [propertiesArray addObject:name];
     }];
     

@@ -175,7 +175,7 @@
     
     [managedObject setValue:[self valueForKey:@"id"] forKey:@"id"];
     
-    [self.class properties:^(NSString *name, objc_property_t property) {
+    [self.class properties:^(NSString *name) {
         
         id value    = [self valueForKey:name];
         
@@ -194,7 +194,7 @@
     
     [newObject setValue:[managedObject valueForKey:@"id"] forKey:@"id"];
     
-    [self.class properties:^(NSString *name, objc_property_t property) {
+    [self.class properties:^(NSString *name) {
         @try{
             id value = [managedObject valueForKey:name];
             

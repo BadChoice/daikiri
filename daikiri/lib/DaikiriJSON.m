@@ -45,7 +45,7 @@
 -(NSDictionary*)toDictionary{
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     
-    [self.class properties:^(NSString *name, objc_property_t property) {
+    [self.class properties:^(NSString *name) {
         
         if(![self shouldIgnoreKey:name]){
             
@@ -134,7 +134,7 @@
 -(Class)classForKeyPath:(NSString*)keyPath {
     
     __block Class class = 0;
-    [self.class properties:^(NSString *name, objc_property_t property) {
+    [self.class propertiesWithProperty:^(NSString *name, objc_property_t property) {
         
         if ( [keyPath isEqualToString:name] ){
             const char* attributes = property_getAttributes(property);

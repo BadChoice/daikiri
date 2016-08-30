@@ -14,6 +14,7 @@
 /**
  * Iterates through all properties of the object
  */
-+(void)properties:(void (^)(NSString* name, objc_property_t property))block;
++(void)properties:(void (^)(NSString* name))block;
++(void)propertiesWithProperty:(void (^)(NSString* name, objc_property_t property))block;
 
 @end
