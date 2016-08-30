@@ -34,28 +34,20 @@ static NSMutableDictionary * cachedProperties;
     __block bool isEqual = YES;
     
     [self.class properties:^(NSString *name) {
-        if( ! IsEqual ( [object valueForKey:name] , [self valueForKey:name])){
+        if(isEqual && ! IsEqual ( [object valueForKey:name] , [self valueForKey:name])){
             isEqual = NO;
         }
-    }];
-    
+    }];    
     return isEqual;
 }
 
 - (NSUInteger)hash {
     NSUInteger __block hash = 0;
     [self.class properties:^(NSString *name) {
-        hash = hash ^ [[self valueForKey:name] hash];
+        hash ^= [[self valueForKey:name] hash];
     }];
     return hash;
 }
-
-/*-(NSString*)description{
- [self.class properties:^(NSString *name, objc_property_t property) {
- NSLog(@"%@ => %@", name, [self valueForKey:name] );
- }];
- }*/
-
 
 +(void)properties:(void (^)(NSString* name))block{
     if(cachedProperties[NSStringFromClass(self.class)] == nil) [self.class cacheProperties];
@@ -71,8 +63,7 @@ static NSMutableDictionary * cachedProperties;
     for (NSUInteger i = 0; i < numberOfProperties; i++)
     {
         objc_property_t property = propertyArray[i];
-        NSString *name           = @(property_getName(property));
-        block(name, property);
+        block(@(property_getName(property)), property);
     }
     free(propertyArray);
 }
@@ -87,11 +78,19 @@ static NSMutableDictionary * cachedProperties;
     for (NSUInteger i = 0; i < numberOfProperties; i++)
     {
         objc_property_t property = propertyArray[i];
-        NSString *name           = @(property_getName(property));
-        [properties addObject:name];
+        [properties addObject:@(property_getName(property))];
     }
     free(propertyArray);
     cachedProperties[NSStringFromClass(self.class)] = properties;
 }
+
+
+/*
+ -(NSString*)description{
+    [self.class properties:^(NSString *name, objc_property_t property) {
+        NSLog(@"%@ => %@", name, [self valueForKey:name] );
+    }];
+ }
+ */
 
 @end
