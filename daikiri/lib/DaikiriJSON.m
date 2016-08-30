@@ -150,7 +150,6 @@ static NSMutableDictionary* classesForKeyPathsCached;
     }];
     
     classesForKeyPathsCached[NSStringFromClass(self.class)] = classesForKeyPath;
-    //return class;
 }
 
 -(Class)classForKeyPath:(NSString*)keyPath {
