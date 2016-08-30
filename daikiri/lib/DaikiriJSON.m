@@ -10,6 +10,8 @@
 
 @implementation DaikiriJSON
 
+static NSMutableDictionary* classesForKeyPathsCached;
+
 //==================================================================
 #pragma mark - FROM/TO DICTIONARY
 //==================================================================
@@ -129,31 +131,38 @@
     }
     return nil;
 }
-
 #pragma clang diagnostic pop
--(Class)classForKeyPath:(NSString*)keyPath {
+
+-(void)cacheClassesForKeyPath{
+    if(classesForKeyPathsCached == nil) classesForKeyPathsCached = [NSMutableDictionary new];
+    NSMutableDictionary* classesForKeyPath = [NSMutableDictionary new];
     
-    __block Class class = 0;
     [self.class propertiesWithProperty:^(NSString *name, objc_property_t property) {
-        
-        if ( [keyPath isEqualToString:name] ){
-            const char* attributes = property_getAttributes(property);
-            if (attributes[1] == '@') {
-                NSMutableString* className = [NSMutableString new];
-                
-                for (int j=3; attributes[j] && attributes[j]!='"'; j++){
-                    [className appendFormat:@"%c", attributes[j]];
-                }
-                class = NSClassFromString(className);
+        const char* attributes = property_getAttributes(property);
+        if (attributes[1] == '@') {
+            NSMutableString* className = [NSMutableString new];
+            
+            for (int j=3; attributes[j] && attributes[j]!='"'; j++){
+                [className appendFormat:@"%c", attributes[j]];
             }
+            classesForKeyPath[name] = className;
         }
-    }];    
-    return class;
+    }];
+    
+    classesForKeyPathsCached[NSStringFromClass(self.class)] = classesForKeyPath;
+    //return class;
+}
+
+-(Class)classForKeyPath:(NSString*)keyPath {
+    if(classesForKeyPathsCached[NSStringFromClass(self.class)] == nil) [self cacheClassesForKeyPath];
+    
+    NSString* className = classesForKeyPathsCached[NSStringFromClass(self.class)][keyPath];
+    return NSClassFromString(className);
 }
 
 -(NSNumber*)convertToNSNumber:(NSNumber*)value{
     if([value isKindOfClass:NSString.class]){
-        return @([value floatValue]);
+        return @(value.floatValue);
     }
     return value;
 }
