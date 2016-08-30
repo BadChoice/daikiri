@@ -58,8 +58,8 @@ static NSMutableDictionary * cachedProperties;
 
 
 +(void)properties:(void (^)(NSString* name))block{
-    if(cachedProperties[self.class] == nil) [self.class cacheProperties];
-    for(NSString* propertyName in cachedProperties[self.class]){
+    if(cachedProperties[NSStringFromClass(self.class)] == nil) [self.class cacheProperties];
+    for(NSString* propertyName in cachedProperties[NSStringFromClass(self.class)]){
         block(propertyName);
     }
 }
@@ -79,7 +79,8 @@ static NSMutableDictionary * cachedProperties;
 
 +(void)cacheProperties{
     if(cachedProperties == nil) cachedProperties = [NSMutableDictionary new];
-    NSMutableArray* properties                   = [NSMutableArray new];
+    NSMutableArray* properties                   = [NSMutableArray      new];
+    
     unsigned int numberOfProperties = 0;
     objc_property_t *propertyArray  = class_copyPropertyList(self.class, &numberOfProperties);
     
@@ -88,10 +89,9 @@ static NSMutableDictionary * cachedProperties;
         objc_property_t property = propertyArray[i];
         NSString *name           = @(property_getName(property));
         [properties addObject:name];
-        //block(name, property);
     }
     free(propertyArray);
-    cachedProperties[self.class] = properties;
+    cachedProperties[NSStringFromClass(self.class)] = properties;
 }
 
 @end
