@@ -18,7 +18,7 @@ static NSMutableDictionary* classesForKeyPathsCached;
 +(id)fromDictionary:(NSDictionary*)dict{
     
     if([dict isKindOfClass:NSDictionary.class]){
-        DaikiriJSON* model = [[self.class alloc] init];
+        DaikiriJSON* model = [self.class new];
         
         for(NSString* key in dict.allKeys){
             
@@ -45,7 +45,7 @@ static NSMutableDictionary* classesForKeyPathsCached;
 }
 
 -(NSDictionary*)toDictionary{
-    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* dict = [NSMutableDictionary new];
     
     [self.class properties:^(NSString *name) {
         
@@ -62,7 +62,7 @@ static NSMutableDictionary* classesForKeyPathsCached;
                 dict[name] = [self convertToNSNumber:value];
             }
             else if([value isKindOfClass:NSArray.class]){
-                NSMutableArray* dictArray = [[NSMutableArray alloc] init];
+                NSMutableArray* dictArray = [NSMutableArray new];
                 for(id child in value){
                     if([child isKindOfClass:DaikiriJSON.class])
                         [dictArray addObject:[child toDictionary]];
@@ -114,7 +114,7 @@ static NSMutableDictionary* classesForKeyPathsCached;
         
         if ([self respondsToSelector:s]) {
             Class childClass            = [self performSelector:s];
-            NSMutableArray* newArray    = [[NSMutableArray alloc] init];
+            NSMutableArray* newArray    = [NSMutableArray new];
             for(id arrayDict in value){
                 id childModel = [childClass fromDictionary:arrayDict];
                 [newArray addObject:childModel];

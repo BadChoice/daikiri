@@ -26,7 +26,7 @@
     [super viewDidLoad];
     
     
-    Hero* hero = [[Hero alloc] init];
+    Hero* hero = [Hero new];
     hero.name = @"patata";
     hero.age  = nil;
     

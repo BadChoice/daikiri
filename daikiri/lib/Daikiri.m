@@ -153,7 +153,7 @@
     NSArray *pivots = [[NSClassFromString(pivotModel).query where:localKey is:self.id] orderBy:pivotSort].get;
     
     //Objects (attaching pivots)
-    NSMutableArray* finalResults = [[NSMutableArray alloc] init];
+    NSMutableArray* finalResults = [NSMutableArray new];
     for(id pivot in pivots){
         id object = [NSClassFromString(model) find:[pivot valueForKey:foreingKey]];
         [object setPivot:pivot];
@@ -190,7 +190,7 @@
 }
 
 +(id)fromManaged:(NSManagedObject*)managedObject{
-    Daikiri *newObject = [[[self class ]alloc] init];
+    Daikiri *newObject = [[self class ] new];
     
     [newObject setValue:[managedObject valueForKey:@"id"] forKey:@"id"];
     
@@ -213,7 +213,7 @@
 }
 
 +(NSArray*)managedArrayToDaikiriArray:(NSArray*)results{
-    NSMutableArray* daikiriObjects = [[NSMutableArray alloc] init];
+    NSMutableArray* daikiriObjects = [NSMutableArray new];
     for(NSManagedObject* managed in results){
         [daikiriObjects addObject:[self.class fromManaged:managed]];
     }

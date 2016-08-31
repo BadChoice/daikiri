@@ -18,7 +18,7 @@ static NSMutableDictionary * cachedProperties;
 #pragma mark - Copy with zone
 //==================================================================
 - (id)copyWithZone:(NSZone *)zone{
-    id newObject = [[self.class alloc] init];
+    id newObject = [self.class new];
     
     [self.class properties:^(NSString *name) {
         [newObject setValue:[self valueForKey:name] forKey:name];

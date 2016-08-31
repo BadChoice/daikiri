@@ -29,7 +29,7 @@
 #pragma mark - Tests
 //============================================================
 - (void)testToDictionary {
-    Hero * h    = [[Hero alloc] init];
+    Hero * h    = [Hero new];
     h.name      = @"Batman";
     h.age       = @46;
     
@@ -40,31 +40,31 @@
 }
 
 -(void)testToDictionaryNilKeyIsNSNull{
-    Hero * h    = [[Hero alloc] init];
+    Hero * h    = [Hero new];
     h.name      = @"Batman";
     h.age       = @46;
     
     NSDictionary* result = h.toDictionary;
     
-    XCTAssert( [result[@"headquarter"] isKindOfClass:[NSNull class]] );
+    XCTAssert( [result[@"headquarter"] isKindOfClass:NSNull.class] );
 }
 
 -(void)testToDicitonaryNonDaikiriArray{
-    SampleModel * s = [[SampleModel alloc] init];
+    SampleModel * s = [SampleModel new];
     s.numbers       = @[@1, @2, @3, @4];
     
     NSDictionary* result = s.toDictionary;
     
-    XCTAssert([result[@"numbers"] isKindOfClass:[NSArray class]]);
+    XCTAssert([result[@"numbers"] isKindOfClass:NSArray.class]);
     NSArray* numbers = result[@"numbers"];
     XCTAssert(numbers.count == 4);
     XCTAssert([numbers[0] isEqual:@1]);
 }
 
 -(void)testToDicitonaryDaikiriArray{
-    Headquarter * h     = [[Headquarter alloc] init];
-    Vehicle     * v1    = [[Vehicle alloc] init];
-    Vehicle     * v2    = [[Vehicle alloc] init];
+    Headquarter * h     = [Headquarter new];
+    Vehicle     * v1    = [Vehicle new];
+    Vehicle     * v2    = [Vehicle new];
     v1.model    = @"Batmobile";
     v2.model    = @"Spidermobile";
     h.vehicles = @[v1,v2];
@@ -73,28 +73,28 @@
     
     NSArray* vehicles   = result[@"vehicles"];
     
-    XCTAssert( [result[@"vehicles"] isKindOfClass:[NSArray class]] );
+    XCTAssert( [result[@"vehicles"] isKindOfClass:NSArray.class] );
     XCTAssert( vehicles.count == 2);
     XCTAssert( [vehicles[0][@"model"] isEqualToString:@"Batmobile"] );
 }
 
 -(void)testToDictionaryDaikiriNestedModel{
-    Hero* h         = [[Hero alloc] init];
+    Hero* h         = [Hero new];
     h.name          = @"Batman";
-    Headquarter* hq = [[Headquarter alloc] init];
+    Headquarter* hq = [Headquarter new];
     hq.address      = @"Batcave";
     h.headquarter   = hq;
     
     NSDictionary* result = h.toDictionary;
     
-    XCTAssert( [result[@"headquarter"] isKindOfClass:[NSDictionary class]]);
+    XCTAssert( [result[@"headquarter"] isKindOfClass:NSDictionary.class]);
     XCTAssert( [result[@"headquarter"][@"address"] isEqualToString:@"Batcave"]);
 }
 
 -(void)testToDictionaryNonDaikiriNestedModel{
-    SampleModel* sm         = [[SampleModel alloc] init];
+    SampleModel* sm         = [SampleModel new];
     sm.name                 = @"Hello";
-    NonDaikiri* nonDaikiri  = [[NonDaikiri alloc] init];
+    NonDaikiri* nonDaikiri  = [NonDaikiri new];
     nonDaikiri.name         = @"Bye";
     sm.nonDaikiri           = nonDaikiri;
     
@@ -102,7 +102,7 @@
 }
 
 -(void)testToDictionaryIngnoredKeys{
-    SampleModel* sm     = [[SampleModel alloc] init];
+    SampleModel* sm     = [SampleModel new];
     sm.name             = @"Hello";
     sm.toBeIgnored      = @"Ignore me";
     

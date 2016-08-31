@@ -15,7 +15,7 @@
     static DaikiriCoreData *sharedMyManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
+        sharedMyManager = [self new];
     });
     return sharedMyManager;
 }

@@ -16,8 +16,8 @@
 -(id)initWithModel:(NSString*)model{
     if(self= [super init]){
         _model          = model;
-        _predicates     = [[NSMutableArray alloc] init];
-        _sortPredicates = [[NSMutableArray alloc] init];
+        _predicates     = [NSMutableArray new];
+        _sortPredicates = [NSMutableArray new];
     }
     return self;
 }
