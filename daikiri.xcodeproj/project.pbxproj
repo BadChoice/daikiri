@@ -16,7 +16,6 @@
 		760E42EC1CC36AEB00796DCF /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 760E42EB1CC36AEB00796DCF /* Friend.m */; };
 		760E42EF1CC36B4900796DCF /* EnemyHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 760E42EE1CC36B4900796DCF /* EnemyHero.m */; };
 		7611ED191CC2CF7600A55B06 /* daikiri.podspec.json in Resources */ = {isa = PBXBuildFile; fileRef = 7611ED181CC2CF7600A55B06 /* daikiri.podspec.json */; };
-		7611ED1B1CC2D09900A55B06 /* readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 7611ED1A1CC2D09900A55B06 /* readme.md */; };
 		7616C91B1CC4133B00E1DEEE /* DaikiriCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7616C91A1CC4133B00E1DEEE /* DaikiriCoreData.m */; };
 		762167BA1CC178A200C6CA80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167B91CC178A200C6CA80 /* main.m */; };
 		762167BD1CC178A200C6CA80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 762167BC1CC178A200C6CA80 /* AppDelegate.m */; };
@@ -304,7 +303,7 @@
 		762167AD1CC178A200C6CA80 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = revo;
 				TargetAttributes = {
 					762167B41CC178A200C6CA80 = {
@@ -379,7 +378,6 @@
 				760B2C3A1CC61B31004300AD /* GSHero.m in Sources */,
 				762B8EFF1D04067B0081ADA6 /* NonDaikiri.m in Sources */,
 				762167BA1CC178A200C6CA80 /* main.m in Sources */,
-				7611ED1B1CC2D09900A55B06 /* readme.md in Sources */,
 				760E42E91CC36ADE00796DCF /* Enemy.m in Sources */,
 				760AE0B11CC27563005DE071 /* DaikiriJSON.m in Sources */,
 			);
@@ -441,8 +439,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -486,8 +486,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
