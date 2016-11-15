@@ -156,10 +156,14 @@
     NSMutableArray* finalResults = [NSMutableArray new];
     for(id pivot in pivots){
         id object = [NSClassFromString(model) find:[pivot valueForKey:foreingKey]];
-        [object setPivot:pivot];
-        [finalResults addObject:object];
+        if(object){
+            [object         setPivot:pivot];
+            [finalResults   addObject:object];
+        }
+        else{
+            NSLog(@"[WARNING] Daikiri is trying to get a belongs to many object but it doesn't exist");
+        }
     }
-    
     return finalResults;
 }
 
