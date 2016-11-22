@@ -36,6 +36,8 @@
 		764426D71CC7B67900F0F2C9 /* GSEnemyHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */; };
 		76488E3F1D41FFB40036C260 /* DaikiriTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76488E3E1D41FFB40036C260 /* DaikiriTests.m */; };
 		76488E411D4200600036C260 /* QueryBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76488E401D4200600036C260 /* QueryBuilderTests.m */; };
+		765E49CD1DE4EA3100DE4D39 /* DKFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E49CC1DE4EA3100DE4D39 /* DKFactory.m */; };
+		765E49D11DE4EF9800DE4D39 /* HeroFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E49D01DE4EF9800DE4D39 /* HeroFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,10 @@
 		764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GSEnemyHero.m; path = support/GSEnemyHero.m; sourceTree = "<group>"; };
 		76488E3E1D41FFB40036C260 /* DaikiriTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaikiriTests.m; sourceTree = "<group>"; };
 		76488E401D4200600036C260 /* QueryBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryBuilderTests.m; sourceTree = "<group>"; };
+		765E49CB1DE4EA3100DE4D39 /* DKFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKFactory.h; path = lib/DKFactory/DKFactory.h; sourceTree = "<group>"; };
+		765E49CC1DE4EA3100DE4D39 /* DKFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKFactory.m; path = lib/DKFactory/DKFactory.m; sourceTree = "<group>"; };
+		765E49CF1DE4EF9800DE4D39 /* HeroFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroFactory.h; path = Factories/HeroFactory.h; sourceTree = "<group>"; };
+		765E49D01DE4EF9800DE4D39 /* HeroFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeroFactory.m; path = Factories/HeroFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +216,7 @@
 		762167D21CC178D000C6CA80 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				765E49CA1DE4EA1900DE4D39 /* DKFactory */,
 				763DFE671D63AA5100A12221 /* DKObject.h */,
 				763DFE681D63AA5100A12221 /* DKObject.m */,
 				760AE0AF1CC27563005DE071 /* DaikiriJSON.h */,
@@ -249,6 +256,7 @@
 		762B8EF41D0403080081ADA6 /* daikiriTests */ = {
 			isa = PBXGroup;
 			children = (
+				765E49CE1DE4EF3200DE4D39 /* Factories */,
 				763DFE6A1D63AB1400A12221 /* DKObjectTests.m */,
 				762B8EF51D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m */,
 				762B8F001D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m */,
@@ -257,6 +265,24 @@
 				762B8EF71D0403080081ADA6 /* Info.plist */,
 			);
 			path = daikiriTests;
+			sourceTree = "<group>";
+		};
+		765E49CA1DE4EA1900DE4D39 /* DKFactory */ = {
+			isa = PBXGroup;
+			children = (
+				765E49CB1DE4EA3100DE4D39 /* DKFactory.h */,
+				765E49CC1DE4EA3100DE4D39 /* DKFactory.m */,
+			);
+			name = DKFactory;
+			sourceTree = "<group>";
+		};
+		765E49CE1DE4EF3200DE4D39 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				765E49CF1DE4EF9800DE4D39 /* HeroFactory.h */,
+				765E49D01DE4EF9800DE4D39 /* HeroFactory.m */,
+			);
+			name = Factories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +390,7 @@
 				762167D71CC1791600C6CA80 /* Daikiri.m in Sources */,
 				760AE0B91CC27FE8005DE071 /* Hero.m in Sources */,
 				760E42EC1CC36AEB00796DCF /* Friend.m in Sources */,
+				765E49CD1DE4EA3100DE4D39 /* DKFactory.m in Sources */,
 				762167C61CC178A200C6CA80 /* daikiri.xcdatamodeld in Sources */,
 				760AE0B81CC27FE8005DE071 /* Headquarter.m in Sources */,
 				764426D71CC7B67900F0F2C9 /* GSEnemyHero.m in Sources */,
@@ -391,6 +418,7 @@
 				76488E3F1D41FFB40036C260 /* DaikiriTests.m in Sources */,
 				762B8F011D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m in Sources */,
 				76488E411D4200600036C260 /* QueryBuilderTests.m in Sources */,
+				765E49D11DE4EF9800DE4D39 /* HeroFactory.m in Sources */,
 				762B8EF61D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

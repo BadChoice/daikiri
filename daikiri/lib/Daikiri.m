@@ -79,7 +79,6 @@
 
 //==================================================================
 #pragma mark - Convenience methods
-#pragma mark -
 //==================================================================
 +(bool)updateWith:(NSDictionary*)dict{
     Daikiri* object = [self.class fromDictionary:dict];
@@ -104,7 +103,6 @@
 
 //==================================================================
 #pragma mark - Active record
-#pragma mark -
 //==================================================================
 +(id)find:(NSNumber*)id{
     if(id == nil) return nil;

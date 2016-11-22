@@ -14,6 +14,8 @@
 #import "GSHero.h"
 #import "DaikiriCoreData.h"
 
+#import "HeroFactory.h"
+
 @interface QueryBuilderTests : XCTestCase
 
 @end
@@ -23,11 +25,14 @@
 - (void)setUp {
     [super setUp];
     
-    Hero * batman               = [Hero createWith:@{@"id":@1, @"name":@"Batman"         ,@"age":@"49"}];
+    [HeroFactory registerFactories];
+    
+    
+    Hero* batman                = [[DKFactory factory:Hero.class] create];
     Hero * spiderman            = [Hero createWith:@{@"id":@2, @"name":@"Spiderman"      ,@"age":@19}];
     Hero * superman             = [Hero createWith:@{@"id":@3, @"name":@"Superman"       ,@"age":@99}];
     
-    Enemy* luxor                = [Enemy createWith:@{@"id":@1, @"name":@"Luxor"          ,@"age":@32}];
+    Enemy* luxor                = [[DKFactory factory:Enemy.class] create];
     Enemy* greenGoblin          = [Enemy createWith:@{@"id":@2, @"name":@"Green Goblin"   ,@"age":@56}];
     Enemy* joker                = [Enemy createWith:@{@"id":@4, @"name":@"Joker"          ,@"age":@45}];
     
