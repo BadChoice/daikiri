@@ -25,4 +25,7 @@
 -(id)make;
 -(id)create;
 
+-(id)make:(NSDictionary*)overrideAttributes;
+-(id)create:(NSDictionary*)overrideAttributes;
+
 @end

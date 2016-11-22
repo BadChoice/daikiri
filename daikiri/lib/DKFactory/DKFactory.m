@@ -17,14 +17,14 @@ static NSMutableDictionary* mappings;
     NSString* classString               = NSStringFromClass(class);
     if( ! mappings ) mappings           = [NSMutableDictionary new];
     mappings[ classString ]             = [NSMutableDictionary new];
-    mappings[ classString ][@"default"] = builder();
+    mappings[ classString ][@"default"] = builder().mutableCopy;
 }
 
 +(void)defineAs:(Class)class name:(NSString*)name builder:(NSDictionary*(^)())builder{
     NSString* classString               = NSStringFromClass(class);
     if( ! mappings ) mappings           = [NSMutableDictionary new];
     mappings[ classString ]             = [NSMutableDictionary new];
-    mappings[ classString ][name]       = builder();
+    mappings[ classString ][name]       = builder().mutableCopy;
 }
 
 -(id)initWith:(Class)class name:(NSString*)name count:(int)count{
@@ -51,14 +51,55 @@ static NSMutableDictionary* mappings;
     return [[DKFactory alloc] initWith:class name:name count:count];
 }
 
+-(NSMutableDictionary*)attributesWithOverride:(NSDictionary*)override{
+    NSString* classString         = NSStringFromClass(_class);
+    NSMutableDictionary* baseDict = mappings[ classString ][ _name];
+    if(override){
+        [baseDict addEntriesFromDictionary:override];
+    }
+    return baseDict;
+}
+
 -(id)make{
-    NSString* classString = NSStringFromClass(_class);    
-    return [_class fromDictionary:mappings[ classString ][_name]];
+    return [self make:nil];
 }
 
 -(id)create{
-    NSString* classString = NSStringFromClass(_class);
-    return [_class createWith:mappings[ classString ][_name]];
+    return [self create:nil];
+}
+
+-(id)make:(NSDictionary*)overrideAttributes{
+    if(_count == 1){
+        return [_class fromDictionary: [self attributesWithOverride:overrideAttributes] ];
+    }
+    else{
+        NSMutableArray * result = [NSMutableArray new];
+        for(int i= 0; i< _count; i++){
+            [result addObject: [self attributesWithOverride:overrideAttributes] ];
+        }
+        return result;
+    }
+}
+
+-(id)create:(NSDictionary*)overrideAttributes{
+    if(_count == 1){
+        NSMutableDictionary * dict = [self attributesWithOverride:overrideAttributes];
+        if( ! dict[@"id"] ){
+            dict[@"id"] = @([_class all].count + 1);
+        }
+        return [_class createWith: dict];
+    }
+    else{
+        NSMutableArray * result = [NSMutableArray new];
+        for(int i= 0; i< _count; i++){
+            NSMutableDictionary * dict = [self attributesWithOverride:overrideAttributes];
+            if( ! dict[@"id"] ){
+                dict[@"id"] = @([_class all].count + 1);
+            }
+            [result addObject: dict ];
+        }
+        return result;
+    }
 }
 
 @end
