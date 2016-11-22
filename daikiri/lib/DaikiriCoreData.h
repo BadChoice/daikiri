@@ -23,4 +23,5 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)deleteDatabase;
+- (void)deleteAllEntities;
 @end

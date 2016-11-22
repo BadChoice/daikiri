@@ -12,6 +12,7 @@
 #import "Friend.h"
 #import "EnemyHero.h"
 #import "GSHero.h"
+#import "DaikiriCoreData.h"
 
 @interface QueryBuilderTests : XCTestCase
 
@@ -41,11 +42,8 @@
 }
 
 - (void)tearDown {
-    [Hero       destroyWithArray:@[@1,@2,@3,@100]];
-    [Enemy      destroyWithArray:@[@1,@2,@4]];
-    [Friend     destroyWithArray:@[@1,@2,@4]];
-    [EnemyHero  destroyWithArray:@[@1,@2,@3,@4]];
     [super tearDown];
+    [[DaikiriCoreData manager] deleteAllEntities];
 }
 
 //===========================================================================
