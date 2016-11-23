@@ -58,7 +58,19 @@ static NSMutableDictionary* mappings;
     if(override){
         [baseDict addEntriesFromDictionary:override];
     }
+    
+    [self applyBlocksToDict:baseDict];
+    
     return baseDict;
+}
+
+-(void)applyBlocksToDict:(NSMutableDictionary*)dict{
+    for(NSString* key in dict.allKeys){
+        if([dict[key] isKindOfClass:NSClassFromString(@"NSBlock")]){
+            id(^myAwesomeBlock)() = dict[key];
+            dict[key] = myAwesomeBlock();
+        }
+    }
 }
 
 -(id)make{
