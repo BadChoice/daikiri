@@ -54,6 +54,7 @@ static NSMutableDictionary* mappings;
 -(NSMutableDictionary*)attributesWithOverride:(NSDictionary*)override{
     NSString* classString         = NSStringFromClass(_class);
     NSMutableDictionary* baseDict = mappings[ classString ][ _name];
+    baseDict                      = baseDict.mutableCopy;
     if(override){
         [baseDict addEntriesFromDictionary:override];
     }

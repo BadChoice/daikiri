@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define factory(A)      [DKFactory factory:A]
+
 @interface DKFactory : NSObject{
     Class       _class;
     int         _count;
