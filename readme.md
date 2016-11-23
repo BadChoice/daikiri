@@ -251,6 +251,7 @@ First create a factory class with a simple `registerFactories` method and create
 ##### Factory states
 You can have some diferent types of you class you can define with another name (it will merge the default one and the new one)
 
+```
 +(void)registerFactories{
 
     [DKFactory define:Hero.class builder:^NSDictionary *{
@@ -301,10 +302,3 @@ The cool thing in the factory is that you can use callbacks to create relationsh
 ```
 
 And the Hero will be only created when insantiating the object in the `make` or `create`, isn't it cool?
-
-
-
-
-
-
-
