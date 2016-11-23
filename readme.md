@@ -221,3 +221,90 @@ If you class names use a prefix (two chars) and your entities don't, you can ove
 `usesPrefix` to return `true`. This will remove the prefix when fetching to the DB
 
 
+#### Factory
+`Daikiri` comes with a Laravel Like factory class for tests. You can have you factories to create tests objects for you and making each test look very neat.
+
+#### Usage
+First create a factory class with a simple `registerFactories` method and create the factories giving a simple dict
+
+@implementation HeroFactory
+
+```
++(void)registerFactories{
+
+    [DKFactory define:Hero.class builder:^NSDictionary *{
+        return @{
+            @"name": @"Batman",
+            @"age" : @"49"
+        };
+    }];
+
+    [DKFactory define:Enemy.class builder:^NSDictionary *{
+        return @{
+            @"name": @"Luxor",
+            @"age" : @"32"
+        };
+    }];
+}
+```
+
+##### Factory states
+You can have some diferent types of you class you can define with another name (it will merge the default one and the new one)
+
++(void)registerFactories{
+
+    [DKFactory define:Hero.class builder:^NSDictionary *{
+        return @{
+            @"name": @"Batman",
+            @"age" : @"49"
+        };
+    }];
+
+    [DKFactory define:Hero.class name:@"old" builder:^NSDictionary *{
+        return @{
+            @"age" : @"100"
+        };
+    }];
+}
+```
+
+Then on your testClass setup method call the `[Yourfactory registerFactories]`.
+
+After that on your tests you can instantiate any class with a simply call to
+
+
+```
+    Hero* testHero   = [factory(Hero.class)  make];
+    Enemy* testEnemy = [factory(Enemy.class) create];
+```
+
+Note that `make` just creates the object without storing it to the database but `create` does store it to the database.
+
+You can use the non macro constructor to have more options
+
+```
+    NSArray* oldHerosArray = [[DKFactory factory:Hero.class name:@"old" count:4] make];
+```
+
+##### Relationships
+The cool thing in the factory is that you can use callbacks to create relationships so you can do something like this:
+
+```
+    [DKFactory define:Headquarter.class builder:^NSDictionary *{
+        return @{
+            @"name": @"Star tower",
+            @"hero_id" : ^{
+                return ((Daikiri*)[factory(Hero.class) create]).id;
+            }
+        };
+    }];
+```
+
+And the Hero will be only created when insantiating the object in the `make` or `create`, isn't it cool?
+
+
+
+
+
+
+
