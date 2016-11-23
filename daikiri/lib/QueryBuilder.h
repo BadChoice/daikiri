@@ -24,7 +24,8 @@
 -(QueryBuilder*)orderBy:(NSString*)key ascendig:(BOOL)ascending;
 
 -(QueryBuilder*)raw:(NSString*)raw;
-    
+-(QueryBuilder*)addPredicate:(NSPredicate*)predicate;
+
 -(NSArray*)get;
 -(id)first;
 @end

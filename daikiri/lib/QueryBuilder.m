@@ -85,6 +85,11 @@
     return self;
 }
 
+-(QueryBuilder*)addPredicate:(NSPredicate*)predicate{
+    [_predicates addObject:predicate];
+    return self;
+}
+
 //============================================================
 #pragma mark - Execute query
 //============================================================
