@@ -117,6 +117,26 @@ However, you can also use you custom `CoreData` manager by overridin the `+(NSMa
 }
 ```
 
+##### Testing
+Daikiri offers a really easy method to setup the testing database as a full clean one in each test so you can fully do unint testing without any problem. It also uses transactions in each tests so everything is rolled back and the databse is clean in every test.
+
+just add these on your `setUp` and `tearDown` methods in the test
+
+```
+    - (void)setUp {
+        [super setUp];
+        [[DaikiriCoreData manager] useTestDatabase:YES];
+        [[DaikiriCoreData manager] beginTransaction];
+    }
+
+    - (void)tearDown {
+        [super tearDown];
+        [[DaikiriCoreData manager] rollback];
+    }
+
+```
+
+
 
 
 
