@@ -28,8 +28,9 @@
 }
 
 - (void)useTestDatabase:(BOOL)useTestDatabase{
-    _useTestDatabase        = useTestDatabase;
-    _managedObjectContext   = nil;
+    _useTestDatabase            = useTestDatabase;
+    _managedObjectContext       = nil;
+    _persistentStoreCoordinator = nil;
 }
 
 #pragma mark - Core Data stack
