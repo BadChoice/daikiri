@@ -26,6 +26,8 @@
     [super setUp];
     
     [HeroFactory registerFactories];
+    [[DaikiriCoreData manager] useTestDatabase:YES];
+    [[DaikiriCoreData manager] beginTransaction];
     
     
     Hero* batman                = [[DKFactory factory:Hero.class] create];
@@ -48,7 +50,8 @@
 
 - (void)tearDown {
     [super tearDown];
-    [[DaikiriCoreData manager] deleteAllEntities];
+    [[DaikiriCoreData manager] rollback];
+    //[[DaikiriCoreData manager] deleteAllEntities];
 }
 
 //===========================================================================
@@ -56,7 +59,7 @@
 //===========================================================================
 -(void)test_get{
     NSArray * heroes = Hero.query.get;  //Query builder
-    XCTAssertTrue(heroes.count == 3);
+    XCTAssertEqual(3, heroes.count);
 }
 
 -(void)test_where{

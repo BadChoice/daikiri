@@ -9,19 +9,28 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@interface DaikiriCoreData : NSObject
-
+@interface DaikiriCoreData : NSObject{
+    BOOL _useTestDatabase;
+}
 
 @property (strong,nonatomic) NSString* databaseName;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-
 + (DaikiriCoreData*)manager;
 
+- (void)useTestDatabase:(BOOL)useTestDatabase;
 - (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
+- (NSURL*)applicationDocumentsDirectory;
 - (void)deleteDatabase;
 - (void)deleteAllEntities;
+
+//=======================================================
+#pragma mark - Transactions
+//=======================================================
+- (void)beginTransaction;
+- (void)commit;
+- (void)rollback;
+- (void)transaction:(void(^)())callback;
 @end

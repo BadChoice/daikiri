@@ -27,11 +27,16 @@
     return self;
 }
 
+- (void)useTestDatabase:(BOOL)useTestDatabase{
+    _useTestDatabase        = useTestDatabase;
+    _managedObjectContext   = nil;
+}
+
 #pragma mark - Core Data stack
 
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize managedObjectContext        = _managedObjectContext;
+@synthesize managedObjectModel          = _managedObjectModel;
+@synthesize persistentStoreCoordinator  = _persistentStoreCoordinator;
 
 - (NSURL *)applicationDocumentsDirectory {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "works.revo.daikiri" in the application's documents directory.
@@ -66,8 +71,7 @@
     }
     
     // Create the coordinator and store
-
-    NSString* dbFilename = [NSString stringWithFormat:@"%@.sqlite",self.databaseName];
+    NSString* dbFilename = [NSString stringWithFormat:@"%@.sqlite",self.getDatabaseName];
     
     //_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL         = [[self applicationSupportDirectory] URLByAppendingPathComponent:dbFilename];
@@ -80,9 +84,10 @@
                              [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
                              nil];
     
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
     
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    
+    if( ! [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error] ){
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
@@ -111,13 +116,17 @@
     }
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    _managedObjectContext.undoManager = [NSUndoManager new];
+    if(_useTestDatabase){
+        [self deleteAllEntities];
+    }
     return _managedObjectContext;
 }
 
 -(NSString*)databaseName{
     if(_databaseName == nil){
         _databaseName = [[NSBundle mainBundle]
-                                objectForInfoDictionaryKey:@"CFBundleName"];
+                         objectForInfoDictionaryKey:@"CFBundleName"];
     }
     
     return _databaseName;
@@ -145,7 +154,7 @@
     NSError *error      = nil;
     BOOL result         = YES;
     
-    NSString* dbFilename = [NSString stringWithFormat:@"%@.sqlite",self.databaseName];
+    NSString* dbFilename = [NSString stringWithFormat:@"%@.sqlite",self.self.getDatabaseName];
     
     NSURL *storeURL     = [[self applicationSupportDirectory]    URLByAppendingPathComponent:dbFilename];
     NSURL *walURL       = [[storeURL URLByDeletingPathExtension] URLByAppendingPathExtension:@"sqlite-wal"];
@@ -166,12 +175,41 @@
 
 -(void)deleteAllEntities{
     NSArray* entities = self.managedObjectModel.entities;
-    for(NSEntityDescription* entity in entities) {        
-        NSFetchRequest*  fetchRequest       = [[NSFetchRequest alloc] initWithEntityName:entity.name];
-        NSBatchDeleteRequest* deleteReqest  = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
-        
+    for(NSEntityDescription* entity in entities) {
+        NSFetchRequest* request             = [NSFetchRequest fetchRequestWithEntityName:entity.name];
+        NSBatchDeleteRequest* deleteReqest  = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
         NSError* error;
         [self.managedObjectContext executeRequest:deleteReqest error:&error];
+    }
+}
+
+-(NSString*)getDatabaseName{
+    return _useTestDatabase ? @"test" : self.databaseName;
+}
+
+//=======================================================
+#pragma mark - Transactions
+//=======================================================
+- (void)beginTransaction{
+    [self.managedObjectContext.undoManager beginUndoGrouping];
+}
+- (void)commit{
+    [self.managedObjectContext.undoManager endUndoGrouping];
+    [self.managedObjectContext.undoManager removeAllActions];
+}
+- (void)rollback{
+    [self.managedObjectContext.undoManager endUndoGrouping];
+    [self.managedObjectContext.undoManager undo];
+}
+
+-(void)transaction:(void(^)())callback{
+    [self beginTransaction];
+    @try{
+        callback();
+        [self commit];
+    }
+    @catch(NSException* e){
+        [self rollback];
     }
 }
 
