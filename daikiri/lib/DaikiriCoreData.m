@@ -88,7 +88,10 @@
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
-    if( ! [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error] ){
+    //NSString* storeStype = _useTestDatabase ? NSInMemoryStoreType : NSSQLiteStoreType;
+    NSString* storeStype = NSSQLiteStoreType;
+    
+    if( ! [_persistentStoreCoordinator addPersistentStoreWithType:storeStype configuration:nil URL:storeURL options:options error:&error] ){
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
@@ -126,10 +129,8 @@
 
 -(NSString*)databaseName{
     if(_databaseName == nil){
-        _databaseName = [[NSBundle mainBundle]
-                         objectForInfoDictionaryKey:@"CFBundleName"];
+        _databaseName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
     }
-    
     return _databaseName;
 }
 
