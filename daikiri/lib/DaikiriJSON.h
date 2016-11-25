@@ -52,12 +52,12 @@
 /**
  * Does a map with [self.class fromDictionary];
  */
--(NSArray*)fromDictionaryArray:(NSArray*)array;
++(NSArray*)fromDictionaryArray:(NSArray*)array;
 
 /**
  * Does a map with [self.class toDictionary];
  */
--(NSArray*)toDictionaryArray:(NSArray*)array;
++(NSArray*)toDictionaryArray:(NSArray*)array;
 
 
 @end
