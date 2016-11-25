@@ -132,7 +132,6 @@ static NSMutableDictionary* classesForKeyPathsCached;
     return nil;
 }
 #pragma clang diagnostic pop
-
 -(void)cacheClassesForKeyPath{
     if(classesForKeyPathsCached == nil) classesForKeyPathsCached = [NSMutableDictionary new];
     NSMutableDictionary* classesForKeyPath = [NSMutableDictionary new];
@@ -179,6 +178,27 @@ static NSMutableDictionary* classesForKeyPathsCached;
 
 +(BOOL)isNull:(id)value{
     return (value == nil || [value isKindOfClass:[NSNull class]]);
+}
+
+
+//=======================================================
+#pragma mark - From / to Dictionary array
+//=======================================================
+//TODO: Import RVCollection and use its map
+-(NSArray*)fromDictionaryArray:(NSArray*)array{
+    NSMutableArray *newArray = [NSMutableArray array];
+    [array enumerateObjectsUsingBlock:^(NSDictionary* dict, NSUInteger idx, BOOL *stop) {
+        [newArray addObject:[self.class fromDictionary:dict]];
+    }];
+    return newArray;
+}
+
+-(NSArray*)toDictionaryArray:(NSArray*)array{
+    NSMutableArray *newArray = [NSMutableArray array];
+    [array enumerateObjectsUsingBlock:^(DaikiriJSON* obj, NSUInteger idx, BOOL *stop) {
+        [newArray addObject:obj.toDictionary];
+    }];
+    return newArray;
 }
 
 @end

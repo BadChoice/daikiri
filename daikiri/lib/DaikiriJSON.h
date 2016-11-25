@@ -49,4 +49,15 @@
 -(NSArray*)toDictionaryIgnore;
 
 
+/**
+ * Does a map with [self.class fromDictionary];
+ */
+-(NSArray*)fromDictionaryArray:(NSArray*)array;
+
+/**
+ * Does a map with [self.class toDictionary];
+ */
+-(NSArray*)toDictionaryArray:(NSArray*)array;
+
+
 @end
