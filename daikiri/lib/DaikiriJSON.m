@@ -160,7 +160,7 @@ static NSMutableDictionary* classesForKeyPathsCached;
 
 -(NSNumber*)convertToNSNumber:(NSNumber*)value{
     if([value isKindOfClass:NSString.class]){
-        return @(value.floatValue);
+        return @(value.doubleValue);
     }
     return value;
 }
