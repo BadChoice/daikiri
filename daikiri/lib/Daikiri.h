@@ -48,6 +48,13 @@
  */
 -(bool)destroy;
 
+
+/**
+ * Deletes all the records of this model from the database
+ */
++(void)truncate;
+
+
 // -----------------------------------------
 // Convenience methods
 // -----------------------------------------

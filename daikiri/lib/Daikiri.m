@@ -101,6 +101,12 @@
     }
 }
 
++(void)truncate{
+    NSFetchRequest* request             = [NSFetchRequest fetchRequestWithEntityName: [self.class entityName]];
+    NSBatchDeleteRequest* deleteReqest  = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
+    [self.managedObjectContext executeRequest:deleteReqest error:nil];
+}
+
 //==================================================================
 #pragma mark - Active record
 //==================================================================

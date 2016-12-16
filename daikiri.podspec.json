@@ -1,6 +1,6 @@
 {
     "name": "daikiri",
-    "version": "1.4.5",
+    "version": "1.4.6",
     "license": "MIT",
     "summary": "Daikiri json - model - coredata made easy, it is like Laravel Eloquent but for iOS",
     "platforms": {
@@ -8,7 +8,7 @@
     },
     "source": {
         "git": "https://github.com/BadChoice/daikiri.git",
-        "tag": "1.4.5"
+        "tag": "1.4.6"
     },
     "description": "Daikiri is a really easy library to work with json - model - coredata in the easiest, intuitive and fluent way. Inspired in Laravel Eloquent. There is also a clear factory method for making testing painless",
     "homepage": "https://github.com/BadChoice/daikiri",

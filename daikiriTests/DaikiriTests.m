@@ -92,6 +92,12 @@
     XCTAssertTrue(h2.age.intValue < h3.age.intValue);
 }
 
+-(void)test_model_can_be_truncated{
+    XCTAssertEqual(3, Hero.all.count);
+    [Hero truncate];
+    XCTAssertEqual(0, Hero.all.count);
+}
+
 //===========================================================================
 #pragma mark - Relationships
 //===========================================================================
