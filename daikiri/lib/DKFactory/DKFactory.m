@@ -88,7 +88,7 @@ static NSMutableDictionary* mappings;
     else{
         NSMutableArray * result = [NSMutableArray new];
         for(int i= 0; i< _count; i++){
-            [result addObject: [self attributesWithOverride:overrideAttributes] ];
+            [result addObject: [_class fromDictionary: [self attributesWithOverride:overrideAttributes] ]];
         }
         return result;
     }
