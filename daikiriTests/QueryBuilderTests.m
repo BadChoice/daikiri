@@ -75,6 +75,28 @@
     XCTAssertTrue([enemyHero.hero.name isEqualToString:@"Batman"]);
 }
 
+-(void)test_can_skip_some{
+    NSArray* result     = [Hero.query skip:1].get;
+    NSArray* result2    = [Hero.query skip:2].get;
+    
+    XCTAssertEqual(2, result.count);
+    XCTAssertEqual(1, result2.count);
+}
+
+-(void)test_can_take_some{
+    NSArray* result     = [Hero.query take:1].get;
+    NSArray* result2    = [Hero.query take:2].get;
+    
+    XCTAssertEqual(1, result.count);
+    XCTAssertEqual(2, result2.count);
+}
+
+-(void)test_can_skip_and_take{
+    NSArray* result = [[Hero.query skip:1] take:1].get;
+    
+    XCTAssertEqual(1, result.count);
+}
+
 //TODO: test sort, and other querybuilder functions
 
 @end

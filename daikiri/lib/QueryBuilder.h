@@ -12,6 +12,9 @@
     NSMutableArray* _predicates;
     NSMutableArray* _sortPredicates;
     NSString*       _model;
+    
+    NSNumber*       skip;
+    NSNumber*       take;
 }
 
 +(QueryBuilder*)query:(NSString*)model;
@@ -25,6 +28,9 @@
 
 -(QueryBuilder*)raw:(NSString*)raw;
 -(QueryBuilder*)addPredicate:(NSPredicate*)predicate;
+
+-(QueryBuilder*)skip:(int)count;
+-(QueryBuilder*)take:(int)count;
 
 -(NSArray*)get;
 -(id)first;

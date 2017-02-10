@@ -76,6 +76,18 @@
     return self;
 }
 
+//============================================================
+#pragma mark - Skip take
+//============================================================
+-(QueryBuilder*)skip:(int)count{
+    skip = @(count);
+    return self;
+}
+
+-(QueryBuilder*)take:(int)count{
+    take = @(count);
+    return self;
+}
 
 //============================================================
 #pragma mark - Raw
@@ -104,6 +116,13 @@
     NSString* entityName    = [modelClass performSelector:@selector(entityName)];
     request                 = [NSFetchRequest fetchRequestWithEntityName:entityName];
     
+    if(skip){
+        [request setFetchOffset:skip.intValue];
+    }
+    
+    if(take){
+        [request setFetchLimit:take.intValue];
+    }
     
     NSPredicate *compoundPredicate  = [NSCompoundPredicate andPredicateWithSubpredicates:_predicates];
     [request setPredicate:compoundPredicate];
@@ -126,7 +145,7 @@
 
 -(id)first{
     Class modelClass = NSClassFromString(_model);
-    NSArray* results = [self doQuery];
+    NSArray* results = [[[self skip:0] take:1] doQuery];
     
     if([results count] > 0){
         Daikiri *mo = [modelClass performSelector:@selector(fromManaged:) withObject:results[0]];
