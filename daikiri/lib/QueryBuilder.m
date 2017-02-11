@@ -44,12 +44,33 @@
     else if([operator isEqualToString:@"<"]){
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K < %@",field, value]];
     }
+    else if([operator isEqualToString:@"<>"] || [operator isEqualToString:@"!="]){
+        [_predicates addObject:[NSPredicate predicateWithFormat:@"%K != %@",field, value]];
+    }
     else if([operator isEqualToString:@"like"]){
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K contains[c] %@",field, value]];
     }
     else if([operator isEqualToString:@"in"] || [operator isEqualToString:@"IN"]){
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K IN %@",field, value]];
     }
+    return self;
+}
+
+-(QueryBuilder*)whereAny:(NSArray*)fields like:(id)value{
+    NSMutableArray* orPredicates = [NSMutableArray new];
+    for(NSString* field in fields){
+        [orPredicates addObject:[NSPredicate predicateWithFormat:@"%K contains[c] %@",field, value]];
+    }
+    [_predicates addObject:[NSCompoundPredicate orPredicateWithSubpredicates:orPredicates]];
+    return self;
+}
+
+-(QueryBuilder*)whereAny:(NSArray*)fields is:(id)value{
+    NSMutableArray* orPredicates = [NSMutableArray new];
+    for(NSString* field in fields){
+        [orPredicates addObject:[NSPredicate predicateWithFormat:@"%K = %@",field, value]];
+    }
+    [_predicates addObject:[NSCompoundPredicate orPredicateWithSubpredicates:orPredicates]];
     return self;
 }
 
@@ -77,7 +98,7 @@
 }
 
 //============================================================
-#pragma mark - Skip take
+#pragma mark - Skip / take
 //============================================================
 -(QueryBuilder*)skip:(int)count{
     skip = @(count);
@@ -124,7 +145,7 @@
         [request setFetchLimit:take.intValue];
     }
     
-    NSPredicate *compoundPredicate  = [NSCompoundPredicate andPredicateWithSubpredicates:_predicates];
+    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:_predicates];
     [request setPredicate:compoundPredicate];
     
     [request setSortDescriptors:_sortPredicates];    

@@ -107,6 +107,25 @@
     XCTAssertEqual(@"Spiderman",   ((Hero*)result[0]).name);
 }
 
+-(void)test_can_do_a_where_any_like_query{
+    
+    NSArray* result     = [Hero.query whereAny:@[@"name",@"age"] like:@"erman"].get;
+    NSArray* result2    = [Hero.query whereAny:@[@"name",@"age"] like:@9].get;
+    
+    XCTAssertEqual(2, result.count);
+    XCTAssertEqual(3, result2.count);
+}
+
+-(void)test_can_do_a_where_any_is_query{
+    NSArray* result     = [Hero.query whereAny:@[@"name",@"age"] is:@"erman"].get;
+    NSArray* result2    = [Hero.query whereAny:@[@"name",@"age"] is:@"Superman"].get;
+    NSArray* result3    = [Hero.query whereAny:@[@"name",@"age"] is:@19].get;
+    
+    XCTAssertEqual(0, result.count);
+    XCTAssertEqual(1, result2.count);
+    XCTAssertEqual(1, result3.count);
+}
+
 //TODO: test sort, and other querybuilder functions
 
 @end
