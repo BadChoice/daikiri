@@ -269,4 +269,9 @@
     return true;
 }
 
+-(void)dealloc{
+    _managed = nil;
+    _pivot   = nil;
+}
+
 @end
