@@ -20,8 +20,9 @@ static NSMutableDictionary * cachedProperties;
 - (id)copyWithZone:(NSZone *)zone{
     id newObject = [[self.class alloc] init];
     
+    __weak DKObject* weakSelf = self;
     [self.class properties:^(NSString *name) {
-        id value = [self valueForKey:name];
+        id value = [weakSelf valueForKey:name];
         if([value isKindOfClass:NSArray.class]){
             value = [[NSArray alloc] initWithArray:[value copy] copyItems:YES];
         }
