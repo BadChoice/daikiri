@@ -150,12 +150,15 @@
     
     [request setSortDescriptors:_sortPredicates];    
     
-    NSError *error   = nil;
-    NSArray *results = [[modelClass managedObjectContext] executeFetchRequest:request error:&error];
-    if (!results) {
-        NSLog(@"Error fetching objects: %@\n%@", [error localizedDescription], [error userInfo]);
-        abort();
-    }
+    __block NSArray *results;
+    [[modelClass managedObjectContext] performBlockAndWait:^{
+        NSError *error   = nil;
+        results = [[modelClass managedObjectContext] executeFetchRequest:request error:&error];
+        if ( ! results) {
+            NSLog(@"Error fetching objects: %@\n%@", [error localizedDescription], [error userInfo]);
+            abort();
+        }
+    }];    
     return results;
 }
 

@@ -126,6 +126,35 @@
     XCTAssertEqual(1, result3.count);
 }
 
+-(void)test_can_do_query_builder_in_multiple_threads{
+    
+    XCTestExpectation *expectation1 = [self expectationWithDescription:@"Excpecttion 1"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for(int i = 0; i< 1000; i++){
+            Hero * h = [Hero createWith:@{@"name":@"a hero", @"id": @(i)}];
+            XCTAssertNotNil(h);
+            [Hero updateWith:@{@"id" : @(1), @"name" : @"a hero 2"}];
+        }
+        [expectation1 fulfill];
+    });
+    
+    XCTestExpectation *expectation2 = [self expectationWithDescription:@"Excpecttion 2"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        for(int i = 0; i< 1000; i++){
+            Enemy* e = [Enemy createWith:@{@"name":@"an enemy", @"id": @(i)}];
+            XCTAssertNotNil(e);
+            [Enemy updateWith:@{@"id" : @(1), @"name" : @"an enemy 2"}];
+        }
+        [expectation2 fulfill];
+    });
+    
+    [self waitForExpectationsWithTimeout:25.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];
+}
+
 //TODO: test sort, and other querybuilder functions
 
 @end

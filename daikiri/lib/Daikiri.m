@@ -17,32 +17,33 @@
 //==================================================================
 +(id)create:(Daikiri*)toCreate{
     
-    if(toCreate.id == nil){
+    if( ! toCreate.id ){
         NSLog(@"model without id");
         return nil;
     }
     
     Daikiri* previous = [self.class find:toCreate.id];
-    if(previous) {
+    if( previous ) {
         NSLog(@"Model already exists with id: %@, returning the one from the DB",toCreate.id);
         return previous;
     }
     
-    NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:self.class.entityName inManagedObjectContext:[self.class managedObjectContext]];
-    
-    [toCreate valuesToManaged:object];
-    [self.class saveCoreData];
-    
+    __block NSManagedObject *object;
+    [self.class.managedObjectContext performBlockAndWait:^{
+        object = [NSEntityDescription insertNewObjectForEntityForName:self.class.entityName inManagedObjectContext:self.class.managedObjectContext];
+        [toCreate valuesToManaged:object];
+        [self.class saveCoreData];
+    }];
+
     return toCreate;
 }
+
 -(bool)save{
     Daikiri* previous = [self.class find:self.id];
     if(previous) {
         return [self update];
-    }
-    else{
-        return [self.class create:self];
-    }
+    }    
+    return [self.class create:self];
 }
 
 -(bool)update{
@@ -68,8 +69,13 @@
 
 -(bool)destroy{
     if(_managed){
-        [[self.class managedObjectContext] deleteObject:_managed];
-        return [self.class saveCoreData];
+        __block bool result;
+        [self.class.managedObjectContext performBlockAndWait:^{
+            [[self.class managedObjectContext] deleteObject:_managed];
+            result = [self.class saveCoreData];
+        }];
+        return result;
+        
     }
     else{
         Daikiri *toDelete = [self.class find:self.id];
@@ -261,12 +267,16 @@
 }
 
 +(BOOL)saveCoreData{
-    NSError* error = nil;
-    if(![[self.class managedObjectContext] save:&error]){
-        NSLog(@"Error: %@", [error localizedDescription]);
-        return false;
-    }
-    return true;
+    
+    __block BOOL savedOK = NO;
+    
+    [self.class.managedObjectContext performBlockAndWait:^{
+        NSError *error;
+        savedOK = [[self.class managedObjectContext] save:&error];
+        if(!savedOK) NSLog(@"Save core data failed: %@", error.localizedDescription);
+    }];
+    
+    return savedOK;
 }
 
 -(void)dealloc{
