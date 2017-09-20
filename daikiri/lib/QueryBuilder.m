@@ -75,6 +75,7 @@
 }
 
 -(QueryBuilder*)where:(NSString*)field in:(NSArray*)values{
+    if( values == nil) return self;
     [_predicates addObject:[NSPredicate predicateWithFormat:@"id IN %@", values]];
     return self;
 }
