@@ -21,10 +21,13 @@
 + (DaikiriCoreData*)manager;
 
 - (void)useTestDatabase:(BOOL)useTestDatabase;
+- (void)useMultipleAccounts:(BOOL) useMultipleAccounts;
 - (void)saveContext;
 - (NSURL*)applicationDocumentsDirectory;
 - (void)deleteDatabase;
 - (void)deleteAllEntities;
+
+- (void) setDefaultConnection:(NSString *) connectionName;
 
 //=======================================================
 #pragma mark - Transactions
@@ -33,4 +36,5 @@
 - (void)commit;
 - (void)rollback;
 - (void)transaction:(void(^)())callback;
+
 @end
