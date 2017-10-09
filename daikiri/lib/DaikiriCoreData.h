@@ -21,7 +21,6 @@
 + (DaikiriCoreData*)manager;
 
 - (void)useTestDatabase:(BOOL)useTestDatabase;
-- (void)useMultipleAccounts:(BOOL) useMultipleAccounts;
 - (void)saveContext;
 - (NSURL*)applicationDocumentsDirectory;
 - (void)deleteDatabase;
