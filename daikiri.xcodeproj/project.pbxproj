@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131144C21F8B9AC8002051C9 /* DaikiriMultipleAccounts.m in Sources */ = {isa = PBXBuildFile; fileRef = 131144C11F8B9AC8002051C9 /* DaikiriMultipleAccounts.m */; };
 		760AE0B11CC27563005DE071 /* DaikiriJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 760AE0B01CC27563005DE071 /* DaikiriJSON.m */; };
 		760AE0B81CC27FE8005DE071 /* Headquarter.m in Sources */ = {isa = PBXBuildFile; fileRef = 760AE0B31CC27FE8005DE071 /* Headquarter.m */; };
 		760AE0B91CC27FE8005DE071 /* Hero.m in Sources */ = {isa = PBXBuildFile; fileRef = 760AE0B51CC27FE8005DE071 /* Hero.m */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		131144C11F8B9AC8002051C9 /* DaikiriMultipleAccounts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaikiriMultipleAccounts.m; sourceTree = "<group>"; };
 		760AE0AF1CC27563005DE071 /* DaikiriJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DaikiriJSON.h; path = lib/DaikiriJSON.h; sourceTree = "<group>"; };
 		760AE0B01CC27563005DE071 /* DaikiriJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DaikiriJSON.m; path = lib/DaikiriJSON.m; sourceTree = "<group>"; };
 		760AE0B21CC27FE8005DE071 /* Headquarter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Headquarter.h; path = support/Headquarter.h; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				76488E3E1D41FFB40036C260 /* DaikiriTests.m */,
 				76488E401D4200600036C260 /* QueryBuilderTests.m */,
 				762B8EF71D0403080081ADA6 /* Info.plist */,
+				131144C11F8B9AC8002051C9 /* DaikiriMultipleAccounts.m */,
 			);
 			path = daikiriTests;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				76488E3F1D41FFB40036C260 /* DaikiriTests.m in Sources */,
 				762B8F011D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m in Sources */,
 				76488E411D4200600036C260 /* QueryBuilderTests.m in Sources */,
+				131144C21F8B9AC8002051C9 /* DaikiriMultipleAccounts.m in Sources */,
 				765E49D11DE4EF9800DE4D39 /* HeroFactory.m in Sources */,
 				762B8EF61D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m in Sources */,
 			);

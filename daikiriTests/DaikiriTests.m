@@ -14,6 +14,8 @@
 #import "GSHero.h"
 #import "GSEnemy.h"
 
+#import "DaikiriCoreData.h"
+
 @interface DaikiriTests : XCTestCase
 
 @end
@@ -148,8 +150,6 @@
     NSArray* enemies    = batman.enemies;
     XCTAssertTrue(enemies.count == 2);
     XCTAssertTrue([((GSEnemy*)enemies.firstObject).name isEqualToString:@"Luxor"]);
-}
-
- 
+} 
 
 @end

@@ -65,6 +65,12 @@
     return _managedObjectModel;
 }
 
+- (void) setDefaultConnection:(NSString *) connectionName {
+    _persistentStoreCoordinator = nil;
+    _managedObjectContext       = nil;
+    _databaseName               = connectionName;
+}
+
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it.
     if (_persistentStoreCoordinator != nil) {
