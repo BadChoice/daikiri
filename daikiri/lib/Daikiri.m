@@ -141,7 +141,10 @@
 }
 
 -(Daikiri*)belongsTo:(NSString*)model localKey:(NSString*)localKey{
-    return [NSClassFromString(model) find:[self valueForKey:localKey]];
+    id cached = [self getRelationshipCached:NSStringFromSelector(_cmd)];
+    if(cached) return cached;
+    return [self setRelationship:NSStringFromSelector(_cmd)
+                          object:[NSClassFromString(model) find:[self valueForKey:localKey]]];
 }
 
 -(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey{
@@ -149,16 +152,20 @@
 }
 
 -(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey sort:(NSString *)sort{
-    return [[NSClassFromString(model).query where:foreignKey is:self.id] orderBy:sort].get;
+    id cached = [self getRelationshipCached:NSStringFromSelector(_cmd)];
+    if(cached) return cached;
+    return [self setRelationship:NSStringFromSelector(_cmd)
+                          object:[[NSClassFromString(model).query where:foreignKey is:self.id] orderBy:sort].get];
 }
 
 -(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey{
-    
     return [self belongsToMany:model pivot:pivotModel localKey:localKey foreignKey:foreingKey pivotSort:nil];
 }
 
 -(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey pivotSort:(NSString *)pivotSort{
-    
+    id cached = [self getRelationshipCached:NSStringFromSelector(_cmd)];
+    if(cached) return cached;
+
     //Pivots
     NSArray *pivots = [[NSClassFromString(pivotModel).query where:localKey is:self.id] orderBy:pivotSort].get;
     
@@ -174,25 +181,38 @@
             NSLog(@"[WARNING] Daikiri is trying to get a belongs to many object but it doesn't exist");
         }
     }
-    return finalResults;
+    return [self setRelationship:NSStringFromSelector(_cmd) object:finalResults];
 }
 
 +(QueryBuilder*)query{
     return [QueryBuilder query:NSStringFromClass(self.class)];
 }
 
+-(id)getRelationshipCached:(NSString*)relationship{
+    if(!_relationships) return nil;
+    return _relationships[relationship];
+}
+
+-(id)setRelationship:(NSString*)relationship object:(id)object{
+    if(object == nil) return object;
+    if(!_relationships) _relationships = [NSMutableDictionary new];
+    _relationships[relationship] = object;
+    return object;
+}
+
+-(Daikiri *)invalidateRelationships{
+    _relationships = nil;
+    return self;
+}
 
 //==================================================================
 #pragma mark - HELPERS
 //==================================================================
 -(void)valuesToManaged:(NSManagedObject*)managedObject{
-    
     [managedObject setValue:[self valueForKey:@"id"] forKey:@"id"];
     
     [self.class properties:^(NSString *name) {
-        
         id value    = [self valueForKey:name];
-        
         if([value isKindOfClass:[NSString class]]){
             [managedObject setValue:value forKey:name];
         }
@@ -200,18 +220,15 @@
             [managedObject setValue:value forKey:name];
         }
     }];
-    
 }
 
 +(id)fromManaged:(NSManagedObject*)managedObject{
-    Daikiri *newObject = [[self class ] new];
-    
+    Daikiri *newObject = [self.class new];
     [newObject setValue:[managedObject valueForKey:@"id"] forKey:@"id"];
     
     [self.class properties:^(NSString *name) {
         @try{
             id value = [managedObject valueForKey:name];
-            
             if([value isKindOfClass:[NSString class]]){
                 [newObject setValue:value forKey:name];
             }
@@ -282,6 +299,7 @@
 -(void)dealloc{
     _managed = nil;
     _pivot   = nil;
+    _relationships = nil;
 }
 
 @end

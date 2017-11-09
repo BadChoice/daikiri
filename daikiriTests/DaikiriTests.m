@@ -152,4 +152,25 @@
     XCTAssertTrue([((GSEnemy*)enemies.firstObject).name isEqualToString:@"Luxor"]);
 } 
 
+-(void)test_relationship_is_cached{
+    Hero* batman        = [GSHero find:@1];
+    NSArray* enemies    = batman.enemies;
+    XCTAssertEqual(enemies, batman.enemies);    //Belongs to many
+
+    NSArray* friends    = batman.friends;
+    XCTAssertEqual(friends, batman.friends);    //Has to many
+
+    Friend* robin = [Friend find:@1];
+    Hero * robinHero = robin.hero;
+    XCTAssertEqual(robinHero, robin.hero);    //Belongs to
+}
+
+-(void)test_relationship_can_be_invalidated{
+    Hero* batman        = [GSHero find:@1];
+    NSArray* enemies    = batman.enemies;
+    XCTAssertEqual(enemies, batman.enemies);
+    XCTAssertTrue(enemies.count == 2);
+    NSArray* enemiesReloaded = ((Hero*)batman.invalidateRelationships).enemies;
+    XCTAssertNotEqual(enemies, enemiesReloaded);
+}
 @end
