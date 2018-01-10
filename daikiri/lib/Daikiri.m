@@ -190,16 +190,16 @@
 
 -(id)getRelationshipCached:(NSString*)relationship{
     return nil; //Until we find a good way
-    if(!_relationships) return nil;
-    return _relationships[relationship];
+    //if(!_relationships) return nil;
+    //return _relationships[relationship];
 }
 
 -(id)setRelationship:(NSString*)relationship object:(id)object{
     return object; //Until we find a good way
-    if(object == nil) return object;
-    if(!_relationships) _relationships = [NSMutableDictionary new];
-    _relationships[relationship] = object;
-    return object;
+    //if(object == nil) return object;
+    //if(!_relationships) _relationships = [NSMutableDictionary new];
+    //_relationships[relationship] = object;
+    //return object;
 }
 
 -(Daikiri *)invalidateRelationships{

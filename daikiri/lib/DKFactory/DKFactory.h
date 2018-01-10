@@ -16,8 +16,8 @@
     NSString*   _name;
 }
 
-+(void)define   :(Class)class                       builder:(NSDictionary*(^)())builder;
-+(void)defineAs :(Class)class name:(NSString*)name  builder:(NSDictionary*(^)())builder;
++(void)define   :(Class)class                       builder:(NSDictionary*(^)(void))builder;
++(void)defineAs :(Class)class name:(NSString*)name  builder:(NSDictionary*(^)(void))builder;
 
 +(DKFactory*)factory:(Class)class;
 +(DKFactory*)factory:(Class)class count:(int)count;

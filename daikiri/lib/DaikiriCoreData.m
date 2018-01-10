@@ -211,7 +211,7 @@
     [self.managedObjectContext.undoManager undo];
 }
 
--(void)transaction:(void(^)())callback{
+-(void)transaction:(void(^)(void))callback{
     [self beginTransaction];
     @try{
         callback();

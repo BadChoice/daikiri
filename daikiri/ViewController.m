@@ -52,10 +52,10 @@
 // json with submodels and arrays
 -(void)example1{
     
-    SampleModel* sm = [SampleModel fromDictionary:@{
+    /*SampleModel* sm = [SampleModel fromDictionary:@{
                                                     @"name":@"A sample model",
                                                     @"numbers":@[@1,@2,@3,@4]
-                                                    }];
+                                                    }];*/
     
     NSDictionary* d = @{
                         @"name" : @"Batman",

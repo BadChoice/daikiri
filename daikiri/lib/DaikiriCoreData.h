@@ -34,6 +34,6 @@
 - (void)beginTransaction;
 - (void)commit;
 - (void)rollback;
-- (void)transaction:(void(^)())callback;
+- (void)transaction:(void(^)(void))callback;
 
 @end

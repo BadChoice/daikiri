@@ -13,14 +13,14 @@
 
 static NSMutableDictionary* mappings;
 
-+(void)define:(Class)class builder:(NSDictionary*(^)())builder{
++(void)define:(Class)class builder:(NSDictionary*(^)(void))builder{
     NSString* classString               = NSStringFromClass(class);
     if( ! mappings ) mappings           = [NSMutableDictionary new];
     mappings[ classString ]             = [NSMutableDictionary new];
     mappings[ classString ][@"default"] = builder().mutableCopy;
 }
 
-+(void)defineAs:(Class)class name:(NSString*)name builder:(NSDictionary*(^)())builder{
++(void)defineAs:(Class)class name:(NSString*)name builder:(NSDictionary*(^)(void))builder{
     NSString* classString               = NSStringFromClass(class);
     if( ! mappings ) mappings           = [NSMutableDictionary new];
     mappings[ classString ]             = [NSMutableDictionary new];
@@ -67,7 +67,7 @@ static NSMutableDictionary* mappings;
 -(void)applyBlocksToDict:(NSMutableDictionary*)dict{
     for(NSString* key in dict.allKeys){
         if([dict[key] isKindOfClass:NSClassFromString(@"NSBlock")]){
-            id(^myAwesomeBlock)() = dict[key];
+            id(^myAwesomeBlock)(void) = dict[key];
             dict[key] = myAwesomeBlock();
         }
     }

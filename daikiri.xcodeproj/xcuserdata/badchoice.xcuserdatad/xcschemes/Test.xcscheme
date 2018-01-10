@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "762167B41CC178A200C6CA80"
-               BuildableName = "daikiri.app"
-               BlueprintName = "daikiri"
+               BlueprintIdentifier = "762B8EF21D0403080081ADA6"
+               BuildableName = "daikiriTests.xctest"
+               BlueprintName = "daikiriTests"
                ReferencedContainer = "container:daikiri.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "762167B41CC178A200C6CA80"
-            BuildableName = "daikiri.app"
-            BlueprintName = "daikiri"
+            BlueprintIdentifier = "762B8EF21D0403080081ADA6"
+            BuildableName = "daikiriTests.xctest"
+            BlueprintName = "daikiriTests"
             ReferencedContainer = "container:daikiri.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,16 +63,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "762167B41CC178A200C6CA80"
-            BuildableName = "daikiri.app"
-            BlueprintName = "daikiri"
+            BlueprintIdentifier = "762B8EF21D0403080081ADA6"
+            BuildableName = "daikiriTests.xctest"
+            BlueprintName = "daikiriTests"
             ReferencedContainer = "container:daikiri.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -82,16 +81,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "762167B41CC178A200C6CA80"
-            BuildableName = "daikiri.app"
-            BlueprintName = "daikiri"
+            BlueprintIdentifier = "762B8EF21D0403080081ADA6"
+            BuildableName = "daikiriTests.xctest"
+            BlueprintName = "daikiriTests"
             ReferencedContainer = "container:daikiri.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
