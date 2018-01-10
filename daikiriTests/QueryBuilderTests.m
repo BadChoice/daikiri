@@ -107,6 +107,19 @@
     XCTAssertEqual(@"Spiderman",   ((Hero*)result[0]).name);
 }
 
+-(void)test_can_do_complex_query{
+    [Hero createWith:@{@"id": @(200), @"name":@"hello the baby"}];
+    [Hero createWith:@{@"id": @(201),@"name":@"hello baby"}];
+    [Hero createWith:@{@"id": @(202),@"name":@"another one"}];
+
+    NSArray* all = Hero.all;
+    XCTAssertEqual(6, all.count);
+
+    NSArray* result = [Hero.query where:@"name" operator:@"like" value:@"hello baby"].get;
+
+    XCTAssertEqual(2, result.count);
+}
+
 -(void)test_can_do_a_where_any_like_query{
     
     NSArray* result     = [Hero.query whereAny:@[@"name",@"age"] like:@"erman"].get;

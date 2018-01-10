@@ -48,7 +48,7 @@
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K != %@",field, value]];
     }
     else if([operator isEqualToString:@"like"]){
-        [_predicates addObject:[NSPredicate predicateWithFormat:@"%K contains[c] %@",field, value]];
+        [self whereAny:@[field] like:value];
     }
     else if([operator isEqualToString:@"in"] || [operator isEqualToString:@"IN"]){
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K IN %@",field, value]];
@@ -57,9 +57,14 @@
 }
 
 -(QueryBuilder*)whereAny:(NSArray*)fields like:(id)value{
-    NSMutableArray* orPredicates = [NSMutableArray new];
+    NSMutableArray* orPredicates = NSMutableArray.new;
     for(NSString* field in fields){
-        [orPredicates addObject:[NSPredicate predicateWithFormat:@"%K contains[c] %@",field, value]];
+        NSMutableArray* andPredicates = NSMutableArray.new;
+        NSArray *terms = [value componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        for(NSString* term in terms) {
+            [andPredicates addObject:[NSPredicate predicateWithFormat:@"%K contains[cd] %@", field, term]];
+        }
+        [orPredicates addObject:[NSCompoundPredicate andPredicateWithSubpredicates:andPredicates]];
     }
     [_predicates addObject:[NSCompoundPredicate orPredicateWithSubpredicates:orPredicates]];
     return self;
