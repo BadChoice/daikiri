@@ -60,7 +60,13 @@
     NSMutableArray* orPredicates = NSMutableArray.new;
     for(NSString* field in fields){
         NSMutableArray* andPredicates = NSMutableArray.new;
-        NSArray *terms = [value componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        NSArray *terms;
+        if ([value isKindOfClass:NSString.class]) {
+            terms = [value componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        }
+        else{
+            terms = @[value];
+        }
         for(NSString* term in terms) {
             [andPredicates addObject:[NSPredicate predicateWithFormat:@"%K contains[cd] %@", field, term]];
         }

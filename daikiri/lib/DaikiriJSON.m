@@ -96,10 +96,10 @@ static NSMutableDictionary* classesForKeyPathsCached;
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 -(id)valueConverted:(id)value forKey:(NSString*)key{
     
-    if([self.class isNull:value]){
+    if ([self.class isNull:value]){
         return nil;
     }
-    if([key isEqualToString:@"id"]){
+    if ([key isEqualToString:@"id"]){
         return [self convertToNSNumber:value];
     }
     if ([self classForKeyPath:key] == NSString.class){
@@ -108,28 +108,27 @@ static NSMutableDictionary* classesForKeyPathsCached;
     if ([self classForKeyPath:key] == NSNumber.class){
         return [self convertToNSNumber:value];
     }
+    if ([self classForKeyPath:key] == NSDictionary.class){
+        return value;
+    }
     else if([value isKindOfClass:NSArray.class]){
         NSString* methodName        = [NSString stringWithFormat:@"%@_DaikiriArray",key];
         SEL s                       = NSSelectorFromString(methodName);
         
-        if ([self respondsToSelector:s]) {
-            Class childClass            = [self performSelector:s];
-            NSMutableArray* newArray    = [NSMutableArray new];
-            for(id arrayDict in value){
-                id childModel = [childClass fromDictionary:arrayDict];
-                [newArray addObject:childModel];
-            }
-            return newArray;
-        }
-        else{
+        if (![self respondsToSelector:s]) {
             return value;
         }
+        Class childClass            = [self performSelector:s];
+        NSMutableArray* newArray    = [NSMutableArray new];
+        for(id arrayDict in value){
+            id childModel = [childClass fromDictionary:arrayDict];
+            [newArray addObject:childModel];
+        }
+        return newArray;
     }
-    else{
-        id subValue = [[self classForKeyPath:key] fromDictionary:value];
-        return subValue;
-    }
-    return nil;
+    
+    id subValue = [[self classForKeyPath:key] fromDictionary:value];
+    return subValue;
 }
 #pragma clang diagnostic pop
 -(void)cacheClassesForKeyPath{
