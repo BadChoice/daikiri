@@ -40,7 +40,7 @@
 		7658163F203F0E3C0053DC34 /* DaikiriFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7658163E203F0E3C0053DC34 /* DaikiriFactoryTest.m */; };
 		765E49CD1DE4EA3100DE4D39 /* DKFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E49CC1DE4EA3100DE4D39 /* DKFactory.m */; };
 		765E49D11DE4EF9800DE4D39 /* HeroFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E49D01DE4EF9800DE4D39 /* HeroFactory.m */; };
-		77510317B722D6E714AD2536 /* DKFaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7751080BA5D9F771E8774327 /* DKFaker.m */; };
+		7751076F5AD5DDA9C423A4D3 /* DKFaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 775102A17B8D841A951FE741 /* DKFaker.m */; };
 		D17AB5E1736133903CCC0854 /* libPods-daikiri.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5396CF4ECD259055673F8A5 /* libPods-daikiri.a */; };
 /* End PBXBuildFile section */
 
@@ -114,8 +114,8 @@
 		765E49CC1DE4EA3100DE4D39 /* DKFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKFactory.m; path = lib/DKFactory/DKFactory.m; sourceTree = "<group>"; };
 		765E49CF1DE4EF9800DE4D39 /* HeroFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroFactory.h; path = Factories/HeroFactory.h; sourceTree = "<group>"; };
 		765E49D01DE4EF9800DE4D39 /* HeroFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeroFactory.m; path = Factories/HeroFactory.m; sourceTree = "<group>"; };
-		775100FF475B949230BF4CCC /* DKFaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKFaker.h; sourceTree = "<group>"; };
-		7751080BA5D9F771E8774327 /* DKFaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKFaker.m; sourceTree = "<group>"; };
+		775102A17B8D841A951FE741 /* DKFaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKFaker.m; sourceTree = "<group>"; };
+		775109E4954203FEDBA8B071 /* DKFaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKFaker.h; sourceTree = "<group>"; };
 		C9F2AAE25B85898F3A543336 /* Pods-daikiri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daikiri.debug.xcconfig"; path = "Pods/Target Support Files/Pods-daikiri/Pods-daikiri.debug.xcconfig"; sourceTree = "<group>"; };
 		D5396CF4ECD259055673F8A5 /* libPods-daikiri.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-daikiri.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -250,7 +250,7 @@
 				7616C91A1CC4133B00E1DEEE /* DaikiriCoreData.m */,
 				764426C91CC5364200F0F2C9 /* QueryBuilder.h */,
 				764426CA1CC5364200F0F2C9 /* QueryBuilder.m */,
-				775107C1A216376578472DC8 /* RVFaker */,
+				77510E249BC521A2622ADC73 /* DKFaker */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -311,13 +311,14 @@
 			name = Factories;
 			sourceTree = "<group>";
 		};
-		775107C1A216376578472DC8 /* RVFaker */ = {
+		77510E249BC521A2622ADC73 /* DKFaker */ = {
 			isa = PBXGroup;
 			children = (
-				7751080BA5D9F771E8774327 /* DKFaker.m */,
-				775100FF475B949230BF4CCC /* DKFaker.h */,
+				775109E4954203FEDBA8B071 /* DKFaker.h */,
+				775102A17B8D841A951FE741 /* DKFaker.m */,
 			);
-			name = RVFaker;
+			name = DKFaker;
+			path = lib/DKFaker;
 			sourceTree = "<group>";
 		};
 		988B87C32B69DA16F93BA670 /* Frameworks */ = {
@@ -519,7 +520,7 @@
 				762167BA1CC178A200C6CA80 /* main.m in Sources */,
 				760E42E91CC36ADE00796DCF /* Enemy.m in Sources */,
 				760AE0B11CC27563005DE071 /* DaikiriJSON.m in Sources */,
-				77510317B722D6E714AD2536 /* DKFaker.m in Sources */,
+				7751076F5AD5DDA9C423A4D3 /* DKFaker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
