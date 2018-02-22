@@ -1,11 +1,4 @@
-//
-//  Daikiri.m
-//  daikiri
-//
-//  Created by Jordi Puigdellívol on 15/4/16.
-//  Copyright © 2016 revo. All rights reserved.
-//
-
+#import <Collection/NSArray+Collection.h>
 #import "Daikiri.h"
 #import "DaikiriCoreData.h"
 #import "QueryBuilder.h"
@@ -51,19 +44,16 @@
         [self valuesToManaged:_managed];
         return [self.class saveCoreData];
     }
-    else{
-        Daikiri* previous = [self.class find:self.id];
-        if(!previous){
-            NSLog(@"Model not in database");
-            return false;
-        }
-        else{
-            [previous destroy];
-            [self save];
-        }
-        
+
+    Daikiri* previous = [self.class find:self.id];
+    if (!previous){
+        NSLog(@"Model not in database");
+        return false;
     }
-    return true;    
+
+    [previous destroy];
+    [self save];
+    return true;
 }
 
 
@@ -75,12 +65,9 @@
             result = [self.class saveCoreData];
         }];
         return result;
-        
     }
-    else{
-        Daikiri *toDelete = [self.class find:self.id];
-        return [toDelete destroy];
-    }
+    Daikiri *toDelete = [self.class find:self.id];
+    return [toDelete destroy];
 }
 
 //==================================================================
@@ -102,9 +89,9 @@
 }
 
 +(void)destroyWithArray:(NSArray*)idsArray{
-    for(NSNumber* objectId in idsArray){
+    [idsArray each:^(NSNumber* objectId ) {
         [self.class destroyWith:objectId];
-    }
+    }];
 }
 
 +(void)truncate{
@@ -117,7 +104,7 @@
 #pragma mark - Active record
 //==================================================================
 +(id)find:(NSNumber*)id{
-    if(id == nil) return nil;
+    if (id == nil) return nil;
     return [self.query where:@"id" is:id].first;
 }
 
@@ -215,26 +202,26 @@
     
     [self.class properties:^(NSString *name) {
         id value    = [self valueForKey:name];
-        if([value isKindOfClass:[NSString class]]){
+        if([value isKindOfClass:NSString.class]){
             [managedObject setValue:value forKey:name];
         }
-        else if([value isKindOfClass:[NSNumber class]]){
+        else if([value isKindOfClass:NSNumber.class]){
             [managedObject setValue:value forKey:name];
         }
     }];
 }
 
 +(id)fromManaged:(NSManagedObject*)managedObject{
-    Daikiri *newObject = [self.class new];
+    Daikiri *newObject = self.class.new;
     [newObject setValue:[managedObject valueForKey:@"id"] forKey:@"id"];
     
     [self.class properties:^(NSString *name) {
         @try{
             id value = [managedObject valueForKey:name];
-            if([value isKindOfClass:[NSString class]]){
+            if([value isKindOfClass:NSString.class]){
                 [newObject setValue:value forKey:name];
             }
-            else if([value isKindOfClass:[NSNumber class]]){
+            else if([value isKindOfClass:NSNumber.class]){
                 [newObject setValue:value forKey:name];
             }
         }@catch (NSException * e) {
@@ -246,7 +233,7 @@
 }
 
 +(NSArray*)managedArrayToDaikiriArray:(NSArray*)results{
-    NSMutableArray* daikiriObjects = [NSMutableArray new];
+    NSMutableArray* daikiriObjects = NSMutableArray.new;
     for(NSManagedObject* managed in results){
         [daikiriObjects addObject:[self.class fromManaged:managed]];
     }

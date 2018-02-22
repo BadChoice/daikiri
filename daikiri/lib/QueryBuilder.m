@@ -1,11 +1,3 @@
-//
-//  QueryBuilder.m
-//  daikiri
-//
-//  Created by Badchoice on 18/4/16.
-//  Copyright © 2016 revo. All rights reserved.
-//
-
 #import "QueryBuilder.h"
 #import <CoreData/CoreData.h>
 #import "Daikiri.h"
@@ -14,10 +6,10 @@
 
 
 -(id)initWithModel:(NSString*)model{
-    if(self= [super init]){
+    if (self= [super init]) {
         _model          = model;
-        _predicates     = [NSMutableArray new];
-        _sortPredicates = [NSMutableArray new];
+        _predicates     = NSMutableArray.new;
+        _sortPredicates = NSMutableArray.new;
     }
     return self;
 }
@@ -34,15 +26,20 @@
     return [self where:field operator:@"=" value:value];
 }
 -(QueryBuilder*)where:(NSString*)field operator:(NSString*)operator value:(id)value{
-    
     if([operator isEqualToString:@"="]){
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K = %@",field, value]];
     }
     else if([operator isEqualToString:@">"]){
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K > %@",field, value]];
     }
+    else if([operator isEqualToString:@">="]){
+        [_predicates addObject:[NSPredicate predicateWithFormat:@"%K >= %@",field, value]];
+    }
     else if([operator isEqualToString:@"<"]){
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K < %@",field, value]];
+    }
+    else if([operator isEqualToString:@"<="]){
+        [_predicates addObject:[NSPredicate predicateWithFormat:@"%K <= %@",field, value]];
     }
     else if([operator isEqualToString:@"<>"] || [operator isEqualToString:@"!="]){
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K != %@",field, value]];
