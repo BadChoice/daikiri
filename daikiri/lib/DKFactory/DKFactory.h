@@ -1,12 +1,5 @@
-//
-//  DKFactory.h
-//  daikiri
-//
-//  Created by Badchoice on 22/11/16.
-//  Copyright © 2016 revo. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
+#import "DKFaker.h"
 
 #define factory(A)      [DKFactory factory:A]
 
@@ -16,8 +9,8 @@
     NSString*   _name;
 }
 
-+(void)define   :(Class)class                       builder:(NSDictionary*(^)(void))builder;
-+(void)defineAs :(Class)class name:(NSString*)name  builder:(NSDictionary*(^)(void))builder;
++(void)define   :(Class)class                       builder:(NSDictionary*(^)(DKFaker * faker))builder;
++(void)defineAs :(Class)class name:(NSString*)name  builder:(NSDictionary*(^)(DKFaker * faker))builder;
 
 +(DKFactory*)factory:(Class)class;
 +(DKFactory*)factory:(Class)class count:(int)count;

@@ -1,11 +1,3 @@
-//
-//  DKFactory.m
-//  daikiri
-//
-//  Created by Badchoice on 22/11/16.
-//  Copyright © 2016 revo. All rights reserved.
-//
-
 #import "DKFactory.h"
 #import "Daikiri.h"
 
@@ -13,18 +5,20 @@
 
 static NSMutableDictionary* mappings;
 
-+(void)define:(Class)class builder:(NSDictionary*(^)(void))builder{
++(void)define:(Class)class builder:(NSDictionary*(^)(DKFaker * faker))builder{
     NSString* classString               = NSStringFromClass(class);
-    if( ! mappings ) mappings           = [NSMutableDictionary new];
-    mappings[ classString ]             = [NSMutableDictionary new];
-    mappings[ classString ][@"default"] = builder().mutableCopy;
+    if( ! mappings ) mappings           = NSMutableDictionary.new;
+    mappings[ classString ]             = NSMutableDictionary.new;
+    //mappings[ classString ][@"default"] = builder(DKFaker.new).mutableCopy;
+    mappings[ classString ][@"default"] = builder;
 }
 
-+(void)defineAs:(Class)class name:(NSString*)name builder:(NSDictionary*(^)(void))builder{
++(void)defineAs:(Class)class name:(NSString*)name builder:(NSDictionary*(^)(DKFaker * faker))builder{
     NSString* classString               = NSStringFromClass(class);
-    if( ! mappings ) mappings           = [NSMutableDictionary new];
-    mappings[ classString ]             = [NSMutableDictionary new];
-    mappings[ classString ][name]       = builder().mutableCopy;
+    if( ! mappings ) mappings           = NSMutableDictionary.new;
+    mappings[ classString ]             = NSMutableDictionary.new;
+    //mappings[ classString ][name]       = builder(DKFaker.new).mutableCopy;
+    mappings[ classString ][name]       = builder;
 }
 
 -(id)initWith:(Class)class name:(NSString*)name count:(int)count{
@@ -52,10 +46,10 @@ static NSMutableDictionary* mappings;
 }
 
 -(NSMutableDictionary*)attributesWithOverride:(NSDictionary*)override{
-    NSString* classString         = NSStringFromClass(_class);
-    NSMutableDictionary* baseDict = mappings[ classString ][ _name];
-    baseDict                      = baseDict.mutableCopy;
-    if(override){
+    NSString* classString                     = NSStringFromClass(_class);
+    NSDictionary*(^builder)(DKFaker * faker)  = mappings[ classString ][ _name];
+    NSMutableDictionary* baseDict = builder(DKFaker.new).mutableCopy;
+    if (override){
         [baseDict addEntriesFromDictionary:override];
     }
     
@@ -85,34 +79,31 @@ static NSMutableDictionary* mappings;
     if(_count == 1){
         return [_class fromDictionary: [self attributesWithOverride:overrideAttributes] ];
     }
-    else{
-        NSMutableArray * result = [NSMutableArray new];
-        for(int i= 0; i< _count; i++){
-            [result addObject: [_class fromDictionary: [self attributesWithOverride:overrideAttributes] ]];
-        }
-        return result;
+    NSMutableArray * result = NSMutableArray.new;
+    for(int i= 0; i< _count; i++){
+        [result addObject: [_class fromDictionary: [self attributesWithOverride:overrideAttributes] ]];
     }
+    return result;
 }
 
 -(id)create:(NSDictionary*)overrideAttributes{
-    if(_count == 1){
+    if (_count == 1){
         NSMutableDictionary * dict = [self attributesWithOverride:overrideAttributes];
         if( ! dict[@"id"] ){
             dict[@"id"] = @([_class all].count + 1);
         }
         return [_class createWith: dict];
     }
-    else{
-        NSMutableArray * result = [NSMutableArray new];
-        for(int i= 0; i< _count; i++){
-            NSMutableDictionary * dict = [self attributesWithOverride:overrideAttributes];
-            if( ! dict[@"id"] ){
-                dict[@"id"] = @([_class all].count + 1);
-            }
-            [result addObject: dict ];
+
+    NSMutableArray * result = NSMutableArray.new;
+    for(int i= 0; i< _count; i++){
+        NSMutableDictionary * dict = [self attributesWithOverride:overrideAttributes];
+        if( ! dict[@"id"] ){
+            dict[@"id"] = @([_class all].count + 1);
         }
-        return result;
+        [result addObject: dict ];
     }
+    return result;
 }
 
 @end

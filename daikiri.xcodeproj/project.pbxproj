@@ -37,8 +37,11 @@
 		764426D71CC7B67900F0F2C9 /* GSEnemyHero.m in Sources */ = {isa = PBXBuildFile; fileRef = 764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */; };
 		76488E3F1D41FFB40036C260 /* DaikiriTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76488E3E1D41FFB40036C260 /* DaikiriTests.m */; };
 		76488E411D4200600036C260 /* QueryBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 76488E401D4200600036C260 /* QueryBuilderTests.m */; };
+		7658163F203F0E3C0053DC34 /* DaikiriFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7658163E203F0E3C0053DC34 /* DaikiriFactoryTest.m */; };
 		765E49CD1DE4EA3100DE4D39 /* DKFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E49CC1DE4EA3100DE4D39 /* DKFactory.m */; };
 		765E49D11DE4EF9800DE4D39 /* HeroFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E49D01DE4EF9800DE4D39 /* HeroFactory.m */; };
+		77510317B722D6E714AD2536 /* DKFaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7751080BA5D9F771E8774327 /* DKFaker.m */; };
+		D17AB5E1736133903CCC0854 /* libPods-daikiri.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5396CF4ECD259055673F8A5 /* libPods-daikiri.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		131144C11F8B9AC8002051C9 /* DaikiriMultipleAccounts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaikiriMultipleAccounts.m; sourceTree = "<group>"; };
+		54BFF6C81126852DC653226F /* Pods-daikiri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daikiri.release.xcconfig"; path = "Pods/Target Support Files/Pods-daikiri/Pods-daikiri.release.xcconfig"; sourceTree = "<group>"; };
 		760AE0AF1CC27563005DE071 /* DaikiriJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DaikiriJSON.h; path = lib/DaikiriJSON.h; sourceTree = "<group>"; };
 		760AE0B01CC27563005DE071 /* DaikiriJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DaikiriJSON.m; path = lib/DaikiriJSON.m; sourceTree = "<group>"; };
 		760AE0B21CC27FE8005DE071 /* Headquarter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Headquarter.h; path = support/Headquarter.h; sourceTree = "<group>"; };
@@ -105,10 +109,15 @@
 		764426D61CC7B67900F0F2C9 /* GSEnemyHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GSEnemyHero.m; path = support/GSEnemyHero.m; sourceTree = "<group>"; };
 		76488E3E1D41FFB40036C260 /* DaikiriTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaikiriTests.m; sourceTree = "<group>"; };
 		76488E401D4200600036C260 /* QueryBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryBuilderTests.m; sourceTree = "<group>"; };
+		7658163E203F0E3C0053DC34 /* DaikiriFactoryTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaikiriFactoryTest.m; sourceTree = "<group>"; };
 		765E49CB1DE4EA3100DE4D39 /* DKFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKFactory.h; path = lib/DKFactory/DKFactory.h; sourceTree = "<group>"; };
 		765E49CC1DE4EA3100DE4D39 /* DKFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKFactory.m; path = lib/DKFactory/DKFactory.m; sourceTree = "<group>"; };
 		765E49CF1DE4EF9800DE4D39 /* HeroFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeroFactory.h; path = Factories/HeroFactory.h; sourceTree = "<group>"; };
 		765E49D01DE4EF9800DE4D39 /* HeroFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeroFactory.m; path = Factories/HeroFactory.m; sourceTree = "<group>"; };
+		775100FF475B949230BF4CCC /* DKFaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKFaker.h; sourceTree = "<group>"; };
+		7751080BA5D9F771E8774327 /* DKFaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKFaker.m; sourceTree = "<group>"; };
+		C9F2AAE25B85898F3A543336 /* Pods-daikiri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daikiri.debug.xcconfig"; path = "Pods/Target Support Files/Pods-daikiri/Pods-daikiri.debug.xcconfig"; sourceTree = "<group>"; };
+		D5396CF4ECD259055673F8A5 /* libPods-daikiri.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-daikiri.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D17AB5E1736133903CCC0854 /* libPods-daikiri.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +139,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63B9970B2F220CB32E8FAB34 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C9F2AAE25B85898F3A543336 /* Pods-daikiri.debug.xcconfig */,
+				54BFF6C81126852DC653226F /* Pods-daikiri.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		760B2C371CC61B1F004300AD /* WithPrefix */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +200,8 @@
 				762167B61CC178A200C6CA80 /* Products */,
 				7611ED1A1CC2D09900A55B06 /* readme.md */,
 				7611ED181CC2CF7600A55B06 /* daikiri.podspec.json */,
+				63B9970B2F220CB32E8FAB34 /* Pods */,
+				988B87C32B69DA16F93BA670 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,6 +250,7 @@
 				7616C91A1CC4133B00E1DEEE /* DaikiriCoreData.m */,
 				764426C91CC5364200F0F2C9 /* QueryBuilder.h */,
 				764426CA1CC5364200F0F2C9 /* QueryBuilder.m */,
+				775107C1A216376578472DC8 /* RVFaker */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -266,6 +288,7 @@
 				76488E401D4200600036C260 /* QueryBuilderTests.m */,
 				762B8EF71D0403080081ADA6 /* Info.plist */,
 				131144C11F8B9AC8002051C9 /* DaikiriMultipleAccounts.m */,
+				7658163E203F0E3C0053DC34 /* DaikiriFactoryTest.m */,
 			);
 			path = daikiriTests;
 			sourceTree = "<group>";
@@ -288,6 +311,23 @@
 			name = Factories;
 			sourceTree = "<group>";
 		};
+		775107C1A216376578472DC8 /* RVFaker */ = {
+			isa = PBXGroup;
+			children = (
+				7751080BA5D9F771E8774327 /* DKFaker.m */,
+				775100FF475B949230BF4CCC /* DKFaker.h */,
+			);
+			name = RVFaker;
+			sourceTree = "<group>";
+		};
+		988B87C32B69DA16F93BA670 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5396CF4ECD259055673F8A5 /* libPods-daikiri.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -295,9 +335,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 762167CF1CC178A200C6CA80 /* Build configuration list for PBXNativeTarget "daikiri" */;
 			buildPhases = (
+				2251B382029A1C952C52610A /* [CP] Check Pods Manifest.lock */,
 				762167B11CC178A200C6CA80 /* Sources */,
 				762167B21CC178A200C6CA80 /* Frameworks */,
 				762167B31CC178A200C6CA80 /* Resources */,
+				D2AE9ACE7F407A361E82543A /* [CP] Embed Pods Frameworks */,
+				91EB76747516DA0F93C61A3E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -384,6 +427,72 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2251B382029A1C952C52610A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-daikiri-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91EB76747516DA0F93C61A3E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-daikiri/Pods-daikiri-resources.sh",
+				"${PODS_ROOT}/MBFaker/MBFaker/Locales/cs.yml",
+				"${PODS_ROOT}/MBFaker/MBFaker/Locales/de.yml",
+				"${PODS_ROOT}/MBFaker/MBFaker/Locales/en.yml",
+				"${PODS_ROOT}/MBFaker/MBFaker/Locales/fr.yml",
+				"${PODS_ROOT}/MBFaker/MBFaker/Locales/nl.yml",
+				"${PODS_ROOT}/MBFaker/MBFaker/Locales/pl.yml",
+				"${PODS_ROOT}/MBFaker/MBFaker/Locales/ru.yml",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/cs.yml",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/de.yml",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.yml",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.yml",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/nl.yml",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/pl.yml",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ru.yml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-daikiri/Pods-daikiri-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2AE9ACE7F407A361E82543A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-daikiri/Pods-daikiri-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		762167B11CC178A200C6CA80 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -410,6 +519,7 @@
 				762167BA1CC178A200C6CA80 /* main.m in Sources */,
 				760E42E91CC36ADE00796DCF /* Enemy.m in Sources */,
 				760AE0B11CC27563005DE071 /* DaikiriJSON.m in Sources */,
+				77510317B722D6E714AD2536 /* DKFaker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +531,7 @@
 				76488E3F1D41FFB40036C260 /* DaikiriTests.m in Sources */,
 				762B8F011D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m in Sources */,
 				76488E411D4200600036C260 /* QueryBuilderTests.m in Sources */,
+				7658163F203F0E3C0053DC34 /* DaikiriFactoryTest.m in Sources */,
 				131144C21F8B9AC8002051C9 /* DaikiriMultipleAccounts.m in Sources */,
 				765E49D11DE4EF9800DE4D39 /* HeroFactory.m in Sources */,
 				762B8EF61D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m in Sources */,
@@ -559,6 +670,7 @@
 		};
 		762167D01CC178A200C6CA80 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9F2AAE25B85898F3A543336 /* Pods-daikiri.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = daikiri/Info.plist;
@@ -570,6 +682,7 @@
 		};
 		762167D11CC178A200C6CA80 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54BFF6C81126852DC653226F /* Pods-daikiri.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = daikiri/Info.plist;
