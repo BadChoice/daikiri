@@ -4,7 +4,7 @@
 
 @implementation HeroFactory
 
-+(void)registerFactories{
+-(void)registerFactories{
 
     [DKFactory define:Hero.class builder:^NSDictionary *(DKFaker *faker) {
         return @{

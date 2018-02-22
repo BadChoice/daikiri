@@ -24,12 +24,14 @@
 
 - (void)setUp {
     [super setUp];
+
+    [DKFactoryDefinition registerFactories:@[
+            HeroFactory.new
+    ]];
     
-    [HeroFactory registerFactories];
     [[DaikiriCoreData manager] useTestDatabase:YES];
     [[DaikiriCoreData manager] beginTransaction];
-    
-    
+
     Hero* batman                = [[DKFactory factory:Hero.class] create];
     Hero * spiderman            = [Hero createWith:@{@"id":@2, @"name":@"Spiderman"      ,@"age":@19}];
     Hero * superman             = [Hero createWith:@{@"id":@3, @"name":@"Superman"       ,@"age":@99}];
