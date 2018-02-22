@@ -1,0 +1,15 @@
+PODS:
+  - Collection (1.8.11)
+  - MBFaker (0.1.2)
+
+DEPENDENCIES:
+  - Collection
+  - MBFaker
+
+SPEC CHECKSUMS:
+  Collection: 51454f1600acb58425c2bf544843a5699abb0f22
+  MBFaker: 856baf3a7153a474506114b1694c57b3bbeafbda
+
+PODFILE CHECKSUM: 1279672830e3138f08a4acc2b9f3a1ceedd0c174
+
+COCOAPODS: 1.4.0
