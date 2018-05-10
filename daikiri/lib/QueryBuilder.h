@@ -27,6 +27,7 @@
 -(QueryBuilder*)take:(int)count;
 
 
+-(NSUInteger)count;
 -(NSArray*)get;
 -(id)first;
 @end

@@ -122,6 +122,14 @@
     XCTAssertEqual(2, result.count);
 }
 
+-(void)test_can_count_query{
+    [Hero createWith:@{@"id": @(200), @"name":@"hello the baby"}];
+    [Hero createWith:@{@"id": @(201), @"name":@"hello baby"}];
+    [Hero createWith:@{@"id": @(202), @"name":@"another one"}];
+    
+    XCTAssertEqual(6, Hero.query.count);
+}
+
 -(void)test_can_do_a_where_any_like_query{
     
     NSArray* result     = [Hero.query whereAny:@[@"name",@"age"] like:@"erman"].get;
@@ -169,6 +177,8 @@
         }
     }];
 }
+
+
 
 //TODO: test sort, and other querybuilder functions
 

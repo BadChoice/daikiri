@@ -135,6 +135,28 @@
 //============================================================
 #pragma mark - Execute query
 //============================================================
+-(NSUInteger)count{
+    NSFetchRequest *request;
+    
+    Class modelClass        = NSClassFromString(_model);
+    NSString* entityName    = [modelClass performSelector:@selector(entityName)];
+    request                 = [NSFetchRequest fetchRequestWithEntityName:entityName];
+    
+    NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:_predicates];
+    [request setPredicate:compoundPredicate];
+    
+    __block NSUInteger result;
+    [[modelClass managedObjectContext] performBlockAndWait:^{
+        NSError *error   = nil;
+        result = [[modelClass managedObjectContext] countForFetchRequest:request error:&request];
+        if (error) {
+            NSLog(@"Error fetching objects: %@\n%@", [error localizedDescription], [error userInfo]);
+            abort();
+        }
+    }];
+    return result;
+}
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
 
