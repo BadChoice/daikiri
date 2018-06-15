@@ -61,7 +61,7 @@
     if(_managed){
         __block bool result;
         [self.class.managedObjectContext performBlockAndWait:^{
-            [[self.class managedObjectContext] deleteObject:_managed];
+            [[self.class managedObjectContext] deleteObject:self->_managed];
             result = [self.class saveCoreData];
         }];
         return result;

@@ -148,7 +148,7 @@
     __block NSUInteger result;
     [[modelClass managedObjectContext] performBlockAndWait:^{
         NSError *error   = nil;
-        result = [[modelClass managedObjectContext] countForFetchRequest:request error:&request];
+        result = [[modelClass managedObjectContext] countForFetchRequest:request error:&error];
         if (error) {
             NSLog(@"Error fetching objects: %@\n%@", [error localizedDescription], [error userInfo]);
             abort();
