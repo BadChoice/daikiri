@@ -124,8 +124,7 @@
     if (!coordinator) {
         return nil;
     }
-    //_managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType: _useTestDatabase ? NSMainQueueConcurrencyType : NSPrivateQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     _managedObjectContext.undoManager = [NSUndoManager new];
     if(_useTestDatabase){
