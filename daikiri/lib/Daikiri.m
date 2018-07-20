@@ -265,6 +265,7 @@
 
 +(NSManagedObjectContext*)managedObjectContext{
     NSManagedObjectContext * context = [DaikiriCoreData manager].managedObjectContext;
+    [context setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
     return context;
 }
 
