@@ -64,9 +64,11 @@
         else{
             terms = @[value];
         }
-        for(NSString* term in terms) {
+        [[terms reject:^BOOL(NSString* term) {
+            return isEmptyString(term);
+        }] each:^(NSString* term ) {
             [andPredicates addObject:[NSPredicate predicateWithFormat:@"%K contains[cd] %@", field, term]];
-        }
+        }];
         [orPredicates addObject:[NSCompoundPredicate andPredicateWithSubpredicates:andPredicates]];
     }
     [_predicates addObject:[NSCompoundPredicate orPredicateWithSubpredicates:orPredicates]];
