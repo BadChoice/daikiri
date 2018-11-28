@@ -1,6 +1,7 @@
 #import "QueryBuilder.h"
 #import <CoreData/CoreData.h>
 #import "Daikiri.h"
+#import "RVCollection.h"
 
 @implementation QueryBuilder
 
