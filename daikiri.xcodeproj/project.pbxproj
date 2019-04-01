@@ -457,7 +457,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-daikiri/Pods-daikiri-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-daikiri/Pods-daikiri-resources.sh",
 				"${PODS_ROOT}/MBFaker/MBFaker/Locales/cs.yml",
 				"${PODS_ROOT}/MBFaker/MBFaker/Locales/de.yml",
 				"${PODS_ROOT}/MBFaker/MBFaker/Locales/en.yml",
@@ -478,7 +478,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-daikiri/Pods-daikiri-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-daikiri/Pods-daikiri-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
