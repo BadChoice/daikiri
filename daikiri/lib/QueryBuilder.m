@@ -66,7 +66,7 @@
             terms = @[value];
         }
         [[terms reject:^BOOL(NSString* term) {
-            return isEmptyString(term);
+            return [term isKindOfClass:NSString.class] && isEmptyString(term);
         }] each:^(NSString* term ) {
             [andPredicates addObject:[NSPredicate predicateWithFormat:@"%K contains[cd] %@", field, term]];
         }];
