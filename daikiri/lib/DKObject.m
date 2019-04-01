@@ -1,11 +1,3 @@
-//
-//  DKObject.m
-//  daikiri
-//
-//  Created by Badchoice on 16/8/16.
-//  Copyright © 2016 revo. All rights reserved.
-//
-
 #import "DKObject.h"
 
 #define IsEqual(x,y) ((x && [x isEqual:y]) || (!x && !y))
@@ -19,14 +11,17 @@ static NSMutableDictionary * cachedProperties;
 //==================================================================
 - (id)copyWithZone:(NSZone *)zone{
     id newObject = [[self.class alloc] init];
-    
+    return [self copyWithZone:zone placeHolder:newObject];
+}
+
+- (id)copyWithZone:(NSZone *)zone placeHolder:(id)newObject{
     __weak DKObject* weakSelf = self;
     [self.class properties:^(NSString *name) {
         id value = [weakSelf valueForKey:name];
-        if([value isKindOfClass:NSArray.class]){
+        if ([value isKindOfClass:NSArray.class]) {
             value = [[NSArray alloc] initWithArray:[value copy] copyItems:YES];
         }
-        else if([value isKindOfClass:NSDictionary.class]){
+        else if ([value isKindOfClass:NSDictionary.class]) {
             value = [[NSDictionary alloc] initWithDictionary:value copyItems:YES];
         }
         [newObject setValue:value forKey:name];
@@ -36,13 +31,13 @@ static NSMutableDictionary * cachedProperties;
 }
 
 -(BOOL)isEqual:(id)object{
-    if (self == object)                       return YES;
-    if (![object isMemberOfClass:self.class]) return NO;
+    if (self == object)                        return YES;
+    if (! [object isMemberOfClass:self.class]) return NO;
     
     __block bool isEqual = YES;
     
     [self.class properties:^(NSString *name) {
-        if(isEqual && ! IsEqual ( [object valueForKey:name] , [self valueForKey:name])){
+        if (isEqual && ! IsEqual ([object valueForKey:name], [self valueForKey:name])) {
             isEqual = NO;
         }
     }];    

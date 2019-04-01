@@ -1,15 +1,9 @@
-//
-//  DKObject.h
-//  daikiri
-//
-//  Created by Badchoice on 16/8/16.
-//  Copyright © 2016 revo. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
 @interface DKObject : NSObject <NSCopying>
+
+- (id)copyWithZone:(NSZone *)zone placeHolder:(id)newObject;
 
 /**
  * Iterates through all properties of the object

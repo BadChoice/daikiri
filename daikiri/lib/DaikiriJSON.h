@@ -21,6 +21,17 @@
  */
 +(id)fromDictionary:(NSDictionary*)dict;
 
+
+/**
+ * Fills a model using the dictionary as a source
+ *
+ * - √ Submodels. Automatically converts to the submodel to its class as long as it extends `Daikiri`
+ *
+ * - √ Arrays. to be able to do the conversion to another model
+ * the method `-(Class)property_DaikiriArray` should be defined.
+ */
++(id)fromDictionary:(NSDictionary*)dict placeholder:(DaikiriJSON*)placeholder;
+
 /**
  * It calls the +(id)fromDictionary but first 
  * converting the string to a dict

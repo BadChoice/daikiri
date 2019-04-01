@@ -12,20 +12,25 @@ static NSMutableDictionary* classesForKeyPathsCached;
     if (isNull(dict) || isEqual(@"null", dict) || isEqual(@"", dict) ){
         return nil;
     }
+    return [self.class fromDictionary:dict placeholder:self.class.new];
+}
 
-    if ([dict isKindOfClass:NSDictionary.class]) {
-        DaikiriJSON* model = self.class.new;
-        [dict.allKeys each:^(NSString* key) {
-            id valueConverted = [model valueConverted:dict[key] forKey:key];
-            if (valueConverted != nil){
-                [model setValue:valueConverted forKey:key];
-            }
-        }];
-        return model;
++ (id)fromDictionary:(NSDictionary*)dict placeholder:(DaikiriJSON*)placeholder{
+    if (isNull(dict) || isEqual(@"null", dict) || isEqual(@"", dict) ){
+        return nil;
     }
-
-    [NSException raise:@"Not a NSDictionary" format:@"Trying to create a Daikiri model from a non dictionary object"];
-    return nil;
+    
+    if (! [dict isKindOfClass:NSDictionary.class]) {
+        [NSException raise:@"Not a NSDictionary" format:@"Trying to create a Daikiri model from a non dictionary object"];
+        return nil;
+    }
+    [dict.allKeys each:^(NSString* key) {
+        id valueConverted = [placeholder valueConverted:dict[key] forKey:key];
+        if (valueConverted != nil){
+            [placeholder setValue:valueConverted forKey:key];
+        }
+    }];
+    return placeholder;
 }
 
 +(id)fromDictionaryString:(NSString*)string{
