@@ -149,6 +149,14 @@
     XCTAssertEqual(1, result3.count);
 }
 
+-(void)test_wherein{
+    NSArray* result     = [Hero.query where:@"name" in:@[@"Spiderman", @"Superman", @"Hulk"]].get;
+    NSArray* result2    = [Hero.query where:@"name" in:nil].get;
+    
+    XCTAssertEqual(2, result.count);
+    XCTAssertEqual(0, result2.count);
+}
+
 -(void)test_can_do_query_builder_in_multiple_threads{
     
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Excpecttion 1"];
@@ -177,6 +185,8 @@
         }
     }];
 }
+
+
 
 
 

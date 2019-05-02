@@ -86,7 +86,10 @@
 }
 
 -(QueryBuilder*)where:(NSString*)field in:(NSArray*)values{
-    if( values == nil) return self;
+    if (isNull(values)){
+        values = @[];
+    }
+    
     [_predicates addObject:[NSPredicate predicateWithFormat:@"%K IN %@",field, values]];
     return self;
 }
