@@ -55,6 +55,9 @@ static NSMutableDictionary* classesForKeyPathsCached;
         else if([value isKindOfClass:NSNumber.class]){
             dict[name] = [self convertToNSNumber:value];
         }
+        else if([value isKindOfClass:NSDictionary.class]){
+            dict[name] = value;
+        }
         else if([value isKindOfClass:DaikiriJSON.class]){
             dict[name] = [value toDictionary];
         }
@@ -69,7 +72,7 @@ static NSMutableDictionary* classesForKeyPathsCached;
             dict[name] = dictArray;
         }
         else{
-            dict[name] = value;
+            [NSException raise:@"Non convertable to dictionary value in object" format:@"Non convertable to dictionary value in object"];
         }
     }];
     
