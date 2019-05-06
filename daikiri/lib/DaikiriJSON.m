@@ -55,6 +55,9 @@ static NSMutableDictionary* classesForKeyPathsCached;
         else if([value isKindOfClass:NSNumber.class]){
             dict[name] = [self convertToNSNumber:value];
         }
+        else if([value isKindOfClass:DaikiriJSON.class]){
+            dict[name] = [value toDictionary];
+        }
         else if([value isKindOfClass:NSArray.class]){
             NSMutableArray* dictArray = NSMutableArray.new;
             for(id child in value){
@@ -66,8 +69,7 @@ static NSMutableDictionary* classesForKeyPathsCached;
             dict[name] = dictArray;
         }
         else{
-            id subValue = [value toDictionary];
-            dict[name] = subValue;
+            dict[name] = value;
         }
     }];
     
