@@ -20,7 +20,7 @@
  * It MUST have the id field filled or it won't be inserted
  * If the object already exists, the db one will be returned
  */
-+ (id)create:(Daikiri *)object;
++ (instancetype)create:(Daikiri *)object;
 
 /**
  * The save function uses the model ID for checking if it already 
@@ -50,7 +50,7 @@
 // -----------------------------------------
 // Convenience methods
 // -----------------------------------------
-+ (id)createWith:(NSDictionary *)dict;
++ (instancetype)createWith:(NSDictionary *)dict;
 
 + (bool)updateWith:(NSDictionary *)dict;
 
@@ -75,7 +75,7 @@
 /**
  * Returns the model in the database that matches the id or `nil` if not found
  */
-+ (id)find:(NSNumber *)id;
++ (instancetype)find:(NSNumber *)id;
 
 /**
  * Returns all the models that the id is in the identifiers array
@@ -85,12 +85,12 @@
 /**
  * Returns the first model found
  */
-+ (id)first;
++ (instancetype)first;
 
 /**
  * Returns the first model found sorted by 
  */
-+ (id)first:(NSString *)sort;
++ (instancetype)first:(NSString *)sort;
 
 /**
  * Returns all the models in the database

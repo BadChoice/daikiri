@@ -8,7 +8,7 @@
 //==================================================================
 #pragma mark - Create / Save / Update / Destroy
 //==================================================================
-+(id)create:(Daikiri*)toCreate{
++(instancetype)create:(Daikiri*)toCreate{
     
     if( ! toCreate.id ){
         NSLog(@"model without id");
@@ -78,7 +78,7 @@
     return [object update];
 }
 
-+(id)createWith:(NSDictionary*)dict{
++(instancetype)createWith:(NSDictionary*)dict{
     Daikiri* object = [self.class fromDictionary:dict];
     return [self.class create:object];
 }
@@ -103,7 +103,7 @@
 //==================================================================
 #pragma mark - Active record
 //==================================================================
-+(id)find:(NSNumber*)id{
++(instancetype)find:(NSNumber*)id{
     if (id == nil) return nil;
     return [self.query where:@"id" is:id].first;
 }
@@ -112,10 +112,11 @@
     return [self.query where:@"id" in:identifiers].get;
 }
 
-+(id)first{
++(instancetype)first{
     return [self first:@"id"];
 }
-+(id)first:(NSString*)sort{
+
++(instancetype)first:(NSString*)sort{
     return [self.query orderBy:sort].first;
 }
 

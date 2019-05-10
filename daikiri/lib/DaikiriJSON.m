@@ -8,14 +8,14 @@ static NSMutableDictionary* classesForKeyPathsCached;
 //==================================================================
 #pragma mark - FROM/TO DICTIONARY
 //==================================================================
-+ (id)fromDictionary:(NSDictionary*)dict{
++ (instancetype)fromDictionary:(NSDictionary*)dict{
     if (isNull(dict) || isEqual(@"null", dict) || isEqual(@"", dict) ){
         return nil;
     }
     return [self.class fromDictionary:dict placeholder:self.class.new];
 }
 
-+ (id)fromDictionary:(NSDictionary*)dict placeholder:(DaikiriJSON*)placeholder{
++ (instancetype)fromDictionary:(NSDictionary*)dict placeholder:(DaikiriJSON*)placeholder{
     if (isNull(dict) || isEqual(@"null", dict) || isEqual(@"", dict) ){
         return nil;
     }
@@ -33,7 +33,7 @@ static NSMutableDictionary* classesForKeyPathsCached;
     return placeholder;
 }
 
-+(id)fromDictionaryString:(NSString*)string{
++(instancetype)fromDictionaryString:(NSString*)string{
     NSData *data        = [string dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary* dict  = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     return [self.class fromDictionary:dict];

@@ -19,7 +19,7 @@
  * - √ Arrays. to be able to do the conversion to another model
  * the method `-(Class)property_DaikiriArray` should be defined.
  */
-+(id)fromDictionary:(NSDictionary*)dict;
++(instancetype)fromDictionary:(NSDictionary*)dict;
 
 
 /**
@@ -30,13 +30,13 @@
  * - √ Arrays. to be able to do the conversion to another model
  * the method `-(Class)property_DaikiriArray` should be defined.
  */
-+(id)fromDictionary:(NSDictionary*)dict placeholder:(DaikiriJSON*)placeholder;
++(instancetype)fromDictionary:(NSDictionary*)dict placeholder:(DaikiriJSON*)placeholder;
 
 /**
  * It calls the +(id)fromDictionary but first 
  * converting the string to a dict
  */
-+(id)fromDictionaryString:(NSString*)string;
++(instancetype)fromDictionaryString:(NSString*)string;
 
 /**
  * Creates a dictionary from the model
