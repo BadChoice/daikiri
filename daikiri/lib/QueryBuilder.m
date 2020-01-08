@@ -8,7 +8,7 @@
 
 -(id)initWithModel:(NSString*)model{
     if (self= [super init]) {
-        _model          = model;
+        _model          = Daikiri.swiftPrefix ? [model replace:Daikiri.swiftPrefix with:@""] : model;
         _predicates     = NSMutableArray.new;
         _sortPredicates = NSMutableArray.new;
     }
@@ -144,7 +144,7 @@
 -(NSUInteger)count{
     NSFetchRequest *request;
     
-    Class modelClass        = NSClassFromString(_model);
+    Class modelClass        = self.getClass;
     NSString* entityName    = [modelClass performSelector:@selector(entityName)];
     request                 = [NSFetchRequest fetchRequestWithEntityName:entityName];
     
@@ -163,6 +163,13 @@
     return result;
 }
 
+-(Class)getClass{
+    if (Daikiri.swiftPrefix){
+        return NSClassFromString([NSString stringWithFormat:@"%@%@", Daikiri.swiftPrefix, _model]);
+    }
+    return NSClassFromString(_model);
+}
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
 
@@ -170,7 +177,7 @@
     
     NSFetchRequest *request;
     
-    Class modelClass        = NSClassFromString(_model);
+    Class modelClass        = self.getClass;
     NSString* entityName    = [modelClass performSelector:@selector(entityName)];
     request                 = [NSFetchRequest fetchRequestWithEntityName:entityName];
     
@@ -185,7 +192,7 @@
     NSPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:_predicates];
     [request setPredicate:compoundPredicate];
     
-    [request setSortDescriptors:_sortPredicates];    
+    [request setSortDescriptors:_sortPredicates];
     
     __block NSArray *results;
     [[modelClass managedObjectContext] performBlockAndWait:^{
@@ -195,21 +202,19 @@
             NSLog(@"Error fetching objects: %@\n%@", [error localizedDescription], [error userInfo]);
             abort();
         }
-    }];    
+    }];
     return results;
 }
 
 -(NSArray*)get{
-    Class modelClass = NSClassFromString(_model);
-    return [modelClass performSelector:@selector(managedArrayToDaikiriArray:) withObject:[self doQuery]];
+    return [self.getClass performSelector:@selector(managedArrayToDaikiriArray:) withObject:[self doQuery]];
 }
 
 -(id)first{
-    Class modelClass = NSClassFromString(_model);
     NSArray* results = [[[self skip:0] take:1] doQuery];
     
     if([results count] > 0){
-        Daikiri *mo = [modelClass performSelector:@selector(fromManaged:) withObject:results[0]];
+        Daikiri *mo = [self.getClass performSelector:@selector(fromManaged:) withObject:results[0]];
         return mo;
     }
     return nil;

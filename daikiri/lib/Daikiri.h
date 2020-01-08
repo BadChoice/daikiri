@@ -23,7 +23,7 @@
 + (instancetype)create:(Daikiri *)object;
 
 /**
- * The save function uses the model ID for checking if it already 
+ * The save function uses the model ID for checking if it already
  * exists so it will do an update, or if model ID is null or can't
  * find the object, it will create a new one and save it to the
  * database
@@ -88,7 +88,7 @@
 + (instancetype)first;
 
 /**
- * Returns the first model found sorted by 
+ * Returns the first model found sorted by
  */
 + (instancetype)first:(NSString *)sort;
 
@@ -144,4 +144,12 @@
  * By default it returns the DaikiriCoredata.manager
  */
 + (NSManagedObjectContext *)managedObjectContext;
+
+
+/** In Swift class names contain a prefix that is incompatible with the corde data entity name, so we can provide it to make it work with swift*/
++(void)setSwiftPrefix:(NSString*)theSwiftPrefix;
+
+/** The swift module prefix provided to make it match with coredata entity names that can't contain the module infront*/
++(NSString*)swiftPrefix;
+
 @end

@@ -1,9 +1,11 @@
-#import <Collection/NSArray+Collection.h>
+#import "RVCollection.h"
 #import "Daikiri.h"
 #import "DaikiriCoreData.h"
 #import "QueryBuilder.h"
 
 @implementation Daikiri
+
+static NSString* swiftPrefix = nil;
 
 //==================================================================
 #pragma mark - Create / Save / Update / Destroy
@@ -31,11 +33,19 @@
     return toCreate;
 }
 
++(void)setSwiftPrefix:(NSString*)theSwiftPrefix{
+    swiftPrefix = theSwiftPrefix;
+}
+
++(NSString*)swiftPrefix{
+    return swiftPrefix;
+}
+
 -(bool)save{
     Daikiri* previous = [self.class find:self.id];
     if(previous) {
         return [self update];
-    }    
+    }
     return [self.class create:self];
 }
 
@@ -258,8 +268,11 @@
 //==================================================================
 +(NSString*)entityName{
     NSString* entityName = NSStringFromClass(self.class);
-    if(self.class.usesPrefix){
+    if (self.class.usesPrefix){
         return [entityName substringFromIndex:2];
+    }
+    if (self.class.swiftPrefix){
+        return [entityName replace:self.class.swiftPrefix with:@""];
     }
     return entityName;
 }
