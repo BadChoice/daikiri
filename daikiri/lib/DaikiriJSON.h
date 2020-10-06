@@ -52,7 +52,7 @@
  * - √ Submodels
  * - √ Arrays
  */
--(NSDictionary*)toDictionary:(NSArray*)foceKeys
+-(NSDictionary*)toDictionary:(NSArray*)foceKeys;
 
 /**
  * Return an array of strings with the names of the values to ignore
