@@ -40,10 +40,14 @@ static NSMutableDictionary* classesForKeyPathsCached;
 }
 
 -(NSDictionary*)toDictionary{
+    return [self toDictionary:@[]];
+}
+
+-(NSDictionary*)toDictionary:(NSArray*)foceKeys{
     NSMutableDictionary* dict = NSMutableDictionary.new;
     
     [self.class properties:^(NSString *name) {
-        if ([self shouldIgnoreKey:name]) return;
+        if ([self shouldIgnoreKey:name] && ![foceKeys containsObject:name]) return;
 
         id value = [self valueForKey:name];
         if ( isNull(value) ){

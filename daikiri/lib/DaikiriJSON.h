@@ -47,6 +47,14 @@
 -(NSDictionary*)toDictionary;
 
 /**
+ * Creates a dictionary from the model, we can send an array of keys that shouldn't be ignored
+ *
+ * - √ Submodels
+ * - √ Arrays
+ */
+-(NSDictionary*)toDictionary:(NSArray*)foceKeys
+
+/**
  * Return an array of strings with the names of the values to ignore
  */
 -(NSArray*)toDictionaryIgnore;
