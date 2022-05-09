@@ -10,5 +10,6 @@
  */
 +(void)properties:(void (^)(NSString* name))block;
 +(void)propertiesWithProperty:(void (^)(NSString* name, objc_property_t property))block;
++(NSMutableArray*)getProperties;
 
 @end
