@@ -73,6 +73,11 @@ static NSMutableDictionary * cachedProperties;
 
 +(void)cacheProperties{
     if(cachedProperties == nil) cachedProperties = [NSMutableDictionary new];
+    NSMutableArray* properties                   = [self.class getProperties];
+    cachedProperties[NSStringFromClass(self.class)] = properties;
+}
+
++(NSMutableArray*)getProperties{
     NSMutableArray* properties                   = [NSMutableArray      new];
     
     unsigned int numberOfProperties = 0;
@@ -84,9 +89,8 @@ static NSMutableDictionary * cachedProperties;
         [properties addObject:@(property_getName(property))];
     }
     free(propertyArray);
-    cachedProperties[NSStringFromClass(self.class)] = properties;
+    return properties;
 }
-
 
 /*
  -(NSString*)description{
