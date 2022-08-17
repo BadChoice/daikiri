@@ -26,31 +26,21 @@
 -(QueryBuilder*)where:(NSString*)field is:(id)value{
     return [self where:field operator:@"=" value:value];
 }
+
+-(QueryBuilder*)whereInsensitive:(NSString*)field is:(id)value{
+	return [self where:field operator:@"=[cd]" value:value];
+}
+
 -(QueryBuilder*)where:(NSString*)field operator:(NSString*)operator value:(id)value{
-    if([operator isEqualToString:@"="]){
-        [_predicates addObject:[NSPredicate predicateWithFormat:@"%K = %@",field, value]];
-    }
-    else if([operator isEqualToString:@">"]){
-        [_predicates addObject:[NSPredicate predicateWithFormat:@"%K > %@",field, value]];
-    }
-    else if([operator isEqualToString:@">="]){
-        [_predicates addObject:[NSPredicate predicateWithFormat:@"%K >= %@",field, value]];
-    }
-    else if([operator isEqualToString:@"<"]){
-        [_predicates addObject:[NSPredicate predicateWithFormat:@"%K < %@",field, value]];
-    }
-    else if([operator isEqualToString:@"<="]){
-        [_predicates addObject:[NSPredicate predicateWithFormat:@"%K <= %@",field, value]];
-    }
-    else if([operator isEqualToString:@"<>"] || [operator isEqualToString:@"!="]){
+	if ([operator isEqualToString:@"<>"] || [operator isEqualToString:@"!="]){
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K != %@",field, value]];
-    }
-    else if([operator isEqualToString:@"like"]){
+    } else if ([operator isEqualToString:@"like"]){
         [self whereAny:@[field] like:value];
-    }
-    else if([operator isEqualToString:@"in"] || [operator isEqualToString:@"IN"]){
+    } else if ([operator isEqualToString:@"in"] || [operator isEqualToString:@"IN"]){
         [_predicates addObject:[NSPredicate predicateWithFormat:@"%K IN %@",field, value]];
-    }
+    } else {
+        [_predicates addObject:[NSPredicate predicateWithFormat:str(@"%%K %@ %%@",operator), field, value]];
+	}
     return self;
 }
 
