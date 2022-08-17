@@ -12,6 +12,9 @@
 +(QueryBuilder*)query:(NSString*)model;
 
 -(QueryBuilder*)where:(NSString*)field is:(id)value;
+
+- (QueryBuilder *)whereInsensitive:(NSString *)field is:(id)value;
+
 -(QueryBuilder*)where:(NSString*)field operator:(NSString*)operator value:(id)value;
 -(QueryBuilder*)where:(NSString*)field in:(NSArray*)values;
 -(QueryBuilder*)whereAny:(NSArray*)fields like:(id)value;
