@@ -46,6 +46,16 @@
  */
 + (void)truncate;
 
+/**
+ Returns a new instance fetched from the database. Current object is not modified
+ */
+-(instancetype)fresh;
+
+/**
+ Fetches the data from the database and refreshes itself with it, so current object is modified
+ */
+-(instancetype)refresh;
+
 
 // -----------------------------------------
 // Convenience methods

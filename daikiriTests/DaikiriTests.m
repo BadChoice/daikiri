@@ -146,14 +146,14 @@
 
      
 -(void)test_has_many_with_prefix{
-    Hero* batman        = [GSHero find:@1];
+    Hero* batman        = [Hero find:@1];
     NSArray* enemies    = batman.enemies;
     XCTAssertTrue(enemies.count == 2);
     XCTAssertTrue([((GSEnemy*)enemies.firstObject).name isEqualToString:@"Luxor"]);
 } 
 
 -(void)test_relationship_is_cached{
-    Hero* batman        = [GSHero find:@1];
+    Hero* batman        = [Hero find:@1];
     NSArray* enemies    = batman.enemies;
     XCTAssertEqual(enemies, batman.enemies);    //Belongs to many
 
@@ -166,11 +166,42 @@
 }
 
 -(void)test_relationship_can_be_invalidated{
-    Hero* batman        = [GSHero find:@1];
+    Hero* batman        = [Hero find:@1];
     NSArray* enemies    = batman.enemies;
     XCTAssertEqual(enemies, batman.enemies);
     XCTAssertTrue(enemies.count == 2);
     NSArray* enemiesReloaded = ((Hero*)batman.invalidateRelationships).enemies;
     XCTAssertNotEqual(enemies, enemiesReloaded);
 }
+
+-(void)test_it_can_get_a_fresh_instance{
+    Hero* batman        = [Hero find:@1];
+    Hero* batman2       = [Hero find:@1];
+    
+    XCTAssertTrue([@"Batman" isEqualToString:batman.name]);
+    XCTAssertTrue([@"Batman" isEqualToString:batman2.name]);
+    
+    batman2.name = @"Batman 2";
+    [batman2 save];
+    XCTAssertTrue([@"Batman 2" isEqualToString: batman2.name]);
+    XCTAssertTrue([@"Batman" isEqualToString: batman.name]);
+    XCTAssertTrue([@"Batman 2" isEqualToString: batman.fresh.name]);
+    XCTAssertTrue([@"Batman" isEqualToString: batman.name]);
+}
+
+-(void)test_it_can_refresh_instance{
+    Hero* batman        = [Hero find:@1];
+    Hero* batman2       = [Hero find:@1];
+    
+    XCTAssertTrue([@"Batman" isEqualToString:batman.name]);
+    XCTAssertTrue([@"Batman" isEqualToString:batman2.name]);
+    
+    batman2.name = @"Batman 2";
+    [batman2 save];
+    XCTAssertTrue([@"Batman 2" isEqualToString: batman2.name]);
+    XCTAssertTrue([@"Batman" isEqualToString: batman.name]);
+    XCTAssertTrue([@"Batman 2" isEqualToString: batman.refresh.name]);
+    XCTAssertTrue([@"Batman 2" isEqualToString: batman.name]);
+}
+
 @end

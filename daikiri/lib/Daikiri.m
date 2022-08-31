@@ -66,6 +66,17 @@ static NSString* swiftPrefix = nil;
     return true;
 }
 
+-(instancetype)fresh{
+    return [self.class find:self.id];
+}
+
+-(instancetype)refresh {
+    Daikiri* fresh = [self fresh];
+    [self.class properties:^(NSString* name){
+        [self setValue:[fresh valueForKey:name] forKey:name];
+    }];
+    return self;
+}
 
 -(bool)destroy{
     if(_managed){
