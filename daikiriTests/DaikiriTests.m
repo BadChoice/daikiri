@@ -156,9 +156,17 @@
     Hero* batman        = [Hero find:@1];
     NSArray* enemies    = batman.enemies;
     XCTAssertEqual(enemies, batman.enemies);    //Belongs to many
-    
-    XCTAssertEqual(enemies, batman.enemies);    //Belongs to many
 
+    Enemy* mrFreeze = [Enemy createWith:@{@"id":@5, @"name":@"MrFreezze" ,@"age":@62}];
+    [EnemyHero createWith:@{@"id":@5, @"hero_id":batman.id   ,@"enemy_id":mrFreeze.id, @"level":@8}];
+    XCTAssertEqual(enemies, batman.enemies);    //Belongs to many cached
+    
+    Hero* batmanCached        = [Hero find:@1];
+    XCTAssertNotEqual(enemies, batmanCached.enemies);    //Belongs to many
+    
+    [batman invalidateRelationships];
+    XCTAssertNotEqual(enemies, batman.enemies);    //Belongs to many
+    
     NSArray* friends    = batman.friends;
     XCTAssertEqual(friends, batman.friends);    //Has to many
 
