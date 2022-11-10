@@ -156,6 +156,8 @@
     Hero* batman        = [Hero find:@1];
     NSArray* enemies    = batman.enemies;
     XCTAssertEqual(enemies, batman.enemies);    //Belongs to many
+    
+    XCTAssertEqual(enemies, batman.enemies);    //Belongs to many
 
     NSArray* friends    = batman.friends;
     XCTAssertEqual(friends, batman.friends);    //Has to many

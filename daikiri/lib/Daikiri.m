@@ -150,10 +150,10 @@ static NSString* swiftPrefix = nil;
 }
 
 -(Daikiri*)belongsTo:(NSString*)model localKey:(NSString*)localKey{
-    id cached = [self getRelationshipCached:NSStringFromSelector(_cmd)];
+    NSString* cacheKey = str(@"belongs-to-%@-%@", model,localKey);
+    id cached = [self getRelationshipCached:cacheKey];
     if(cached) return cached;
-    return [self setRelationship:NSStringFromSelector(_cmd)
-                          object:[NSClassFromString(model) find:[self valueForKey:localKey]]];
+    return [self setRelationship:cacheKey object:[NSClassFromString(model) find:[self valueForKey:localKey]]];
 }
 
 -(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey{
@@ -161,10 +161,10 @@ static NSString* swiftPrefix = nil;
 }
 
 -(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey sort:(NSString *)sort{
-    id cached = [self getRelationshipCached:NSStringFromSelector(_cmd)];
+    NSString* cacheKey = str(@"has-many-%@-%@", model, foreignKey);
+    id cached = [self getRelationshipCached:cacheKey];
     if(cached) return cached;
-    return [self setRelationship:NSStringFromSelector(_cmd)
-                          object:[[NSClassFromString(model).query where:foreignKey is:self.id] orderBy:sort].get];
+    return [self setRelationship:cacheKey object:[[NSClassFromString(model).query where:foreignKey is:self.id] orderBy:sort].get];
 }
 
 -(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey{
@@ -172,25 +172,25 @@ static NSString* swiftPrefix = nil;
 }
 
 -(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey pivotSort:(NSString *)pivotSort{
-    id cached = [self getRelationshipCached:NSStringFromSelector(_cmd)];
-    if(cached) return cached;
+    NSString* cacheKey = str(@"belongs-many-%@-%@-%@-%@", model, pivotModel, localKey, foreingKey);
+    id cached = [self getRelationshipCached:cacheKey];
+    if (cached) return cached;
 
     //Pivots
     NSArray *pivots = [[NSClassFromString(pivotModel).query where:localKey is:self.id] orderBy:pivotSort].get;
     
     //Objects (attaching pivots)
-    NSMutableArray* finalResults = [NSMutableArray new];
+    NSMutableArray* finalResults = NSMutableArray.new;
     for(id pivot in pivots){
         id object = [NSClassFromString(model) find:[pivot valueForKey:foreingKey]];
-        if(object){
+        if (object) {
             [object         setPivot:pivot];
             [finalResults   addObject:object];
-        }
-        else{
+        } else {
             NSLog(@"[WARNING] Daikiri is trying to get a belongs to many object but it doesn't exist");
         }
     }
-    return [self setRelationship:NSStringFromSelector(_cmd) object:finalResults];
+    return [self setRelationship:cacheKey object:finalResults];
 }
 
 +(QueryBuilder*)query{
@@ -198,17 +198,17 @@ static NSString* swiftPrefix = nil;
 }
 
 -(id)getRelationshipCached:(NSString*)relationship{
-    return nil; //Until we find a good way
-    //if(!_relationships) return nil;
-    //return _relationships[relationship];
+    //return nil; //Until we find a good way
+    if(!_relationships) return nil;
+    return _relationships[relationship];
 }
 
 -(id)setRelationship:(NSString*)relationship object:(id)object{
-    return object; //Until we find a good way
-    //if(object == nil) return object;
-    //if(!_relationships) _relationships = [NSMutableDictionary new];
-    //_relationships[relationship] = object;
-    //return object;
+    //return object; //Until we find a good way
+    if(object == nil) return object;
+    if(!_relationships) _relationships = NSMutableDictionary.new;
+    _relationships[relationship] = object;
+    return object;
 }
 
 -(Daikiri *)invalidateRelationships{
