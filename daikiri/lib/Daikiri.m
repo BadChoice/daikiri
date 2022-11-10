@@ -198,12 +198,17 @@ static NSString* swiftPrefix = nil;
 }
 
 -(id)getRelationshipCached:(NSString*)relationship{
-    //return nil; //Until we find a good way
+    if (isRelationshipCachingDisabled) {
+        return nil;
+    }
     if(!_relationships) return nil;
     return _relationships[relationship];
 }
 
 -(id)setRelationship:(NSString*)relationship object:(id)object{
+    if (isRelationshipCachingDisabled) {
+        return object;
+    }
     //return object; //Until we find a good way
     if(object == nil) return object;
     if(!_relationships) _relationships = NSMutableDictionary.new;
@@ -213,6 +218,11 @@ static NSString* swiftPrefix = nil;
 
 -(Daikiri *)invalidateRelationships{
     _relationships = nil;
+    return self;
+}
+
+-(Daikiri *)withoutRelationshipCaching{
+    isRelationshipCachingDisabled = true;
     return self;
 }
 

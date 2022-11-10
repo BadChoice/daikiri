@@ -47,7 +47,7 @@
     [Hero       destroyWithArray:@[@1,@2,@3,@100]];
     [Enemy      destroyWithArray:@[@1,@2,@4]];
     [Friend     destroyWithArray:@[@1,@2,@4]];
-    [EnemyHero  destroyWithArray:@[@1,@2,@3,@4]];
+    [EnemyHero  destroyWithArray:@[@1,@2,@3,@4,@5]];
     [super tearDown];
 }
 

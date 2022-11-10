@@ -7,6 +7,7 @@
     NSManagedObject     *_managed;
     Daikiri             *_pivot;
     NSMutableDictionary *_relationships;
+    Boolean             isRelationshipCachingDisabled;
 }
 
 @property(strong, nonatomic) NSNumber *id;
@@ -81,6 +82,10 @@
  * @return object itself so it can be chained
  */
 - (Daikiri *)invalidateRelationships;
+
+
+/** Disables the relationships cachin for this instance */
+- (Daikiri *)withoutRelationshipCaching;
 
 /**
  * Returns the model in the database that matches the id or `nil` if not found
