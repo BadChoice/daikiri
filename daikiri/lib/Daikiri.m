@@ -167,12 +167,12 @@ static NSString* swiftPrefix = nil;
     return [self setRelationship:cacheKey object:[[NSClassFromString(model).query where:foreignKey is:self.id] orderBy:sort].get];
 }
 
--(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey{
-    return [self belongsToMany:model pivot:pivotModel localKey:localKey foreignKey:foreingKey pivotSort:nil];
+-(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreignKey{
+    return [self belongsToMany:model pivot:pivotModel localKey:localKey foreignKey:foreignKey pivotSort:nil];
 }
 
--(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreingKey pivotSort:(NSString *)pivotSort{
-    NSString* cacheKey = str(@"belongs-many-%@-%@-%@-%@", model, pivotModel, localKey, foreingKey);
+-(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreignKey pivotSort:(NSString *)pivotSort{
+    NSString* cacheKey = str(@"belongs-many-%@-%@-%@-%@", model, pivotModel, localKey, foreignKey);
     id cached = [self getRelationshipCached:cacheKey];
     if (cached) return cached;
 
@@ -182,12 +182,38 @@ static NSString* swiftPrefix = nil;
     //Objects (attaching pivots)
     NSMutableArray* finalResults = NSMutableArray.new;
     for(id pivot in pivots){
-        id object = [NSClassFromString(model) find:[pivot valueForKey:foreingKey]];
+        id object = [NSClassFromString(model) find:[pivot valueForKey:foreignKey]];
         if (object) {
             [object         setPivot:pivot];
             [finalResults   addObject:object];
         } else {
             NSLog(@"[WARNING] Daikiri is trying to get a belongs to many object but it doesn't exist");
+        }
+    }
+    return [self setRelationship:cacheKey object:finalResults];
+}
+
+-(NSArray*)morphToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey localType:(NSString*)localType foreignKey:(NSString*)foreignKey{
+    return [self morphToMany:model pivot:pivotModel localKey:localKey localType:localType foreignKey:foreignKey pivotSort:nil];
+}
+
+-(NSArray*)morphToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey localType:(NSString*)localType foreignKey:(NSString*)foreignKey pivotSort:(NSString *)pivotSort{
+    NSString* cacheKey = str(@"morph-many-%@-%@-%@-%@-%@", model, pivotModel, localKey, localType, foreignKey);
+    id cached = [self getRelationshipCached:cacheKey];
+    if (cached) return cached;
+
+    //Pivots
+    NSArray *pivots = [[[NSClassFromString(pivotModel).query where:str(@"%@_id", localKey) is:self.id] where:str(@"%@_type", localKey) is:localType] orderBy:pivotSort].get;
+
+    //Objects (attaching pivots)
+    NSMutableArray* finalResults = NSMutableArray.new;
+    for(id pivot in pivots){
+        id object = [NSClassFromString(model) find:[pivot valueForKey:foreignKey]];
+        if (object) {
+            [object         setPivot:pivot];
+            [finalResults   addObject:object];
+        } else {
+            NSLog(@"[WARNING] Daikiri is trying to get a morph to many object but it doesn't exist");
         }
     }
     return [self setRelationship:cacheKey object:finalResults];

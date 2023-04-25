@@ -123,12 +123,12 @@
 - (Daikiri *)belongsTo:(NSString *)model localKey:(NSString *)localKey;
 
 /**
- * Retuns all the models that have self as parent with the foreingKey
+ * Retuns all the models that have self as parent with the foreignKey
  */
 - (NSArray *)hasMany:(NSString *)model foreignKey:(NSString *)foreignKey;
 
 /**
- * Retuns all the models that have self as parent with the foreingKey
+ * Retuns all the models that have self as parent with the foreignKey
  */
 - (NSArray *)hasMany:(NSString *)model foreignKey:(NSString *)foreignKey sort:(NSString *)sort;
 
@@ -136,14 +136,27 @@
  * Get the related models when there is a pivot table between them,
  * you can acces the pivot information with the `pivot` method of the returning results
  */
-- (NSArray *)belongsToMany:(NSString *)model pivot:(NSString *)pivotModel localKey:(NSString *)localKey foreignKey:(NSString *)foreingKey;
+- (NSArray *)belongsToMany:(NSString *)model pivot:(NSString *)pivotModel localKey:(NSString *)localKey foreignKey:(NSString *)foreignKey;
 
 /**
  * Get the related models when there is a pivot table between them,
  * you can acces the pivot information with the `pivot` method of the returning results
  * sorted by sort
  */
-- (NSArray *)belongsToMany:(NSString *)model pivot:(NSString *)pivotModel localKey:(NSString *)localKey foreignKey:(NSString *)foreingKey pivotSort:(NSString *)pivotSort;
+- (NSArray *)belongsToMany:(NSString *)model pivot:(NSString *)pivotModel localKey:(NSString *)localKey foreignKey:(NSString *)foreignKey pivotSort:(NSString *)pivotSort;
+
+/**
+ * Get the related models when there is a polymorphic pivot table between them,
+ * you can acces the pivot information with the `pivot` method of the returning results
+ */
+- (NSArray *)morphToMany:(NSString *)model pivot:(NSString *)pivotModel localKey:(NSString *)localKey localType:(NSString *)localType foreignKey:(NSString *)foreignKey;
+
+/**
+ * Get the related models when there is a polymorphic pivot table between them,
+ * you can acces the pivot information with the `pivot` method of the returning results
+ * sorted by sort
+ */
+- (NSArray *)morphToMany:(NSString *)model pivot:(NSString *)pivotModel localKey:(NSString *)localKey localType:(NSString *)localType foreignKey:(NSString *)foreignKey pivotSort:(NSString *)pivotSort;
 
 
 /**
