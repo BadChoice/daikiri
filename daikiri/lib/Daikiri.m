@@ -315,11 +315,11 @@ static NSString* swiftPrefix = nil;
 //==================================================================
 +(NSString*)entityName{
     NSString* entityName = NSStringFromClass(self.class);
-    if (self.class.usesPrefix){
-        return [entityName substringFromIndex:2];
-    }
     if (self.class.swiftPrefix){
-        return [entityName replace:self.class.swiftPrefix with:@""];
+        entityName = [entityName replace:self.class.swiftPrefix with:@""];
+    }
+    if (self.class.usesPrefix){
+        entityName = [entityName substringFromIndex:2];
     }
     return entityName;
 }
