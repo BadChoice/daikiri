@@ -180,4 +180,7 @@
 /** The swift module prefix provided to make it match with coredata entity names that can't contain the module infront*/
 +(NSString*)swiftPrefix;
 
+/** Gets the class name, checks for objc - and swift versions*/
++(Class)classFor:(NSString*)model;
+
 @end
