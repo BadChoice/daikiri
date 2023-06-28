@@ -345,7 +345,6 @@
 				762167B11CC178A200C6CA80 /* Sources */,
 				762167B21CC178A200C6CA80 /* Frameworks */,
 				762167B31CC178A200C6CA80 /* Resources */,
-				91EB76747516DA0F93C61A3E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -451,36 +450,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		91EB76747516DA0F93C61A3E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-daikiri/Pods-daikiri-resources.sh",
-				"${PODS_ROOT}/MBFaker/MBFaker/Locales/cs.yml",
-				"${PODS_ROOT}/MBFaker/MBFaker/Locales/de.yml",
-				"${PODS_ROOT}/MBFaker/MBFaker/Locales/en.yml",
-				"${PODS_ROOT}/MBFaker/MBFaker/Locales/fr.yml",
-				"${PODS_ROOT}/MBFaker/MBFaker/Locales/nl.yml",
-				"${PODS_ROOT}/MBFaker/MBFaker/Locales/pl.yml",
-				"${PODS_ROOT}/MBFaker/MBFaker/Locales/ru.yml",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/cs.yml",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/de.yml",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.yml",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.yml",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/nl.yml",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/pl.yml",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ru.yml",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-daikiri/Pods-daikiri-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

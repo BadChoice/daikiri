@@ -64,7 +64,7 @@
     [[DaikiriCoreData manager] setDefaultConnection:@"db2"];
     
     XCTAssertEqual([Hero all].count, 2);
-    XCTAssertEqual([Enemy all].count, 3);
+    XCTAssertEqual([Enemy all].count, 4);
     XCTAssertEqualObjects(((Hero*)[Hero first]).name, @"Batman2");
     
     [Hero createWith:@{@"id":@5, @"name":@"Batman new"         ,@"age":@"49"}];

@@ -1,20 +1,16 @@
 PODS:
   - Collection (1.10.24)
-  - MBFaker (0.1.2)
 
 DEPENDENCIES:
   - Collection (~> 1.10.24)
-  - MBFaker (~> 0.1.2)
 
 SPEC REPOS:
   trunk:
     - Collection
-    - MBFaker
 
 SPEC CHECKSUMS:
   Collection: 360686fcef794e0bf6aea2768895a13c87ef6f96
-  MBFaker: 856baf3a7153a474506114b1694c57b3bbeafbda
 
-PODFILE CHECKSUM: 2c3fc460eca9284208e6510e6056d5c68e2c742b
+PODFILE CHECKSUM: faaee6b0f29a95e39b07d79aab45ad1e9140fc34
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

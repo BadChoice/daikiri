@@ -7,10 +7,10 @@
 - (NSString *)company;
 - (NSString *)email;
 - (NSString *)ipv4;
-- (NSString *)ipv6;
+//- (NSString *)ipv6;
 - (NSString *)url;
 - (NSString *)username;
 - (NSString *)word;
 - (NSString *)sentence;
-- (NSString *)paragraph;
+//- (NSString *)paragraph;
 @end
