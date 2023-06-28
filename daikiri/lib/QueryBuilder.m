@@ -154,10 +154,7 @@
 }
 
 -(Class)getClass{
-    if (Daikiri.swiftPrefix){
-        return NSClassFromString([NSString stringWithFormat:@"%@%@", Daikiri.swiftPrefix, _model]);
-    }
-    return NSClassFromString(_model);
+    return [Daikiri classFor:_model];
 }
 
 #pragma clang diagnostic push

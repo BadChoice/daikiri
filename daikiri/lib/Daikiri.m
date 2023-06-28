@@ -153,7 +153,7 @@ static NSString* swiftPrefix = nil;
     NSString* cacheKey = str(@"belongs-to-%@-%@", model,localKey);
     id cached = [self getRelationshipCached:cacheKey];
     if(cached) return cached;
-    return [self setRelationship:cacheKey object:[NSClassFromString(model) find:[self valueForKey:localKey]]];
+    return [self setRelationship:cacheKey object:[[self.class classFor:model] find:[self valueForKey:localKey]]];
 }
 
 -(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey{
@@ -164,7 +164,7 @@ static NSString* swiftPrefix = nil;
     NSString* cacheKey = str(@"has-many-%@-%@", model, foreignKey);
     id cached = [self getRelationshipCached:cacheKey];
     if(cached) return cached;
-    return [self setRelationship:cacheKey object:[[NSClassFromString(model).query where:foreignKey is:self.id] orderBy:sort].get];
+    return [self setRelationship:cacheKey object:[[[self.class classFor:model].query where:foreignKey is:self.id] orderBy:sort].get];
 }
 
 -(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreignKey{
@@ -176,13 +176,14 @@ static NSString* swiftPrefix = nil;
     id cached = [self getRelationshipCached:cacheKey];
     if (cached) return cached;
 
+    Class theClass = [self.class classFor:pivotModel];
     //Pivots
-    NSArray *pivots = [[NSClassFromString(pivotModel).query where:localKey is:self.id] orderBy:pivotSort].get;
+    NSArray *pivots = [[theClass.query where:localKey is:self.id] orderBy:pivotSort].get;
     
     //Objects (attaching pivots)
     NSMutableArray* finalResults = NSMutableArray.new;
-    for(id pivot in pivots){
-        id object = [NSClassFromString(model) find:[pivot valueForKey:foreignKey]];
+    for (id pivot in pivots){
+        id object = [[self.class classFor:model] find:[pivot valueForKey:foreignKey]];
         if (object) {
             [object         setPivot:pivot];
             [finalResults   addObject:object];
@@ -191,6 +192,14 @@ static NSString* swiftPrefix = nil;
         }
     }
     return [self setRelationship:cacheKey object:finalResults];
+}
+
++(Class)classFor:(NSString*)model{
+    Class theClass = NSClassFromString(model);
+    if (!theClass){
+        theClass = NSClassFromString(str(@"%@%@", swiftPrefix, model));
+    }
+    return theClass;
 }
 
 -(NSArray*)morphToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey localType:(NSString*)localType foreignKey:(NSString*)foreignKey{
@@ -203,12 +212,12 @@ static NSString* swiftPrefix = nil;
     if (cached) return cached;
 
     //Pivots
-    NSArray *pivots = [[[NSClassFromString(pivotModel).query where:str(@"%@_id", localKey) is:self.id] where:str(@"%@_type", localKey) is:localType] orderBy:pivotSort].get;
+    NSArray *pivots = [[[[self.class classFor:pivotModel].query where:str(@"%@_id", localKey) is:self.id] where:str(@"%@_type", localKey) is:localType] orderBy:pivotSort].get;
 
     //Objects (attaching pivots)
     NSMutableArray* finalResults = NSMutableArray.new;
     for(id pivot in pivots){
-        id object = [NSClassFromString(model) find:[pivot valueForKey:foreignKey]];
+        id object = [[self.class classFor:model] find:[pivot valueForKey:foreignKey]];
         if (object) {
             [object         setPivot:pivot];
             [finalResults   addObject:object];
