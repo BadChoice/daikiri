@@ -110,7 +110,7 @@ static NSMutableDictionary* classesForKeyPathsCached;
     if ([self classForKeyPath:key] == NSNumber.class){
         return [self convertToNSNumber:value];
     }
-    if ([self classForKeyPath:key] == NSDictionary.class){
+    if ([self classForKeyPath:key] == NSDictionary.class || [self classForKeyPath:key] == NSMutableDictionary.class){
         return value;
     }
     else if([value isKindOfClass:NSArray.class]){
