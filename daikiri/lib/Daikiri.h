@@ -146,6 +146,26 @@
 - (NSArray *)belongsToMany:(NSString *)model pivot:(NSString *)pivotModel localKey:(NSString *)localKey foreignKey:(NSString *)foreignKey pivotSort:(NSString *)pivotSort;
 
 /**
+ * Get the related models when there is a polymorphic relation it adds type and id to type and id
+ */
+-(id)morphTo:(NSString*)relationship;
+/**
+ * Get the related models when there is a polymorphic relation
+ */
+-(id)morphTo:(NSString*)typeKey idKey:(NSString*)idKey;
+
+
+/**
+ * Gets many related through a polymorphic relationship
+ */
+-(NSArray*)morphMany:(NSString*)model relationship:(NSString*)relationship sort:(NSString*)sort;
+
+/**
+ * Gets many related through a polymorphic relationship
+ */
+-(NSArray*)morphMany:(NSString*)model typeKey:(NSString*)typeKey idKey:(NSString*)idKey sort:(NSString*)sort;
+
+/**
  * Get the related models when there is a polymorphic pivot table between them,
  * you can acces the pivot information with the `pivot` method of the returning results
  */

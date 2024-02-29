@@ -29,7 +29,7 @@ static NSString* swiftPrefix = nil;
         [toCreate valuesToManaged:object];
         [self.class saveCoreData];
     }];
-
+    
     return toCreate;
 }
 
@@ -54,13 +54,13 @@ static NSString* swiftPrefix = nil;
         [self valuesToManaged:_managed];
         return [self.class saveCoreData];
     }
-
+    
     Daikiri* previous = [self.class find:self.id];
     if (!previous){
         NSLog(@"Model not in database");
         return false;
     }
-
+    
     [previous destroy];
     [self save];
     return true;
@@ -161,7 +161,7 @@ static NSString* swiftPrefix = nil;
 }
 
 -(NSArray*)hasMany:(NSString*)model foreignKey:(NSString*)foreignKey sort:(NSString *)sort{
-    NSString* cacheKey = str(@"has-many-%@-%@", model, foreignKey);
+    NSString* cacheKey = str(@"has-many-%@-%@-%@", model, foreignKey, self.id);
     id cached = [self getRelationshipCached:cacheKey];
     if(cached) return cached;
     return [self setRelationship:cacheKey object:[[[self.class classFor:model].query where:foreignKey is:self.id] orderBy:sort].get];
@@ -172,10 +172,10 @@ static NSString* swiftPrefix = nil;
 }
 
 -(NSArray*)belongsToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey foreignKey:(NSString*)foreignKey pivotSort:(NSString *)pivotSort{
-    NSString* cacheKey = str(@"belongs-many-%@-%@-%@-%@", model, pivotModel, localKey, foreignKey);
+    NSString* cacheKey = str(@"belongs-many-%@-%@-%@-%@-%@", model, pivotModel, localKey, foreignKey, self.id);
     id cached = [self getRelationshipCached:cacheKey];
     if (cached) return cached;
-
+    
     Class theClass = [self.class classFor:pivotModel];
     //Pivots
     NSArray *pivots = [[theClass.query where:localKey is:self.id] orderBy:pivotSort].get;
@@ -200,6 +200,31 @@ static NSString* swiftPrefix = nil;
         theClass = NSClassFromString(str(@"%@%@", swiftPrefix, model));
     }
     return theClass;
+}
+
+-(id)morphTo:(NSString*)relationship{
+    return [self morphTo:str(@"%@_type", relationship) idKey:str(@"%@_id", relationship)];
+}
+
+-(id)morphTo:(NSString*)typeKey idKey:(NSString*)idKey{
+    NSString* morphModel = [((NSString*)[self valueForKey:typeKey]) explode:@"\\"].lastObject;
+    NSNumber* morphId    = [self valueForKey:idKey];
+    
+    return [[self.class classFor:morphModel] find:morphId];
+}
+
+-(NSArray*)morphMany:(NSString*)model relationship:(NSString*)relationship sort:(NSString*)sort{
+    return [self morphMany:model typeKey:str(@"%@_type", relationship) idKey:str(@"%@_id", relationship) sort:sort];
+}
+
+-(NSArray*)morphMany:(NSString*)model typeKey:(NSString*)typeKey idKey:(NSString*)idKey sort:(NSString*)sort{
+    NSString* cacheKey = str(@"morph-many-%@-%@-%@-%@", model, typeKey, idKey, self.id);
+    return [self setRelationship:cacheKey object:
+            [[[[self.class classFor:model].query
+               where:idKey is:self.id]
+               whereAny:@[typeKey] like:self.class.entityName]
+            orderBy:sort].get
+    ];
 }
 
 -(NSArray*)morphToMany:(NSString*)model pivot:(NSString*)pivotModel localKey:(NSString*)localKey localType:(NSString*)localType foreignKey:(NSString*)foreignKey{

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -42,6 +42,7 @@
 		765E49D11DE4EF9800DE4D39 /* HeroFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E49D01DE4EF9800DE4D39 /* HeroFactory.m */; };
 		775106A8B8FADEA8C8F5E6FA /* DKFactoryDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 77510F062039B2EC5FFC88DA /* DKFactoryDefinition.m */; };
 		7751076F5AD5DDA9C423A4D3 /* DKFaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 775102A17B8D841A951FE741 /* DKFaker.m */; };
+		BB8295FA2B90E93E00192013 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8295F92B90E93E00192013 /* Tag.m */; };
 		D17AB5E1736133903CCC0854 /* libPods-daikiri.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5396CF4ECD259055673F8A5 /* libPods-daikiri.a */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +120,8 @@
 		775109E4954203FEDBA8B071 /* DKFaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKFaker.h; sourceTree = "<group>"; };
 		77510AB8C34B846D74D74E88 /* DKFactoryDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKFactoryDefinition.h; path = lib/DKFactory/DKFactoryDefinition.h; sourceTree = "<group>"; };
 		77510F062039B2EC5FFC88DA /* DKFactoryDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKFactoryDefinition.m; path = lib/DKFactory/DKFactoryDefinition.m; sourceTree = "<group>"; };
+		BB8295F82B90E93E00192013 /* Tag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = support/Tag.h; sourceTree = "<group>"; };
+		BB8295F92B90E93E00192013 /* Tag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = support/Tag.m; sourceTree = "<group>"; };
 		C9F2AAE25B85898F3A543336 /* Pods-daikiri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daikiri.debug.xcconfig"; path = "Pods/Target Support Files/Pods-daikiri/Pods-daikiri.debug.xcconfig"; sourceTree = "<group>"; };
 		D5396CF4ECD259055673F8A5 /* libPods-daikiri.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-daikiri.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -191,6 +194,8 @@
 				760E42EB1CC36AEB00796DCF /* Friend.m */,
 				760E42ED1CC36B4900796DCF /* EnemyHero.h */,
 				760E42EE1CC36B4900796DCF /* EnemyHero.m */,
+				BB8295F82B90E93E00192013 /* Tag.h */,
+				BB8295F92B90E93E00192013 /* Tag.m */,
 			);
 			name = Relationships;
 			sourceTree = "<group>";
@@ -380,7 +385,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = revo;
 				TargetAttributes = {
 					762167B41CC178A200C6CA80 = {
@@ -471,6 +476,7 @@
 				764426CB1CC5364200F0F2C9 /* QueryBuilder.m in Sources */,
 				764426D41CC7B54A00F0F2C9 /* GSEnemy.m in Sources */,
 				764426D11CC7B52E00F0F2C9 /* SampleModel.m in Sources */,
+				BB8295FA2B90E93E00192013 /* Tag.m in Sources */,
 				762167BD1CC178A200C6CA80 /* AppDelegate.m in Sources */,
 				7616C91B1CC4133B00E1DEEE /* DaikiriCoreData.m in Sources */,
 				763DFE691D63AA5100A12221 /* DKObject.m in Sources */,
@@ -534,6 +540,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -565,6 +572,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -591,6 +599,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -622,6 +631,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -676,6 +686,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				DEVELOPMENT_TEAM = F2VSE3YKKD;
 				INFOPLIST_FILE = daikiriTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -693,6 +705,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				DEVELOPMENT_TEAM = F2VSE3YKKD;
 				INFOPLIST_FILE = daikiriTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

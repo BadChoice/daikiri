@@ -7,6 +7,7 @@
 //
 
 #import "Hero.h"
+#import "Tag.h"
 
 @implementation Hero
 
@@ -16,6 +17,10 @@
 
 -(NSArray*)enemies{
     return [self belongsToMany:@"Enemy" pivot:@"EnemyHero" localKey:@"hero_id" foreignKey:@"enemy_id"];
+}
+
+-(NSArray*)tags{
+    return [self morphMany:@"Tag" typeKey:@"taggable_type" idKey:@"taggable_id" sort:@"id"];
 }
 
 /*-(NSArray*)toDictionaryIgnore{

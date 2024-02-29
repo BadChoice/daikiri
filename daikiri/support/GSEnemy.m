@@ -14,4 +14,8 @@
     return true;
 }
 
+-(NSArray*)tags{
+    return [self morphMany:@"Tag" relationship:@"taggable" sort:@"id"];
+}
+
 @end
