@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name             = "daikiri"
-  spec.version          = "1.9.12"
+  spec.version          = "1.9.13"
   spec.summary          = "Daikiri json - model - coredata made easy, it is like Laravel Eloquent but for iOS"
   spec.description      = "Daikiri is a really easy library to work with json - model - coredata in the easiest, intuitive and fluent way. Inspired in Laravel Eloquent. There is also a clear factory method for making testing painless"
   spec.homepage         = "https://revo.works"
