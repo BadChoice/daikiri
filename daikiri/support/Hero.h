@@ -18,4 +18,5 @@
 
 -(NSArray*)friends;
 -(NSArray*)enemies;
+-(NSArray*)tags;
 @end

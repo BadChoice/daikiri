@@ -13,6 +13,7 @@
 #import "EnemyHero.h"
 #import "GSHero.h"
 #import "GSEnemy.h"
+#import "Tag.h"
 
 #import "DaikiriCoreData.h"
 
@@ -41,6 +42,10 @@
     [EnemyHero createWith:@{@"id":@2, @"hero_id":superman.id    ,@"enemy_id":luxor.id, @"level":@5}];
     [EnemyHero createWith:@{@"id":@3, @"hero_id":batman.id      ,@"enemy_id":joker.id, @"level":@10}];
     [EnemyHero createWith:@{@"id":@4, @"hero_id":spiderman.id   ,@"enemy_id":greenGoblin.id, @"level":@10}];
+    
+    [Tag createWith:@{@"id" : @1, @"taggable_type" : @"App\\Models\\Hero",  @"taggable_id" : @1, @"name" : @"Has cape"}];
+    [Tag createWith:@{@"id" : @2, @"taggable_type" : @"App\\Models\\Hero",  @"taggable_id" : @1, @"name" : @"Has horns"}];
+    [Tag createWith:@{@"id" : @3, @"taggable_type" : @"App\\Models\\Enemy", @"taggable_id" : @1, @"name" : @"Is green"}];
 }
 
 - (void)tearDown {
@@ -48,6 +53,7 @@
     [Enemy      destroyWithArray:@[@1,@2,@4]];
     [Friend     destroyWithArray:@[@1,@2,@4]];
     [EnemyHero  destroyWithArray:@[@1,@2,@3,@4,@5]];
+    [Tag        truncate];
     [super tearDown];
 }
 
@@ -136,6 +142,29 @@
     XCTAssertTrue(((EnemyHero*)enemy2.pivot).level.intValue == 10);
 }
 
+-(void)test_can_morph_to{
+    Tag* capeTag = [Tag find:@1];
+    id taggable = capeTag.taggable;
+    
+    XCTAssertTrue([taggable isKindOfClass:Hero.class]);
+    XCTAssertEqual(((Hero*)taggable).name, @"Batman");
+}
+
+-(void)test_can_morph_to_many{   
+    Hero* batman = [Hero find:@1];
+    NSArray<Tag*> * tags = batman.tags;
+    
+    XCTAssertEqual(tags.count, 2);
+    XCTAssertEqual(tags[0].name, @"Has cape");
+    XCTAssertEqual(tags[1].name, @"Has horns");
+    
+    GSEnemy* greenGoblin = [GSEnemy find:@1];
+    NSArray<Tag*> * enemyTags = greenGoblin.tags;
+    
+    XCTAssertEqual(enemyTags.count, 1);
+    XCTAssertEqual(enemyTags[0].name, @"Is green");
+}
+
 //===========================================================================
 #pragma mark - Prefix
 //===========================================================================
@@ -213,5 +242,6 @@
     XCTAssertTrue([@"Batman 2" isEqualToString: batman.refresh.name]);
     XCTAssertTrue([@"Batman 2" isEqualToString: batman.name]);
 }
+
 
 @end
