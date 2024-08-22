@@ -169,6 +169,9 @@ static NSMutableDictionary* classesForKeyPathsCached;
     if([value isKindOfClass:NSNumber.class]){
         return ((NSNumber*)value).stringValue;
     }
+    if([value isKindOfClass:NSDictionary.class]) {
+        return ((NSDictionary*)value).toString;
+    }
     return value;
 }
 
