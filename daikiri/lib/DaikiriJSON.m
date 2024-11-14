@@ -65,6 +65,9 @@ static NSMutableDictionary* classesForKeyPathsCached;
         else if([value isKindOfClass:DaikiriJSON.class]){
             dict[name] = [value toDictionary];
         }
+        else if([value isKindOfClass:NSDate.class]){
+            dict[name] = ((NSDate*)value).description;
+        }
         else if([value isKindOfClass:NSArray.class]){
             NSMutableArray* dictArray = NSMutableArray.new;
             for(id child in value){
@@ -112,6 +115,9 @@ static NSMutableDictionary* classesForKeyPathsCached;
     }
     if ([[self classForKeyPath:key] isSubclassOfClass:NSDictionary.class]){
         return value;
+    }
+    if ([self classForKeyPath:key] == NSDate.class){
+        return [self convertToDate:value];
     }
     else if([value isKindOfClass:NSArray.class]){
         NSString* methodName        = str(@"%@_DaikiriArray", key);
@@ -163,6 +169,12 @@ static NSMutableDictionary* classesForKeyPathsCached;
         return @(value.doubleValue);
     }
     return value;
+}
+
+-(NSDate*)convertToDate:(NSString*)value{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+    return [dateFormatter dateFromString:value];
 }
 
 -(NSString*)convertoNSString:(NSString*)value{
