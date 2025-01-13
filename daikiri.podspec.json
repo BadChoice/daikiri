@@ -1,17 +1,17 @@
 {
     "name": "daikiri",
-    "version": "1.9.17",
+    "version": "1.9.18",
     "summary": "Daikiri json - model - coredata made easy, it is like Laravel Eloquent but for iOS",
     "platforms": {
         "ios": "13.0"
     },
     "source": {
         "git": "https://github.com/BadChoice/daikiri.git",
-        "tag": "1.9.17"
+        "tag": "1.9.18"
     },
     "dependencies" : {
         "Collection" : [
-	  "1.10.24"
+	  "1.10.26"
         ],
         "MBFaker" : [
 	  "0.1.2"
