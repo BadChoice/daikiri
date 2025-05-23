@@ -2,6 +2,7 @@
 #import <CoreData/CoreData.h>
 #import "Daikiri.h"
 #import "DaikiriCoreData.h"
+#import "Vehicle.h"
 
 @interface TransformableTypesTests : XCTestCase
 
@@ -13,67 +14,57 @@
 @implementation TransformableTypesTests
 
 - (void)setUp {
+    [[DaikiriCoreData manager] useTestDatabase:true];
     [super setUp];
-    self.context = [DaikiriCoreData manager].managedObjectContext;
-    self.entity = [NSEntityDescription entityForName:@"HeroVehicle" inManagedObjectContext:self.context];
-    XCTAssertNotNil(self.entity, @"Failed to get HeroVehicle");
 }
 
 - (void)tearDown {
-    self.context = nil;
-    self.entity = nil;
     [super tearDown];
 }
 
 #pragma mark - Simple Type Test
 
-- (void)testBoolTransformation {
-    NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:self.entity insertIntoManagedObjectContext:self.context];
+- (void)testDifferentTransformableAttributes{
+    Vehicle* coolVehicle = [Vehicle createWith:@{
+        @"id":@1,
+        @"model": @"Rolls-Royce Phantom II",
+        @"isCool":@YES,
+        @"nicknames": @[@"The Night Howler", @"The Dark Ghost", @"The Misbehaved"],
+        @"rules": @{
+            @"smoking_allowed": @YES,
+            @"drunk_driving_policy": @"just_on_fridays",
+            @"max_speed": @"Mach 2",
+            @"passenger_seat_policy": @"only_pretty_heroines",
+        },
+    }];
     
-    // Test true value
-    [object setValue:@YES forKey:@"isCool"];
-    NSNumber *transformedTrue = [object valueForKey:@"isCool"];
-    XCTAssertEqual([transformedTrue boolValue], YES);
+    XCTAssertTrue([coolVehicle.model isEqualToString:@"Rolls-Royce Phantom II"]);
     
-    // Test false value
-    [object setValue:@NO forKey:@"isCool"];
-    NSNumber *transformedFalse = [object valueForKey:@"isCool"];
-    XCTAssertEqual([transformedFalse boolValue], NO);
+    XCTAssertEqual(coolVehicle.isCool.boolValue, YES);
+    
+    XCTAssertTrue(coolVehicle.nicknames.count == 3);
+    XCTAssertTrue([((NSString*)coolVehicle.nicknames[1]) isEqualToString:@"The Dark Ghost"]);
+    
+    XCTAssertTrue(coolVehicle.rules.count == 4);
+    XCTAssertTrue([((NSString*)coolVehicle.rules[@"max_speed"]) isEqualToString:@"Mach 2"]);
 }
 
-#pragma mark - Array Test
-
-- (void)testStringArrayTransformation {
-    NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:self.entity insertIntoManagedObjectContext:self.context];
+- (void)testEdgeCases{
+    Vehicle* coolVehicle = [Vehicle createWith:@{
+        @"id":@1,
+        @"model": @"",
+        @"isCool":@YES,
+        @"nicknames": @[],
+        //@"rules": nil,
+    }];
     
-    NSArray *testArray = @[@"test1", @"test2", @"test3"];
-    [object setValue:testArray forKey:@"nicknames"];
-    NSArray *transformedArray = [object valueForKey:@"nicknames"];
+    XCTAssertTrue([coolVehicle.model isEqualToString:@""]);
     
-    XCTAssertEqualObjects(transformedArray, testArray);
-}
-
-#pragma mark - Dictionary Test
-
-- (void)testStringDictionaryTransformation {
-    NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:self.entity insertIntoManagedObjectContext:self.context];
+    XCTAssertEqual(coolVehicle.isCool.boolValue, YES);
     
-    NSDictionary *testDict = @{@"smoking_allowed": @"false", @"drunk_driving_allowed": @"just_on_fridays"};
-    [object setValue:testDict forKey:@"rules"];
-    NSDictionary *transformedDict = [object valueForKey:@"rules"];
+    XCTAssertTrue(coolVehicle.nicknames.count == 0);
     
-    XCTAssertEqualObjects(transformedDict, testDict);
-}
-
-#pragma mark - Edge Cases
-
-- (void)testNilValueTransformation {
-    NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:self.entity insertIntoManagedObjectContext:self.context];
-    
-    [object setValue:nil forKey:@"isCool"];
-    id transformedValue = [object valueForKey:@"isCool"];
-    
-    XCTAssertNil(transformedValue);
+    XCTAssertTrue(coolVehicle.rules.count == 0);
 }
 
 @end 
