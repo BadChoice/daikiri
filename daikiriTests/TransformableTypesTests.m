@@ -15,8 +15,8 @@
 - (void)setUp {
     [super setUp];
     self.context = [DaikiriCoreData manager].managedObjectContext;
-    self.entity = [NSEntityDescription entityForName:@"TransformableEntity" inManagedObjectContext:self.context];
-    XCTAssertNotNil(self.entity, @"Failed to get TransformableEntity");
+    self.entity = [NSEntityDescription entityForName:@"HeroVehicle" inManagedObjectContext:self.context];
+    XCTAssertNotNil(self.entity, @"Failed to get HeroVehicle");
 }
 
 - (void)tearDown {
@@ -31,13 +31,13 @@
     NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:self.entity insertIntoManagedObjectContext:self.context];
     
     // Test true value
-    [object setValue:@YES forKey:@"boolValue"];
-    NSNumber *transformedTrue = [object valueForKey:@"boolValue"];
+    [object setValue:@YES forKey:@"isCool"];
+    NSNumber *transformedTrue = [object valueForKey:@"isCool"];
     XCTAssertEqual([transformedTrue boolValue], YES);
     
     // Test false value
-    [object setValue:@NO forKey:@"boolValue"];
-    NSNumber *transformedFalse = [object valueForKey:@"boolValue"];
+    [object setValue:@NO forKey:@"isCool"];
+    NSNumber *transformedFalse = [object valueForKey:@"isCool"];
     XCTAssertEqual([transformedFalse boolValue], NO);
 }
 
@@ -47,8 +47,8 @@
     NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:self.entity insertIntoManagedObjectContext:self.context];
     
     NSArray *testArray = @[@"test1", @"test2", @"test3"];
-    [object setValue:testArray forKey:@"stringArray"];
-    NSArray *transformedArray = [object valueForKey:@"stringArray"];
+    [object setValue:testArray forKey:@"nicknames"];
+    NSArray *transformedArray = [object valueForKey:@"nicknames"];
     
     XCTAssertEqualObjects(transformedArray, testArray);
 }
@@ -58,9 +58,9 @@
 - (void)testStringDictionaryTransformation {
     NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:self.entity insertIntoManagedObjectContext:self.context];
     
-    NSDictionary *testDict = @{@"key1": @"value1", @"key2": @"value2"};
-    [object setValue:testDict forKey:@"stringDict"];
-    NSDictionary *transformedDict = [object valueForKey:@"stringDict"];
+    NSDictionary *testDict = @{@"smoking_allowed": @"false", @"drunk_driving_allowed": @"just_on_fridays"};
+    [object setValue:testDict forKey:@"rules"];
+    NSDictionary *transformedDict = [object valueForKey:@"rules"];
     
     XCTAssertEqualObjects(transformedDict, testDict);
 }
@@ -70,8 +70,8 @@
 - (void)testNilValueTransformation {
     NSManagedObject *object = [[NSManagedObject alloc] initWithEntity:self.entity insertIntoManagedObjectContext:self.context];
     
-    [object setValue:nil forKey:@"boolValue"];
-    id transformedValue = [object valueForKey:@"boolValue"];
+    [object setValue:nil forKey:@"isCool"];
+    id transformedValue = [object valueForKey:@"isCool"];
     
     XCTAssertNil(transformedValue);
 }
