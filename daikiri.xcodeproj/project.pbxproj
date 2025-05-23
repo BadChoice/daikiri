@@ -42,6 +42,7 @@
 		765E49D11DE4EF9800DE4D39 /* HeroFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 765E49D01DE4EF9800DE4D39 /* HeroFactory.m */; };
 		775106A8B8FADEA8C8F5E6FA /* DKFactoryDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 77510F062039B2EC5FFC88DA /* DKFactoryDefinition.m */; };
 		7751076F5AD5DDA9C423A4D3 /* DKFaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 775102A17B8D841A951FE741 /* DKFaker.m */; };
+		91222AF72DE0734A00FFB98D /* TransformableTypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 91222AF62DE0734A00FFB98D /* TransformableTypesTests.m */; };
 		BB8295FA2B90E93E00192013 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8295F92B90E93E00192013 /* Tag.m */; };
 		D17AB5E1736133903CCC0854 /* libPods-daikiri.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5396CF4ECD259055673F8A5 /* libPods-daikiri.a */; };
 /* End PBXBuildFile section */
@@ -120,6 +121,7 @@
 		775109E4954203FEDBA8B071 /* DKFaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKFaker.h; sourceTree = "<group>"; };
 		77510AB8C34B846D74D74E88 /* DKFactoryDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DKFactoryDefinition.h; path = lib/DKFactory/DKFactoryDefinition.h; sourceTree = "<group>"; };
 		77510F062039B2EC5FFC88DA /* DKFactoryDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DKFactoryDefinition.m; path = lib/DKFactory/DKFactoryDefinition.m; sourceTree = "<group>"; };
+		91222AF62DE0734A00FFB98D /* TransformableTypesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransformableTypesTests.m; sourceTree = "<group>"; };
 		BB8295F82B90E93E00192013 /* Tag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = support/Tag.h; sourceTree = "<group>"; };
 		BB8295F92B90E93E00192013 /* Tag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = support/Tag.m; sourceTree = "<group>"; };
 		C9F2AAE25B85898F3A543336 /* Pods-daikiri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daikiri.debug.xcconfig"; path = "Pods/Target Support Files/Pods-daikiri/Pods-daikiri.debug.xcconfig"; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 		762B8EF41D0403080081ADA6 /* daikiriTests */ = {
 			isa = PBXGroup;
 			children = (
+				91222AF62DE0734A00FFB98D /* TransformableTypesTests.m */,
 				765E49CE1DE4EF3200DE4D39 /* Factories */,
 				763DFE6A1D63AB1400A12221 /* DKObjectTests.m */,
 				762B8EF51D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m */,
@@ -498,6 +501,7 @@
 				763DFE6B1D63AB1400A12221 /* DKObjectTests.m in Sources */,
 				76488E3F1D41FFB40036C260 /* DaikiriTests.m in Sources */,
 				762B8F011D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m in Sources */,
+				91222AF72DE0734A00FFB98D /* TransformableTypesTests.m in Sources */,
 				76488E411D4200600036C260 /* QueryBuilderTests.m in Sources */,
 				7658163F203F0E3C0053DC34 /* DaikiriFactoryTest.m in Sources */,
 				131144C21F8B9AC8002051C9 /* DaikiriMultipleAccounts.m in Sources */,
