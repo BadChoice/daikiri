@@ -14,6 +14,6 @@
 @property (strong,nonatomic) NSString* model;
 @property (strong,nonatomic) NSNumber* isCool;
 @property (strong,nonatomic) NSArray* nicknames;
-@property (strong,nonatomic) NSDictionary* _Nullable rules;
+@property (strong,nonatomic) NSDictionary* rules;
 
 @end
