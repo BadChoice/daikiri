@@ -11,6 +11,9 @@
 
 @interface Vehicle : Daikiri
 
-@property (strong,nonatomic) NSString* model;
+@property (strong,nonatomic) NSString* _Nonnull model;
+@property (strong,nonatomic) NSNumber* _Nonnull isCool;
+@property (strong,nonatomic) NSArray* _Nonnull nicknames;
+@property (strong,nonatomic) NSDictionary* _Nullable rules;
 
 @end
