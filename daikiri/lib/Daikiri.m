@@ -290,6 +290,7 @@ static NSString* swiftPrefix = nil;
 #pragma mark - HELPERS
 //==================================================================
 -(void)valuesToManaged:(NSManagedObject*)managedObject{
+    NSEntityDescription *entity = managedObject.entity;
     [managedObject setValue:[self valueForKey:@"id"] forKey:@"id"];
     
     [self.class properties:^(NSString *name) {
@@ -300,10 +301,18 @@ static NSString* swiftPrefix = nil;
         else if([value isKindOfClass:NSNumber.class]){
             [managedObject setValue:value forKey:name];
         }
+        else{
+            NSAttributeDescription *attribute = entity.attributesByName[name];
+            NSAttributeType type = attribute.attributeType;
+            if(type == NSTransformableAttributeType) {
+                [managedObject setValue:value forKey:name];
+            }
+        }
     }];
 }
 
 +(id)fromManaged:(NSManagedObject*)managedObject{
+    NSEntityDescription *entity = managedObject.entity;
     Daikiri *newObject = self.class.new;
     [newObject setValue:[managedObject valueForKey:@"id"] forKey:@"id"];
     
@@ -315,6 +324,13 @@ static NSString* swiftPrefix = nil;
             }
             else if([value isKindOfClass:NSNumber.class]){
                 [newObject setValue:value forKey:name];
+            }
+            else{
+                NSAttributeDescription *attribute = entity.attributesByName[name];
+                NSAttributeType type = attribute.attributeType;
+                if(type == NSTransformableAttributeType) {
+                    [newObject setValue:value forKey:name];
+                }
             }
         }@catch (NSException * e) {
             //NSLog(@"Model value not in core data entity: %@", e);
