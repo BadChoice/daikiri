@@ -55,7 +55,7 @@
         @"model": @"",
         @"isCool":@YES,
         @"nicknames": @[],
-        //@"rules": nil,
+        @"rules": NSNull.new,
     }];
     
     XCTAssertTrue([coolVehicle.model isEqualToString:@""]);
