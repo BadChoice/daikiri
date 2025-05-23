@@ -294,9 +294,6 @@ static NSString* swiftPrefix = nil;
     [managedObject setValue:[self valueForKey:@"id"] forKey:@"id"];
     
     [self.class properties:^(NSString *name) {
-        NSAttributeDescription *attribute = entity.attributesByName[name];
-        NSAttributeType type = attribute.attributeType;
-        
         id value    = [self valueForKey:name];
         if([value isKindOfClass:NSString.class]){
             [managedObject setValue:value forKey:name];
@@ -304,8 +301,12 @@ static NSString* swiftPrefix = nil;
         else if([value isKindOfClass:NSNumber.class]){
             [managedObject setValue:value forKey:name];
         }
-        else if(type == NSTransformableAttributeType){
-            [managedObject setValue:value forKey:name];
+        else{
+            NSAttributeDescription *attribute = entity.attributesByName[name];
+            NSAttributeType type = attribute.attributeType;
+            if(type == NSTransformableAttributeType) {
+                [managedObject setValue:value forKey:name];
+            }
         }
     }];
 }
@@ -317,9 +318,6 @@ static NSString* swiftPrefix = nil;
     
     [self.class properties:^(NSString *name) {
         @try{
-            NSAttributeDescription *attribute = entity.attributesByName[name];
-            NSAttributeType type = attribute.attributeType;
-            
             id value = [managedObject valueForKey:name];
             if([value isKindOfClass:NSString.class]){
                 [newObject setValue:value forKey:name];
@@ -327,8 +325,12 @@ static NSString* swiftPrefix = nil;
             else if([value isKindOfClass:NSNumber.class]){
                 [newObject setValue:value forKey:name];
             }
-            else if(type == NSTransformableAttributeType){
-                [newObject setValue:value forKey:name];
+            else{
+                NSAttributeDescription *attribute = entity.attributesByName[name];
+                NSAttributeType type = attribute.attributeType;
+                if(type == NSTransformableAttributeType) {
+                    [newObject setValue:value forKey:name];
+                }
             }
         }@catch (NSException * e) {
             //NSLog(@"Model value not in core data entity: %@", e);
