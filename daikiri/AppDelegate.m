@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DaikiriCoreData.h"
+#import "daikiri-Swift.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +18,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [NSValueTransformer setValueTransformer:DriverTransformer.new forName:@"DriverTransformer"];
     return YES;
 }
 
