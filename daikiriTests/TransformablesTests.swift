@@ -26,6 +26,7 @@ class TransformablesTests: XCTestCase {
                 "drunk_driving_policy": "just_on_fridays",
                 "max_speed": "Mach 2",
                 "passenger_seat_policy": "only_pretty_heroines",
+                "max_people_in_trunk": 3,
             ],
             "drivers": [
                 batman,
@@ -42,8 +43,12 @@ class TransformablesTests: XCTestCase {
         XCTAssertTrue(coolVehicle.nicknames.count == 3)
         XCTAssertTrue(coolVehicle.nicknames[1] as! String == "The Dark Ghost")
         
-        XCTAssertTrue(coolVehicle.rules!.count == 4)
+        XCTAssertTrue(coolVehicle.rules!.count == 5)
+        XCTAssertTrue(coolVehicle.rules!["smoking_allowed"] as! Bool)
+        XCTAssertTrue(coolVehicle.rules!["drunk_driving_policy"] as! String == "just_on_fridays")
         XCTAssertTrue(coolVehicle.rules!["max_speed"] as! String == "Mach 2")
+        XCTAssertTrue(coolVehicle.rules!["passenger_seat_policy"] as! String == "only_pretty_heroines")
+        XCTAssertTrue(coolVehicle.rules!["max_people_in_trunk"] as! Int == 3)
         
         XCTAssertTrue(coolVehicle.drivers!.count == 2)
         XCTAssertTrue((coolVehicle.drivers![0]).name == "Batman")
