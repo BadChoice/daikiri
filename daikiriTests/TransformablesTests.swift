@@ -33,21 +33,40 @@ class TransformablesTests: XCTestCase {
             ]
         ])
         
-        let coolVehicle = Vehicle.find(1)
+        guard let coolVehicle = Vehicle.find(1) else { return XCTFail("Could not find vehicle") }
+                        
+        XCTAssertTrue(coolVehicle.model == "Rolls-Royce Phantom II")
         
-        XCTAssertNotNil(coolVehicle)
+        XCTAssertTrue(coolVehicle.isCool.boolValue)
+        
+        XCTAssertTrue(coolVehicle.nicknames.count == 3)
+        XCTAssertTrue(coolVehicle.nicknames[1] as! String == "The Dark Ghost")
+        
+        XCTAssertTrue(coolVehicle.rules!.count == 4)
+        XCTAssertTrue(coolVehicle.rules!["max_speed"] as! String == "Mach 2")
+        
+        XCTAssertTrue(coolVehicle.drivers!.count == 2)
+        XCTAssertTrue((coolVehicle.drivers![0]).name == "Batman")
+    }
+    
+    func testEdgeCases() {
+        Vehicle.create(with: [
+            "id": 1,
+            "model": "",
+            "isCool": true,
+            "nicknames": [],
+            "rules": nil,
+            "drivers": []
+        ])
+
+        guard let coolVehicle = Vehicle.find(1) else { return XCTFail("Could not find vehicle") }
                 
-        XCTAssertTrue(coolVehicle!.model == "Rolls-Royce Phantom II")
-        
-        XCTAssertTrue(coolVehicle!.isCool.boolValue)
-        
-        XCTAssertTrue(coolVehicle!.nicknames.count == 3)
-        XCTAssertTrue(coolVehicle!.nicknames[1] as! String == "The Dark Ghost")
-        
-        XCTAssertTrue(coolVehicle!.rules!.count == 4)
-        XCTAssertTrue(coolVehicle!.rules!["max_speed"] as! String == "Mach 2")
-        
-        XCTAssertTrue(coolVehicle!.drivers!.count == 2)
-        XCTAssertTrue((coolVehicle!.drivers![0]).name == "Batman")
+        XCTAssertTrue(coolVehicle.model == "")
+    
+        XCTAssertTrue(coolVehicle.isCool.boolValue)
+    
+        XCTAssertTrue(coolVehicle.nicknames.count == 0)
+    
+        XCTAssertTrue((coolVehicle.rules ?? [:]).count == 0)
     }
 }
