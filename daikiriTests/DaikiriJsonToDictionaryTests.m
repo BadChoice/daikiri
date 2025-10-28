@@ -2,20 +2,13 @@
 #import "Hero.h"
 #import "SampleModel.h"
 #import "Vehicle.h"
+#import "DaikiriTestCase.h"
 
-@interface DaikiriJsonToDictionaryTests : XCTestCase
+@interface DaikiriJsonToDictionaryTests : DaikiriTestCase
 
 @end
 
 @implementation DaikiriJsonToDictionaryTests
-
-- (void)setUp {
-    [super setUp];
-}
-
-- (void)tearDown {
-    [super tearDown];
-}
 
 //============================================================
 #pragma mark - Tests

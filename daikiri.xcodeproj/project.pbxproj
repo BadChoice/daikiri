@@ -45,6 +45,9 @@
 		913DDF272DE0C0C90077A4B6 /* TransformablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913DDF262DE0C0B80077A4B6 /* TransformablesTests.swift */; };
 		913DDF2B2DE0C5E30077A4B6 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913DDF2A2DE0C5E30077A4B6 /* Driver.swift */; };
 		913DDF2D2DE0CCDB0077A4B6 /* DriverTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913DDF2C2DE0CCDB0077A4B6 /* DriverTransformer.swift */; };
+		9178A3062EB0DF01003CBD63 /* PropertiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9178A3052EB0DF01003CBD63 /* PropertiesTests.swift */; };
+		9178A3082EB0DFD0003CBD63 /* SwiftHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9178A3072EB0DFC9003CBD63 /* SwiftHero.swift */; };
+		9178A30A2EB0E89D003CBD63 /* DaikiriTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9178A3092EB0E89D003CBD63 /* DaikiriTestCase.m */; };
 		BB8295FA2B90E93E00192013 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8295F92B90E93E00192013 /* Tag.m */; };
 		D17AB5E1736133903CCC0854 /* libPods-daikiri.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5396CF4ECD259055673F8A5 /* libPods-daikiri.a */; };
 /* End PBXBuildFile section */
@@ -128,6 +131,10 @@
 		913DDF292DE0C5E30077A4B6 /* daikiri-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "daikiri-Bridging-Header.h"; sourceTree = "<group>"; };
 		913DDF2A2DE0C5E30077A4B6 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		913DDF2C2DE0CCDB0077A4B6 /* DriverTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTransformer.swift; sourceTree = "<group>"; };
+		9178A3052EB0DF01003CBD63 /* PropertiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesTests.swift; sourceTree = "<group>"; };
+		9178A3072EB0DFC9003CBD63 /* SwiftHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftHero.swift; sourceTree = "<group>"; };
+		9178A3092EB0E89D003CBD63 /* DaikiriTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaikiriTestCase.m; sourceTree = "<group>"; };
+		9178A30B2EB0E918003CBD63 /* DaikiriTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DaikiriTestCase.h; sourceTree = "<group>"; };
 		BB8295F82B90E93E00192013 /* Tag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = support/Tag.h; sourceTree = "<group>"; };
 		BB8295F92B90E93E00192013 /* Tag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = support/Tag.m; sourceTree = "<group>"; };
 		C9F2AAE25B85898F3A543336 /* Pods-daikiri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daikiri.debug.xcconfig"; path = "Pods/Target Support Files/Pods-daikiri/Pods-daikiri.debug.xcconfig"; sourceTree = "<group>"; };
@@ -189,6 +196,7 @@
 		760E42E61CC36A7200796DCF /* Relationships */ = {
 			isa = PBXGroup;
 			children = (
+				9178A3072EB0DFC9003CBD63 /* SwiftHero.swift */,
 				913DDF2C2DE0CCDB0077A4B6 /* DriverTransformer.swift */,
 				760B2C371CC61B1F004300AD /* WithPrefix */,
 				760AE0B41CC27FE8005DE071 /* Hero.h */,
@@ -299,6 +307,8 @@
 		762B8EF41D0403080081ADA6 /* daikiriTests */ = {
 			isa = PBXGroup;
 			children = (
+				9178A30B2EB0E918003CBD63 /* DaikiriTestCase.h */,
+				9178A3092EB0E89D003CBD63 /* DaikiriTestCase.m */,
 				913DDF262DE0C0B80077A4B6 /* TransformablesTests.swift */,
 				765E49CE1DE4EF3200DE4D39 /* Factories */,
 				763DFE6A1D63AB1400A12221 /* DKObjectTests.m */,
@@ -310,6 +320,7 @@
 				131144C11F8B9AC8002051C9 /* DaikiriMultipleAccounts.m */,
 				7658163E203F0E3C0053DC34 /* DaikiriFactoryTest.m */,
 				913DDF282DE0C0D20077A4B6 /* daikiriTests-Bridging-Header.h */,
+				9178A3052EB0DF01003CBD63 /* PropertiesTests.swift */,
 			);
 			path = daikiriTests;
 			sourceTree = "<group>";
@@ -505,6 +516,7 @@
 				760AE0B11CC27563005DE071 /* DaikiriJSON.m in Sources */,
 				7751076F5AD5DDA9C423A4D3 /* DKFaker.m in Sources */,
 				775106A8B8FADEA8C8F5E6FA /* DKFactoryDefinition.m in Sources */,
+				9178A3082EB0DFD0003CBD63 /* SwiftHero.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,11 +527,13 @@
 				763DFE6B1D63AB1400A12221 /* DKObjectTests.m in Sources */,
 				76488E3F1D41FFB40036C260 /* DaikiriTests.m in Sources */,
 				913DDF272DE0C0C90077A4B6 /* TransformablesTests.swift in Sources */,
+				9178A30A2EB0E89D003CBD63 /* DaikiriTestCase.m in Sources */,
 				762B8F011D0408CD0081ADA6 /* DaikiriJsonToDictionaryTests.m in Sources */,
 				76488E411D4200600036C260 /* QueryBuilderTests.m in Sources */,
 				7658163F203F0E3C0053DC34 /* DaikiriFactoryTest.m in Sources */,
 				131144C21F8B9AC8002051C9 /* DaikiriMultipleAccounts.m in Sources */,
 				765E49D11DE4EF9800DE4D39 /* HeroFactory.m in Sources */,
+				9178A3062EB0DF01003CBD63 /* PropertiesTests.swift in Sources */,
 				762B8EF61D0403080081ADA6 /* DaikiriJsonFromDictionaryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

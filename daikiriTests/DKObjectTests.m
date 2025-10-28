@@ -8,20 +8,13 @@
 
 #import <XCTest/XCTest.h>
 #import "Hero.h"
+#import "DaikiriTestCase.h"
 
-@interface DKObjectTests : XCTestCase
+@interface DKObjectTests : DaikiriTestCase
 
 @end
 
 @implementation DKObjectTests
-
-- (void)setUp {
-    [super setUp];
-}
-
-- (void)tearDown {
-    [super tearDown];
-}
 
 - (void)testCopy {
     Hero* original = [Hero fromDictionary:@{@"name":@"batman",@"age":@42,@"headquarter":@{@"address":@"batcave"}}];
