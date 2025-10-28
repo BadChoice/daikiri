@@ -13,10 +13,10 @@
 #import "EnemyHero.h"
 #import "GSHero.h"
 #import "DaikiriCoreData.h"
-
+#import "DaikiriTestCase.h"
 #import "HeroFactory.h"
 
-@interface QueryBuilderTests : XCTestCase
+@interface QueryBuilderTests : DaikiriTestCase
 
 @end
 
@@ -28,9 +28,6 @@
     [DKFactoryDefinition registerFactories:@[
             HeroFactory.new
     ]];
-    
-    [[DaikiriCoreData manager] useTestDatabase:YES];
-    [[DaikiriCoreData manager] beginTransaction];
 
     Hero* batman                = [[DKFactory factory:Hero.class] create];
     Hero * spiderman            = [Hero createWith:@{@"id":@2, @"name":@"Spiderman"      ,@"age":@19}];
@@ -48,12 +45,6 @@
     [EnemyHero createWith:@{@"id":@2, @"hero_id":superman.id    ,@"enemy_id":luxor.id, @"level":@5}];
     [EnemyHero createWith:@{@"id":@3, @"hero_id":batman.id      ,@"enemy_id":joker.id, @"level":@10}];
     [EnemyHero createWith:@{@"id":@4, @"hero_id":spiderman.id   ,@"enemy_id":greenGoblin.id, @"level":@10}];
-}
-
-- (void)tearDown {
-    [super tearDown];
-    [[DaikiriCoreData manager] rollback];
-    //[[DaikiriCoreData manager] deleteAllEntities];
 }
 
 //===========================================================================

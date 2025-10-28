@@ -12,20 +12,13 @@
 #import "Hero.h"
 #import "Friend.h"
 #import "Vehicle.h"
+#import "DaikiriTestCase.h"
 
-@interface DaikiriJsonFromDictionaryTests : XCTestCase
+@interface DaikiriJsonFromDictionaryTests : DaikiriTestCase
 
 @end
 
 @implementation DaikiriJsonFromDictionaryTests
-
-- (void)setUp {
-    [super setUp];
-}
-
-- (void)tearDown {
-    [super tearDown];
-}
 
 //============================================================
 #pragma mark - Tests

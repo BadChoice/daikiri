@@ -1,15 +1,10 @@
 import XCTest
 @testable import daikiri
 
-class TransformablesTests: XCTestCase {
+class TransformablesTests: DaikiriTestCase {
     override func setUp() {
         ValueTransformer.setValueTransformer(DriverTransformer(), forName: NSValueTransformerName("DriverTransformer"))
-        DaikiriCoreData.manager().useTestDatabase(true)
         super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
     }
         
     func testDifferentTransformableAttributes() {

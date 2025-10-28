@@ -14,10 +14,10 @@
 #import "GSHero.h"
 #import "GSEnemy.h"
 #import "Tag.h"
-
+#import "DaikiriTestCase.h"
 #import "DaikiriCoreData.h"
 
-@interface DaikiriTests : XCTestCase
+@interface DaikiriTests : DaikiriTestCase
 
 @end
 
