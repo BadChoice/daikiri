@@ -30,6 +30,7 @@ static NSMutableDictionary* classesForKeyPathsCached;
             [placeholder setValue:valueConverted forKey:key];
         }
     }];
+    [placeholder setDefaultValues:dict];
     return placeholder;
 }
 
@@ -137,6 +138,11 @@ static NSMutableDictionary* classesForKeyPathsCached;
     id subValue = [[self classForKeyPath:key] fromDictionary:value];
     return subValue;
 }
+
+-(void)setDefaultValues:(NSDictionary*)dict{
+    // Overriden by Daikiri
+}
+
 #pragma clang diagnostic pop
 -(void)cacheClassesForKeyPath{
     if(classesForKeyPathsCached == nil) classesForKeyPathsCached = NSMutableDictionary.new;
