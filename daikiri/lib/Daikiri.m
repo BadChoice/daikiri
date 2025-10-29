@@ -286,6 +286,16 @@ static NSString* swiftPrefix = nil;
     return self;
 }
 
+-(void)setDefaultValues:(NSDictionary*)dict{
+    NSDictionary* attributes = [NSEntityDescription entityForName:self.class.entityName
+                                           inManagedObjectContext:self.class.managedObjectContext].attributesByName;
+    [attributes each:^(NSString* key, NSAttributeDescription* desc){
+        if ([[dict allKeys] containsObject:key]) return;
+        if (!desc.defaultValue) return;
+        [self setValue:desc.defaultValue forKey:key];
+    }];
+}
+
 //==================================================================
 #pragma mark - HELPERS
 //==================================================================
