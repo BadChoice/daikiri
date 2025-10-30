@@ -83,10 +83,6 @@
     return names[randomIndex];
 }
 
-/*- (NSString*)ipv6{
-    return MBFakerInternet.ipV6Address;
-}*/
-
 - (NSString*)url{
     NSArray* names = @[
         @"https://revo.com",
@@ -142,9 +138,5 @@
     NSUInteger randomIndex = arc4random() % names.count;
     return names[randomIndex];
 }
-
-/*- (NSString*)paragraph{
-    return MBFakerLorem.paragraph;
-}*/
 
 @end
