@@ -7,6 +7,10 @@
 //
 
 #import "Tag.h"
+#import "Taggable.h"
+#import "RVCollection.h"
+#import "Hero.h"
+#import "Enemy.h"
 
 @implementation Tag
 
@@ -14,4 +18,11 @@
     return [self morphTo:@"taggable"];
 }
 
+-(NSArray*)heroes{
+    return [self morphedByMany:@"Hero" relationship:@"taggable" localKey:@"tag_id" pivotModel:@"Taggable"];
+}
+
+-(NSArray*)enemies{
+    return [self morphedByMany:@"Enemy" relationship:@"taggable" localKey:@"tag_id" pivotModel:@"Taggable"];
+}
 @end

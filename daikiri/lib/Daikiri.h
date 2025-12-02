@@ -179,6 +179,8 @@
 - (NSArray *)morphToMany:(NSString *)model pivot:(NSString *)pivotModel localKey:(NSString *)localKey localType:(NSString *)localType foreignKey:(NSString *)foreignKey pivotSort:(NSString *)pivotSort;
 
 
+-(NSArray*)morphedByMany:(NSString*)model relationship:(NSString*)relationship localKey:(NSString*)localKey pivotModel:(NSString*)pivotModel;
+
 /**
  * In `belongsToMany` relationships you can access to the pivot model with
  * this method, otherwise, it will be nil
@@ -202,5 +204,6 @@
 
 /** Gets the class name, checks for objc - and swift versions*/
 +(Class)classFor:(NSString*)model;
++(NSString*)entityName;
 
 @end

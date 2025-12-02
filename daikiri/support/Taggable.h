@@ -8,17 +8,17 @@
 
 #import "Daikiri.h"
 #import <Foundation/Foundation.h>
-#import "GSHero.h"
-#import "GSEnemy.h"
+#import "Tag.h"
 
-@interface Tag : Daikiri
+@interface Taggable : Daikiri
 
-@property (strong,nonatomic) NSString* name;
+@property (strong,nonatomic) NSNumber* tag_id;
 @property (strong,nonatomic) NSNumber* taggable_id;
 @property (strong,nonatomic) NSString* taggable_type;
 
+-(Tag*)tag;
 -(id)taggable;
--(NSArray*)heroes;
--(NSArray*)enemies;
+
+
 @end
 

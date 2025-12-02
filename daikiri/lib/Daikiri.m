@@ -253,6 +253,31 @@ static NSString* swiftPrefix = nil;
     return [self setRelationship:cacheKey object:finalResults];
 }
 
+-(NSArray*)morphedByMany:(NSString*)model relationship:(NSString*)relationship localKey:(NSString*)localKey pivotModel:(NSString*)pivotModel{
+    
+    NSString* cacheKey = str(@"morphed-many-%@-%@-%@-%@", model, relationship, localKey, pivotModel);
+    id cached = [self getRelationshipCached:cacheKey];
+    if (cached) return cached;
+    
+    NSArray* pivots = [[[self.class classFor:pivotModel].query where:localKey is:self.id] whereAny:@[str(@"%@_type", relationship)] like:model].get;
+    
+    NSMutableArray* finalResults = NSMutableArray.new;
+    
+    NSString* foreingKey = str(@"%@_id", relationship);
+    
+    [pivots each:^(Daikiri *pivot) {
+        id object = [[self.class classFor:model] find:[pivot valueForKey:foreingKey]];
+        if (object) {
+            [object         setPivot:pivot];
+            [finalResults   addObject:object];
+        } else {
+            NSLog(@"[WARNING] Daikiri is trying to get a morph to many object but it doesn't exist");
+        }
+    }];
+    
+    return [self setRelationship:cacheKey object:finalResults];
+}
+
 +(QueryBuilder*)query{
     return [QueryBuilder query:NSStringFromClass(self.class)];
 }

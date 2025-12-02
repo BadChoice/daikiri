@@ -14,6 +14,7 @@
 #import "GSHero.h"
 #import "GSEnemy.h"
 #import "Tag.h"
+#import "Taggable.h"
 #import "DaikiriTestCase.h"
 #import "DaikiriCoreData.h"
 
@@ -46,6 +47,10 @@
     [Tag createWith:@{@"id" : @1, @"taggable_type" : @"App\\Models\\Hero",  @"taggable_id" : @1, @"name" : @"Has cape"}];
     [Tag createWith:@{@"id" : @2, @"taggable_type" : @"App\\Models\\Hero",  @"taggable_id" : @1, @"name" : @"Has horns"}];
     [Tag createWith:@{@"id" : @3, @"taggable_type" : @"App\\Models\\Enemy", @"taggable_id" : @1, @"name" : @"Is green"}];
+
+    [Taggable createWith:@{@"id" : @1, @"tag_id": @1, @"taggable_type" : @"App\\Models\\Hero",  @"taggable_id" : @1}];  //Batman - has cape
+    [Taggable createWith:@{@"id" : @2, @"tag_id": @1, @"taggable_type" : @"App\\Models\\Hero",  @"taggable_id" : @2}];  //Spiderman - has cape
+    [Taggable createWith:@{@"id" : @3, @"tag_id": @1, @"taggable_type" : @"App\\Models\\Enemy", @"taggable_id" : @1}];  //Luxor - has cape
 }
 
 - (void)tearDown {
@@ -163,6 +168,24 @@
     
     XCTAssertEqual(enemyTags.count, 1);
     XCTAssertEqual(enemyTags[0].name, @"Is green");
+}
+
+-(void)test_can_morphed_by_many {
+    
+    Tag * tag = Tag.first;
+    
+    NSArray<Hero*> * heroes   = tag.heroes;
+    NSArray<Enemy*> * enemies = tag.enemies;
+    
+    XCTAssertEqual(heroes.count, 2);
+    XCTAssertEqual(heroes[0].name, @"Batman");
+    
+    XCTAssertEqual(enemies.count, 1);
+    XCTAssertEqual(enemies[0].name, @"Luxor");
+    
+    Taggable* taggable = Taggable.first;
+    XCTAssertEqual(taggable.tag.name, @"Has cape");
+    XCTAssertEqual(((Hero*)(taggable.taggable)).name, @"Batman");
 }
 
 //===========================================================================
